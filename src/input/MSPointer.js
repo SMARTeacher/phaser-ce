@@ -336,11 +336,11 @@ Phaser.MSPointer.prototype = {
 
         if (event.pointerType === 'mouse' || event.pointerType === 0x00000004)
         {
-            this.input.mousePointer.stop(event, this.input.enabled && this.enabled);
+            this.input.mousePointer.stop(event, !this.input.enabled || !this.enabled);
         }
         else
         {
-            this.input.stopPointer(event, this.input.enabled && this.enabled);
+            this.input.stopPointer(event, !this.input.enabled || !this.enabled);
         }
 
     },
