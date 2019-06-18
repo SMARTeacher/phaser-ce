@@ -168,11 +168,17 @@ PIXI.BaseTexture.prototype.destroy = function ()
     if (this.source)
     {
         Phaser.CanvasPool.removeByCanvas(this.source);
-    }
 
+        this.source.width = 1;
+        this.source.height = 1;
+    }
     this.source = null;
 
     this.unloadFromGPU();
+
+    this.width = 0;
+    this.height = 0;
+    this._dirty = [];
 };
 
 /**

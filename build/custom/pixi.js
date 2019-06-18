@@ -665,7 +665,8 @@ PIXI.DisplayObject.prototype = {
         }
 
         this._cachedSprite.texture.destroy(true);
-
+        this._cachedSprite.destroy();
+        this._cachedSprite.texture = null;
         this._cachedSprite = null;
 
     }

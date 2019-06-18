@@ -123,6 +123,12 @@ Phaser.SoundManager = function (game)
     this.muteOnPause = true;
 
     /**
+    * @property {function} emptyBuffer - Empty audio buffer.
+    * @default
+    */
+   this.emptyBuffer = null;
+
+    /**
     * @property {boolean} _codeMuted - Internal mute tracking var.
     * @private
     * @default
@@ -186,7 +192,6 @@ Phaser.SoundManager = function (game)
     * @private
     */
     this._resumeWebAudioOnClick = this._resumeWebAudioOnClick.bind(this);
-
 };
 
 Phaser.SoundManager.prototype = {
@@ -282,6 +287,8 @@ Phaser.SoundManager.prototype = {
 
             this.masterGain.gain.value = 1;
             this.masterGain.connect(this.context.destination);
+
+            this.emptyBuffer = this.context.createBuffer(1, 1, 22050);
 
             // A suspended context is actually normal (momentarily) in Firefox.
             // In that case the input handler will do nothing, which is fine.
@@ -383,9 +390,8 @@ Phaser.SoundManager.prototype = {
             // Create empty buffer and play it
             // The onended handler will set touchLocked to false
 
-            var buffer = this.context.createBuffer(1, 1, 22050);
             this._unlockSource = this.context.createBufferSource();
-            this._unlockSource.buffer = buffer;
+            this._unlockSource.buffer = this.emptyBuffer;
             this._unlockSource.connect(this.context.destination);
 
             var _this = this;
@@ -698,7 +704,7 @@ Phaser.SoundManager.prototype = {
         {
             if (this._sounds[i])
             {
-                this._sounds[i].destroy();
+                this._sounds[i].destroy(false);
             }
         }
 

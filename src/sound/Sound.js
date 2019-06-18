@@ -195,10 +195,28 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this._markedToDelete = false;
 
     /**
-    * @property {boolean} _removeFromSoundManager - When audio stops, remove it from the Sound Manager and destroy it.
+    * @property {boolean} _markedToDisconnect - When audio stops, mark the Web Audio nodes to be disconnected.
     * @private
     */
-    this._removeFromSoundManager = false;
+    this._markedToDisconnect = false;
+    
+    /**
+    * @property {boolean} _disconnected - Set when Web Audio node is disconnected.
+    * @private
+    */
+   this._disconnected = false;
+
+   /**
+    * @property {Phaser.TimerEvent} _disconnectTimer - Timer to when Web Audio node will be disconnected.
+    * @private
+    */
+   this._disconnectTimer = null;
+
+    /**
+    * @property {boolean} _deleted - Set when Web Audio node is disconnected and deleted.
+    * @private
+    */
+    this._deleted = false;
 
     this._sourceId = 0;
 
@@ -291,12 +309,6 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     * @private
     */
     this._volume = volume;
-
-    /**
-    * @property {any} _buffer - Decoded data buffer / Audio tag.
-    * @private
-    */
-    this._buffer = null;
 
     /**
     * @property {boolean} _muted - Boolean indicating whether the sound is muted or not.
@@ -427,39 +439,13 @@ Phaser.Sound.prototype = {
         this._removeOnEndedHandler();
         this.isPlaying = false;
         this.currentTime = this.durationMS;
-        this.stop();
 
         if (this.playOnce)
         {
             this._markedToDelete = true;
-            this._removeFromSoundManager = true;
         }
 
-        if (this._markedToDelete)
-        {
-            this._disconnectSource();
-
-            if (this._removeFromSoundManager)
-            {
-                this.game.sound.remove(this);
-            }
-            else
-            {
-                this.markers = {};
-                this.context = null;
-                this._buffer = null;
-                this.externalNode = null;
-
-                this.onDecoded.dispose();
-                this.onPlay.dispose();
-                this.onPause.dispose();
-                this.onResume.dispose();
-                this.onLoop.dispose();
-                this.onStop.dispose();
-                this.onMute.dispose();
-                this.onMarkerComplete.dispose();
-            }
-        }
+        this.stop();
     },
 
     /**
@@ -472,7 +458,8 @@ Phaser.Sound.prototype = {
 
         if (!this.game.cache.checkSoundKey(this.key))
         {
-            this.destroy();
+            this._markedToDelete = true;
+            this.stop();
             return;
         }
 
@@ -579,6 +566,17 @@ Phaser.Sound.prototype = {
         if (marker === undefined || marker === false || marker === null) { marker = ''; }
         if (forceRestart === undefined) { forceRestart = true; }
 
+        this._markedToDelete = false;
+        this._markedToDisconnect = false;
+        this._disconnected = false;
+        this._deleted = false;
+
+        if (this._disconnectTimer)
+        {
+            this.game.time.events.remove(this._disconnectTimer);
+            this._disconnectTimer = null;
+        }
+
         if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override)
         {
             //  Use Restart instead
@@ -589,7 +587,8 @@ Phaser.Sound.prototype = {
         {
             if (this.usingWebAudio)
             {
-                this._stopSourceAndDisconnect();
+                this._stopSource();
+                this._disconnectAndDelete();
             }
             else if (this.usingAudioTag)
             {
@@ -766,7 +765,6 @@ Phaser.Sound.prototype = {
             }
 
             this._markedToDelete = true;
-            this._removeFromSoundManager = true;
         }
 
         return this;
@@ -886,6 +884,7 @@ Phaser.Sound.prototype = {
             {
                 this._sound.pause();
                 this._sound.currentTime = 0;
+                this._cleanup();
             }
         }
 
@@ -1036,34 +1035,47 @@ Phaser.Sound.prototype = {
     * @method Phaser.Sound#destroy
     * @param {boolean} [remove=true] - If true this Sound is automatically removed from the SoundManager.
     */
-    destroy: function (remove)
+   destroy: function (remove)
     {
-
         if (remove === undefined) { remove = true; }
 
-        this._markedToDelete = true;
-        this._removeFromSoundManager = remove;
-        this.stop();
-
-        if (remove)
+        this._markedToDelete = remove || this._markedToDelete;
+        
+        if (this._markedToDisconnect)
         {
-            this.game.sound.remove(this);
+            // destroy pending
+            return;
+        }
+        
+        if (!this._deleted)
+        {
+            if (this.isPlaying && this._sound)
+            {
+                this.stop();
+            }
+            else if (this.usingWebAudio)
+            {
+                if (!this._disconnected && this._sound)
+                {
+                    this._disconnectAndDelete();
+                }
+                else if (this._markedToDelete)
+                {
+                    this._delete();
+                }
+                else
+                {
+                    this._cleanup();
+                }
+            }
+            else
+            {
+                this._cleanup();
+            }
         }
         else
         {
-            this.markers = {};
-            this.context = null;
-            this._buffer = null;
-            this.externalNode = null;
-
-            this.onDecoded.dispose();
-            this.onPlay.dispose();
-            this.onPause.dispose();
-            this.onResume.dispose();
-            this.onLoop.dispose();
-            this.onStop.dispose();
-            this.onMute.dispose();
-            this.onMarkerComplete.dispose();
+            this._cleanup();
         }
     },
 
@@ -1072,8 +1084,7 @@ Phaser.Sound.prototype = {
 
         this._sound = this.context.createBufferSource();
         this._sound.connect(this.externalNode || this.gainNode);
-        this._buffer = this.game.cache.getSoundData(this.key);
-        this._sound.buffer = this._buffer;
+        this._sound.buffer = this.game.cache.getSoundData(this.key);
         this._sourceId++;
 
     },
@@ -1095,6 +1106,17 @@ Phaser.Sound.prototype = {
     _stopSourceAndDisconnect: function ()
     {
 
+        this._stopSource();
+
+        // wait for after the stop before disconnecting to prevent a memory leak
+        // https://stackoverflow.com/questions/53241345/web-audio-api-memory-leak
+        this._markedToDisconnect = true;
+        this._disconnectTimer = this.game.time.events.add(200, this._disconnectAndDelete.bind(this));
+
+    },
+
+    _stopSource: function ()
+    {
         // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
         this._removeOnEndedHandler();
 
@@ -1106,11 +1128,79 @@ Phaser.Sound.prototype = {
         {
             //  Thanks Android 4.4
         }
+    },
 
+    _disconnectAndDelete: function ()
+    {
         this._disconnectSource();
+            
+        try
+        {
+            // set the buffer to empty to prevent a memory leak
+            // https://stackoverflow.com/questions/24119684/web-audio-api-memory-leaks-on-mobile-platforms
+            this._sound.buffer = this.game.sound.emptyBuffer;
+        }
+        catch (e)
+        {
+            // some browsers do not like setting the buffer to another buffer
+            try
+            {
+                this._sound.buffer = null;
+            }
+            catch (e)
+            {
+                // some browsers do not like setting the buffer to null?
+            }
+        }
 
+        this._markedToDisconnect = false;
+        this._disconnected = true;
+
+        if (this._markedToDelete)
+        {
+            this._delete();
+        }
+        else
+        {
+            this._cleanup();
+        }
+    },
+
+    _delete: function ()
+    {
+        this._markedToDelete = false;
+        this._deleted = true;
+        
+        if (!this.game.sound.remove(this))
+        {
+            this._cleanup();
+        }
+    },
+
+    _cleanup: function ()
+    {
+        this.markers = {};
+        this.context = null;
+        this.externalNode = null;
+        this.gainNode = null;
         this._sound = null;
+        this.fadeTween = null;
+        this.masterGainNode = null;
 
+        this.onDecoded.dispose();
+        this.onPlay.dispose();
+        this.onPause.dispose();
+        this.onResume.dispose();
+        this.onLoop.dispose();
+        this.onStop.dispose();
+        this.onMute.dispose();
+        this.onMarkerComplete.dispose();
+        this.onFadeComplete.dispose();
+
+        if (this.usingAudioTag)
+        {
+            this.game.cache.onSoundUnlock.remove(this.soundHasUnlocked, this);
+        }
     },
 
     _addOnEndedHandler: function ()

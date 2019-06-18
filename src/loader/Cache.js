@@ -1912,6 +1912,10 @@ Phaser.Cache.prototype = {
         if (destroyBaseTexture && img.base)
         {
             img.base.destroy();
+            img.base = null;
+            img.data = null;
+            img.frameData = null;
+            img.url = null;
         }
 
         delete this._cache.image[key];
@@ -1933,6 +1937,19 @@ Phaser.Cache.prototype = {
     */
     removeSound: function (key)
     {
+        // set the buffer to empty to prevent a memory leak
+        // https://stackoverflow.com/questions/24119684/web-audio-api-memory-leaks-on-mobile-platforms
+        if (this.isSoundDecoded(key)) {
+            var sound = this._cache.sound[key];
+
+            try {
+                sound['data'] = this.game.sound.emptyBuffer;
+            }
+            catch (e)
+            {
+                // some browsers do not like setting the buffer to another buffer
+            }
+        }
 
         delete this._cache.sound[key];
 
