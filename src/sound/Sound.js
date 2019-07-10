@@ -193,24 +193,12 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     * @private
     */
     this._markedToDelete = false;
-
-    /**
-    * @property {boolean} _markedToDisconnect - When audio stops, mark the Web Audio nodes to be disconnected.
-    * @private
-    */
-    this._markedToDisconnect = false;
     
     /**
     * @property {boolean} _disconnected - Set when Web Audio node is disconnected.
     * @private
     */
    this._disconnected = false;
-
-   /**
-    * @property {Phaser.TimerEvent} _disconnectTimer - Timer to when Web Audio node will be disconnected.
-    * @private
-    */
-   this._disconnectTimer = null;
 
     /**
     * @property {boolean} _deleted - Set when Web Audio node is disconnected and deleted.
@@ -567,15 +555,8 @@ Phaser.Sound.prototype = {
         if (forceRestart === undefined) { forceRestart = true; }
 
         this._markedToDelete = false;
-        this._markedToDisconnect = false;
         this._disconnected = false;
         this._deleted = false;
-
-        if (this._disconnectTimer)
-        {
-            this.game.time.events.remove(this._disconnectTimer);
-            this._disconnectTimer = null;
-        }
 
         if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override)
         {
@@ -878,8 +859,8 @@ Phaser.Sound.prototype = {
         {
             if (this.usingWebAudio)
             {
-                this._stopSourceAndDisconnect();
-
+                this._stopSource();
+                this._disconnectAndDelete();
             }
             else if (this.usingAudioTag)
             {
@@ -1042,12 +1023,6 @@ Phaser.Sound.prototype = {
 
         this._markedToDelete = remove || this._markedToDelete;
         
-        if (this._markedToDisconnect)
-        {
-            // destroy pending
-            return;
-        }
-        
         if (!this._deleted)
         {
             if (this.isPlaying && this._sound)
@@ -1084,6 +1059,7 @@ Phaser.Sound.prototype = {
         {
             this._cleanup();
         }
+
     },
 
     _createSourceAndConnect: function ()
@@ -1125,18 +1101,6 @@ Phaser.Sound.prototype = {
 
     },
 
-    _stopSourceAndDisconnect: function ()
-    {
-
-        this._stopSource();
-
-        // wait for after the stop before disconnecting to prevent a memory leak
-        // https://stackoverflow.com/questions/53241345/web-audio-api-memory-leak
-        this._markedToDisconnect = true;
-        this._disconnectTimer = this.game.time.events.add(200, this._disconnectAndDelete.bind(this));
-
-    },
-
     _stopSource: function ()
     {
         // Firefox calls onended() after _sound.stop(). Chrome and Safari do not. (#530)
@@ -1175,7 +1139,6 @@ Phaser.Sound.prototype = {
             }
         }
 
-        this._markedToDisconnect = false;
         this._disconnected = true;
 
         if (this._markedToDelete)
