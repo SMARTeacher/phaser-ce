@@ -589,6 +589,7 @@ Phaser.Sound.prototype = {
             {
                 this._stopSource();
                 this._disconnectAndDelete();
+                this._cleanup();
             }
             else if (this.usingAudioTag)
             {
@@ -1061,7 +1062,13 @@ Phaser.Sound.prototype = {
                 }
                 else if (this._markedToDelete)
                 {
+                    var markedToDelete = this._markedToDelete;
                     this._delete();
+
+                    if (!markedToDelete)
+                    {
+                        this._cleanup();
+                    }
                 }
                 else
                 {
@@ -1092,7 +1099,22 @@ Phaser.Sound.prototype = {
     _disconnectSource: function ()
     {
 
-        this._sound.disconnect(this.externalNode || this.gainNode);
+        try
+        {
+            if (!this._disconnected && this._sound)
+            {
+                this._sound.disconnect(this.externalNode || this.gainNode);
+            }
+        }
+        catch (e)
+        {
+            // AudioBufferSourceNode can throw a couple of different exceptions
+            // https://developer.mozilla.org/en-US/docs/Web/API/AudioNode/disconnect
+            if (window.console)
+            {
+                console.error(e);
+            }
+        }
 
     },
 
@@ -1159,10 +1181,6 @@ Phaser.Sound.prototype = {
         if (this._markedToDelete)
         {
             this._delete();
-        }
-        else
-        {
-            this._cleanup();
         }
     },
 
