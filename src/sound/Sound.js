@@ -1092,6 +1092,8 @@ Phaser.Sound.prototype = {
             }
         }
 
+        this._disconnected = true;
+        
     },
 
     _startSource: function (when, offset, duration)
@@ -1138,8 +1140,6 @@ Phaser.Sound.prototype = {
                 // some browsers do not like setting the buffer to null?
             }
         }
-
-        this._disconnected = true;
 
         if (this._markedToDelete)
         {
