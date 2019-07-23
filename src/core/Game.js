@@ -1181,6 +1181,10 @@ Phaser.Game.prototype = {
 
         this.plugins.postRender(elapsedTime);
 
+        if (this.renderer.type === Phaser.WEBGL)
+        {
+            this.renderer.gl.flush();
+        }
     },
 
     /**
