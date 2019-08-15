@@ -1121,24 +1121,22 @@ Phaser.Sound.prototype = {
     _disconnectAndDelete: function ()
     {
         this._disconnectSource();
-            
-        try
-        {
-            // set the buffer to empty to prevent a memory leak
-            // https://stackoverflow.com/questions/24119684/web-audio-api-memory-leaks-on-mobile-platforms
-            this._sound.buffer = this.game.sound.emptyBuffer;
-        }
-        catch (e)
-        {
-            // some browsers do not like setting the buffer to another buffer
+           
+        // set the buffer to empty to prevent a memory leak in safari browser
+        // https://stackoverflow.com/questions/24119684/web-audio-api-memory-leaks-on-mobile-platforms
+        if (this.game.device.safari) {
             try
             {
-                this._sound.buffer = null;
+                this._sound.buffer = this.game.sound.emptyBuffer;
             }
             catch (e)
             {
-                // some browsers do not like setting the buffer to null?
+                // empty
             }
+        }
+        else
+        {
+            this._sound.buffer = null;
         }
 
         if (this._markedToDelete)
