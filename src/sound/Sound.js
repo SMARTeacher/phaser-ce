@@ -855,18 +855,21 @@ Phaser.Sound.prototype = {
     stop: function ()
     {
 
+        var disconnnectAndDelete = false;
+        var cleanup = false;
+
         if (this.isPlaying && this._sound)
         {
             if (this.usingWebAudio)
             {
                 this._stopSource();
-                this._disconnectAndDelete();
+                disconnnectAndDelete = true;
             }
             else if (this.usingAudioTag)
             {
                 this._sound.pause();
                 this._sound.currentTime = 0;
-                this._cleanup();
+                cleanup = true;
             }
         }
 
@@ -890,6 +893,15 @@ Phaser.Sound.prototype = {
             }
 
             this.onStop.dispatch(this, prevMarker);
+        }
+
+        if (disconnnectAndDelete)
+        {
+            this._disconnectAndDelete();
+        }
+        else if (cleanup)
+        {
+            this._cleanup();
         }
 
     },
