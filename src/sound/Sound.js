@@ -1146,10 +1146,6 @@ Phaser.Sound.prototype = {
                 // empty
             }
         }
-        else
-        {
-            this._sound.buffer = null;
-        }
 
         if (this._markedToDelete)
         {

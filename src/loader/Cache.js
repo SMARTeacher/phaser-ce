@@ -1939,15 +1939,20 @@ Phaser.Cache.prototype = {
     {
         // set the buffer to empty to prevent a memory leak
         // https://stackoverflow.com/questions/24119684/web-audio-api-memory-leaks-on-mobile-platforms
-        if (this.isSoundDecoded(key)) {
-            var sound = this._cache.sound[key];
-
-            try {
-                sound['data'] = this.game.sound.emptyBuffer;
-            }
-            catch (e)
+        if (this.isSoundDecoded(key))
+        {
+            if (this.game.device.safari)
             {
-                // some browsers do not like setting the buffer to another buffer
+                var sound = this._cache.sound[key];
+
+                try
+                {
+                    sound['data'] = this.game.sound.emptyBuffer;
+                }
+                catch (e)
+                {
+                    // do nothing
+                }
             }
         }
 
