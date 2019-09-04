@@ -2408,8 +2408,36 @@ Phaser.Loader.prototype = {
                 }
                 break;
 
-            case 'text':
             case 'script':
+                var _this = this;
+                file.data = document.createElement('script');
+                file.data.language = 'javascript';
+                file.data.type = 'text/javascript';
+
+                file.data.src = file.url;
+                file.data.onerror = function ()
+                {
+                    if (file.callback)
+                    {
+                        file.data = file.callback.call(file.callbackContext, file.key, 'failure');
+                    }
+
+                    _this.asyncComplete(file);
+                };
+
+                file.data.onload = function ()
+                {
+                    if (file.callback)
+                    {
+                        file.data = file.callback.call(file.callbackContext, file.key, 'success');
+                    }
+
+                    _this.asyncComplete(file);
+                };
+
+                document.head.appendChild(file.data);
+            break;
+            case 'text':
             case 'shader':
             case 'physics':
                 this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.fileComplete);
