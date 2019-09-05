@@ -2413,6 +2413,7 @@ Phaser.Loader.prototype = {
                 file.data = document.createElement('script');
                 file.data.language = 'javascript';
                 file.data.type = 'text/javascript';
+                file.data.defer = true;
 
                 file.data.src = file.url;
                 file.data.onerror = function ()
