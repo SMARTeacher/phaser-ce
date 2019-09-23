@@ -2147,7 +2147,7 @@ Phaser.Loader.prototype = {
 
         this.reset();
 
-        this.onLoadComplete.dispatch();
+        this.onLoadComplete.dispatch(abnormal);
 
         // Check if the state still exists since destroy could have occurred while loading
         if (this.game.state)

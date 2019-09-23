@@ -367,6 +367,7 @@ Phaser.StateManager.prototype = {
             //  onPreloadCallback will be set, but must be ignored
             if (this.onPreloadCallback)
             {
+                this.game.load.reset(true);
                 this.onPreloadCallback.call(this.callbackContext, this.game);
 
                 //  Is the loader empty?
