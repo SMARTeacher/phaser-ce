@@ -2532,8 +2532,10 @@ Phaser.Loader.prototype = {
             file.data.removeEventListener(file.loadEvent, videoLoadEvent, false);
             file.data.onerror = null;
             file.data.canplay = true;
-            Phaser.GAMES[_this.game.id].load.fileComplete(file);
 
+            // don't expose phaser.GAMES to the window
+//            Phaser.GAMES[_this.game.id].load.fileComplete(file);
+            _this.game.load.fileComplete(file);
         };
 
         file.data.onerror = function ()

@@ -77,7 +77,8 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     * @property {number} id - Phaser Game ID
     * @readonly
     */
-    this.id = Phaser.GAMES.push(this) - 1;
+   // TODO: this disables the ability to have multiple phasers running at once
+    this.id = 1; //Phaser.GAMES.push(this) - 1;
 
     /**
     * @property {object} config - The Phaser.Game configuration object.
@@ -1286,7 +1287,8 @@ Phaser.Game.prototype = {
 
         PIXI.defaultRenderer = null;
 
-        Phaser.GAMES[this.id] = null;
+        // don't expose phaser.GAMES to the window
+//        Phaser.GAMES[this.id] = null;
 
     },
 
