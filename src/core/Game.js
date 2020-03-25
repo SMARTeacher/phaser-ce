@@ -688,7 +688,8 @@ Phaser.Game.prototype = {
 
         this.isBooted = true;
 
-        PIXI.game = this;
+        // Remove PIXI.game from the window to help prevent cheating
+//        PIXI.game = this;
 
         this.math = Phaser.Math;
 
@@ -1277,10 +1278,12 @@ Phaser.Game.prototype = {
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
-        if (PIXI.game === this)
-        {
-            PIXI.game = null;
-        }
+        // Remove PIXI.game from the window to help prevent cheating
+//        if (PIXI.game === this)
+//        {
+//            PIXI.game = null;
+//        }
+
         PIXI.defaultRenderer = null;
 
         Phaser.GAMES[this.id] = null;
