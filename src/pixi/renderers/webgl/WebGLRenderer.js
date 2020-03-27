@@ -3,7 +3,6 @@
  */
 
 PIXI.glContexts = []; // this is where we store the webGL contexts for easy access.
-PIXI.instances = [];
 PIXI._enableMultiTextureToggle = false;
 
 /**
@@ -23,12 +22,7 @@ PIXI.WebGLRenderer = function (game, config)
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
     */
     this.game = game;
-
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
-
+    
     this.extensions = {};
 
     /**
@@ -139,7 +133,7 @@ PIXI.WebGLRenderer = function (game, config)
      * @property shaderManager
      * @type WebGLShaderManager
      */
-    this.shaderManager = new PIXI.WebGLShaderManager();
+    this.shaderManager = new PIXI.WebGLShaderManager(game);
 
     /**
      * Manages the rendering of sprites
@@ -160,7 +154,7 @@ PIXI.WebGLRenderer = function (game, config)
      * @property filterManager
      * @type WebGLFilterManager
      */
-    this.filterManager = new PIXI.WebGLFilterManager();
+    this.filterManager = new PIXI.WebGLFilterManager(game);
 
     /**
      * Manages the stencil buffer
@@ -235,8 +229,6 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
     this.glContextId = gl.id = PIXI.WebGLRenderer.glContextId++;
 
     PIXI.glContexts[this.glContextId] = gl;
-
-    PIXI.instances[this.glContextId] = this;
 
     // set up the default pixi settings..
     gl.disable(gl.DEPTH_TEST);
@@ -613,8 +605,6 @@ PIXI.WebGLRenderer.prototype.destroy = function ()
     this.renderSession = null;
 
     Phaser.CanvasPool.remove(this);
-
-    PIXI.instances[this.glContextId] = null;
 
     PIXI.WebGLRenderer.glContextId--;
 };

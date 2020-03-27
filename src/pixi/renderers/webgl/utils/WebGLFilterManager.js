@@ -6,7 +6,7 @@
 * @class PIXI.WebGLFilterManager
 * @constructor
 */
-PIXI.WebGLFilterManager = function ()
+PIXI.WebGLFilterManager = function (game)
 {
     /**
      * @property filterStack
@@ -25,6 +25,12 @@ PIXI.WebGLFilterManager = function ()
      * @type Number
      */
     this.offsetY = 0;
+
+    /**
+     * @property game
+     * @type Phaser.Game
+     */
+    this.game = game;
 };
 
 PIXI.WebGLFilterManager.prototype.constructor = PIXI.WebGLFilterManager;
@@ -356,7 +362,7 @@ PIXI.WebGLFilterManager.prototype.applyFilterPass = function (filter, filterArea
 
     if(!shader)
     {
-        shader = new PIXI.PixiShader(gl);
+        shader = new PIXI.PixiShader(gl, this.game);
 
         shader.fragmentSrc = filter.fragmentSrc;
         shader.uniforms = filter.uniforms;
