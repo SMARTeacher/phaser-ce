@@ -766,7 +766,7 @@ Phaser.Device._initialize = function ()
     function _checkCanvasFeatures ()
     {
 
-        var canvas = Phaser.CanvasPool.create(this, 6, 1);
+        var canvas = Phaser.CanvasPoolStatic.create(this, 6, 1);
         var context = canvas.getContext('2d');
 
         context.fillStyle = 'rgba(10, 20, 30, 0.5)';
@@ -798,7 +798,7 @@ Phaser.Device._initialize = function ()
         context.globalCompositeOperation = 'multiply';
         device.canUseMultiply = (context.globalCompositeOperation === 'multiply');
 
-        Phaser.CanvasPool.removeByCanvas(canvas);
+        Phaser.CanvasPoolStatic.removeByCanvas(canvas);
 
         PIXI.CanvasTinter.tintMethod = (device.canUseMultiply) ? PIXI.CanvasTinter.tintWithMultiply : PIXI.CanvasTinter.tintWithPerPixel;
 
@@ -1257,7 +1257,7 @@ Phaser.Device._initialize = function ()
             return false;
         }
 
-        var elem = Phaser.CanvasPool.create(this, 1, 1);
+        var elem = Phaser.CanvasPoolStatic.create(this, 1, 1);
         var ctx = elem.getContext('2d');
 
         if (!ctx)
@@ -1267,7 +1267,7 @@ Phaser.Device._initialize = function ()
 
         var image = ctx.createImageData(1, 1);
 
-        Phaser.CanvasPool.remove(this);
+        Phaser.CanvasPoolStatic.remove(this);
 
         return image.data instanceof Uint8ClampedArray;
 

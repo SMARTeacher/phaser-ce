@@ -334,6 +334,11 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.create = null;
 
     /**
+    * @property {Phaser.CanvasPool} canvasPool - The CanvasPool.
+    */
+    this.canvasPool = null;
+
+    /**
     * If `false` Phaser will automatically render the display list every update. If `true` the render loop will be skipped.
     * You can toggle this value at run-time to gain exact control over when Phaser renders. This can be useful in certain types of game or application.
     * Please note that if you don't render the display list then none of the game object transforms will be updated, so use this value carefully.
@@ -713,6 +718,7 @@ Phaser.Game.prototype = {
         this.create = new Phaser.Create(this);
         this.plugins = new Phaser.PluginManager(this);
         this.net = new Phaser.Net(this);
+        this.canvasPool = new Phaser.CanvasPool();
 
         this.time.boot();
         this.stage.boot();

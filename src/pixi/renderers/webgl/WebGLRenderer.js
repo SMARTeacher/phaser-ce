@@ -604,7 +604,7 @@ PIXI.WebGLRenderer.prototype.destroy = function ()
     this.gl = null;
     this.renderSession = null;
 
-    Phaser.CanvasPool.remove(this);
+    this.game.canvasPool.remove(this);
 
     PIXI.WebGLRenderer.glContextId--;
 };

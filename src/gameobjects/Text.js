@@ -55,7 +55,7 @@ Phaser.Text = function (game, x, y, text, style)
     /**
      * @property {HTMLCanvasElement} canvas - The canvas element that the text is rendered.
      */
-    this.canvas = Phaser.CanvasPool.create(this);
+    this.canvas = game.canvasPool.create(this);
 
     Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
 
