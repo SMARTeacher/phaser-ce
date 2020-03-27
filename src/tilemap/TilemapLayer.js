@@ -57,7 +57,7 @@ Phaser.TilemapLayer = function (game, tilemap, index, width, height)
     * @property {HTMLCanvasElement} canvas
     * @protected
     */
-    this.canvas = Phaser.CanvasPool.create(this, width, height);
+    this.canvas = game.canvasPool.create(this, width, height);
 
     /**
     * The 2d context of the canvas.
@@ -271,7 +271,7 @@ Phaser.TilemapLayer.ensureSharedCopyCanvas = function ()
 
     if (!this.sharedCopyCanvas)
     {
-        this.sharedCopyCanvas = Phaser.CanvasPool.create(this, 2, 2);
+        this.sharedCopyCanvas = Phaser.CanvasPoolStatic.create(this, 2, 2);
     }
 
     return this.sharedCopyCanvas;
@@ -379,7 +379,7 @@ Phaser.TilemapLayer.prototype._renderWebGL = function (renderSession)
 Phaser.TilemapLayer.prototype.destroy = function ()
 {
 
-    Phaser.CanvasPool.remove(this);
+    Phaser.CanvasPoolStatic.remove(this);
 
     Phaser.Component.Destroy.prototype.destroy.call(this);
 

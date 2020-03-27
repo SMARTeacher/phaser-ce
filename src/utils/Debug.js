@@ -189,7 +189,7 @@ Phaser.Utils.Debug.prototype = {
 
             this.game.scale.onSizeChange.add(this.resize, this);
 
-            this.canvas = Phaser.CanvasPool.create(this, this.game.width, this.game.height);
+            this.canvas = this.game.canvasPool.create(this, this.game.width, this.game.height);
             this.context = this.canvas.getContext('2d');
         }
 
@@ -1209,7 +1209,7 @@ Phaser.Utils.Debug.prototype = {
 
     canvasPool: function (x, y, color, columnWidth)
     {
-        var pool = Phaser.CanvasPool;
+        var pool = this.game.canvasPool;
 
         this.start(x, y, color, columnWidth || 100);
         this.line('Canvas Pool');
@@ -1367,7 +1367,7 @@ Phaser.Utils.Debug.prototype = {
     destroy: function ()
     {
 
-        Phaser.CanvasPool.remove(this);
+        this.game.canvasPool.remove(this);
 
     }
 

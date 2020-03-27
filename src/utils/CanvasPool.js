@@ -5,18 +5,27 @@
 */
 
 /**
-* The CanvasPool is a global static object, that allows Phaser to recycle and pool Canvas DOM elements.
+* The CanvasPool is an object that allows Phaser to recycle and pool Canvas DOM elements.
 *
 * @class Phaser.CanvasPool
-* @static
 */
-Phaser.CanvasPool = {
+Phaser.CanvasPool = function() 
+{
+    /**
+     * The pool into which the canvas elements are placed.
+     *
+     * @property pool
+     * @type Array
+     */
+    this.pool = [];
+};
+
+Phaser.CanvasPool.prototype = {
 
     /**
     * Creates a new Canvas DOM element, or pulls one from the pool if free.
     *
-    * @method Phaser.CanvasPool.create
-    * @static
+    * @method Phaser.CanvasPool#create
     * @param {any} parent - The parent of the canvas element.
     * @param {number} width - The width of the canvas element.
     * @param {number} height - The height of the canvas element.
@@ -24,8 +33,7 @@ Phaser.CanvasPool = {
     */
     create: function (parent, width, height)
     {
-
-        var idx = Phaser.CanvasPool.getFirst();
+        var idx = this.getFirst();
         var canvas;
 
         if (idx === -1)
@@ -35,15 +43,15 @@ Phaser.CanvasPool = {
                 canvas: document.createElement('canvas')
             };
 
-            Phaser.CanvasPool.pool.push(container);
+            this.pool.push(container);
 
             canvas = container.canvas;
         }
         else
         {
-            Phaser.CanvasPool.pool[idx].parent = parent;
+            this.pool[idx].parent = parent;
 
-            canvas = Phaser.CanvasPool.pool[idx].canvas;
+            canvas = this.pool[idx].canvas;
         }
 
         if (width !== undefined)
@@ -59,14 +67,13 @@ Phaser.CanvasPool = {
     /**
     * Gets the first free canvas index from the pool.
     *
-    * @static
-    * @method Phaser.CanvasPool.getFirst
+    * @method Phaser.CanvasPool#getFirst
     * @return {number}
     */
     getFirst: function ()
     {
 
-        var pool = Phaser.CanvasPool.pool;
+        var pool = this.pool;
 
         for (var i = 0; i < pool.length; i++)
         {
@@ -84,14 +91,13 @@ Phaser.CanvasPool = {
     * Looks up a canvas based on its parent, and if found puts it back in the pool, freeing it up for re-use.
     * The canvas has its width and height set to 1, and its parent attribute nulled.
     *
-    * @static
-    * @method Phaser.CanvasPool.remove
+    * @method Phaser.CanvasPool#remove
     * @param {any} parent - The parent of the canvas element.
     */
     remove: function (parent)
     {
 
-        var pool = Phaser.CanvasPool.pool;
+        var pool = this.pool;
 
         for (var i = 0; i < pool.length; i++)
         {
@@ -109,14 +115,13 @@ Phaser.CanvasPool = {
     * Looks up a canvas based on its type, and if found puts it back in the pool, freeing it up for re-use.
     * The canvas has its width and height set to 1, and its parent attribute nulled.
     *
-    * @static
-    * @method Phaser.CanvasPool.removeByCanvas
+    * @method Phaser.CanvasPool#removeByCanvas
     * @param {HTMLCanvasElement} canvas - The canvas element to remove.
     */
     removeByCanvas: function (canvas)
     {
 
-        var pool = Phaser.CanvasPool.pool;
+        var pool = this.pool;
 
         for (var i = 0; i < pool.length; i++)
         {
@@ -133,14 +138,13 @@ Phaser.CanvasPool = {
     /**
     * Gets the total number of used canvas elements in the pool.
     *
-    * @static
-    * @method Phaser.CanvasPool.getTotal
+    * @method Phaser.CanvasPool#getTotal
     * @return {number} The number of in-use (parented) canvas elements in the pool.
     */
     getTotal: function ()
     {
 
-        var pool = Phaser.CanvasPool.pool;
+        var pool = this.pool;
         var c = 0;
 
         for (var i = 0; i < pool.length; i++)
@@ -158,14 +162,13 @@ Phaser.CanvasPool = {
     /**
     * Gets the total number of free canvas elements in the pool.
     *
-    * @static
-    * @method Phaser.CanvasPool.getFree
+    * @method Phaser.CanvasPool#getFree
     * @return {number} The number of free (un-parented) canvas elements in the pool.
     */
     getFree: function ()
     {
 
-        var pool = Phaser.CanvasPool.pool;
+        var pool = this.pool;
         var c = 0;
 
         for (var i = 0; i < pool.length; i++)
@@ -184,8 +187,7 @@ Phaser.CanvasPool = {
     /**
     * Prints in-use, free, and total counts to console.log.
     *
-    * @static
-    * @method Phaser.CanvasPool.log
+    * @method Phaser.CanvasPool#log
     */
     log: function ()
     {
@@ -196,25 +198,15 @@ Phaser.CanvasPool = {
 
 };
 
-/**
- * The pool into which the canvas elements are placed.
- *
- * @property pool
- * @type Array
- * @static
- */
-Phaser.CanvasPool.pool = [];
-
 
 /**
- * The total number of canvas elements in the {@link Phaser.CanvasPool.pool pool}.
+ * The total number of canvas elements in the {@link Phaser.CanvasPool pool}.
  *
  * @property length
  * @type number
- * @static
  * @readonly
  */
-Object.defineProperty(Phaser.CanvasPool, 'length', {
+Object.defineProperty(Phaser.CanvasPool.prototype, 'length', {
     get: function ()
     {
         return this.pool.length;

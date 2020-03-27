@@ -167,7 +167,7 @@ PIXI.BaseTexture.prototype.destroy = function ()
 {
     if (this.source)
     {
-        Phaser.CanvasPool.removeByCanvas(this.source);
+        Phaser.CanvasPoolStatic.removeByCanvas(this.source);
 
         this.source.width = 1;
         this.source.height = 1;
