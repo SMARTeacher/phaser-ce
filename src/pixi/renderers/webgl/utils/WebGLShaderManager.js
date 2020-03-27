@@ -7,7 +7,7 @@
 * @constructor
 * @private
 */
-PIXI.WebGLShaderManager = function ()
+PIXI.WebGLShaderManager = function (game)
 {
     /**
      * @property maxAttibs
@@ -38,6 +38,12 @@ PIXI.WebGLShaderManager = function ()
      */
     this.stack = [];
 
+    /**
+     * @property game
+     * @type Phaser.Game
+     */
+    this.game = game;
+
 };
 
 PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
@@ -59,7 +65,7 @@ PIXI.WebGLShaderManager.prototype.setContext = function (gl)
     this.complexPrimitiveShader = new PIXI.ComplexPrimitiveShader(gl);
 
     // this shader is used for the default sprite rendering
-    this.defaultShader = new PIXI.PixiShader(gl);
+    this.defaultShader = new PIXI.PixiShader(gl, this.game);
 
     // this shader is used for the fast sprite rendering
     this.fastShader = new PIXI.PixiFastShader(gl);

@@ -216,7 +216,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl)
 
     this.currentBlendMode = 99999;
 
-    var shader = new PIXI.PixiShader(gl);
+    var shader = new PIXI.PixiShader(gl, this.game);
 
     shader.fragmentSrc = this.defaultShader.fragmentSrc;
     shader.uniforms = {};
@@ -721,7 +721,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
 
                 if (!shader)
                 {
-                    shader = new PIXI.PixiShader(gl);
+                    shader = new PIXI.PixiShader(gl, this.game);
 
                     shader.fragmentSrc = currentShader.fragmentSrc;
                     shader.uniforms = currentShader.uniforms;

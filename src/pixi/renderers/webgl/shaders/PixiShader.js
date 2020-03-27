@@ -7,8 +7,9 @@
 * @class PIXI.PixiShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
+* @param game {Phaser.Game} the Game object
 */
-PIXI.PixiShader = function (gl)
+PIXI.PixiShader = function (gl, game)
 {
     /**
      * @property _UID
@@ -66,6 +67,14 @@ PIXI.PixiShader = function (gl)
      * @private
      */
     this.attributes = [];
+
+    /**
+     * Game object.
+     * @property game
+     * @type Phaser.Game
+     * @private
+     */
+    this.game = game;
 
     this.init();
 };
@@ -415,7 +424,7 @@ PIXI.PixiShader.prototype.syncUniforms = function ()
 
                 if(uniform.value.baseTexture._dirty[gl.id])
                 {
-                    PIXI.instances[gl.id].updateTexture(uniform.value.baseTexture);
+                    this.game.renderer.updateTexture(uniform.value.baseTexture);
                 }
                 else
                 {

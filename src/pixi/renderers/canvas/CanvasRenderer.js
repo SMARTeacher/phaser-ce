@@ -17,12 +17,7 @@ PIXI.CanvasRenderer = function (game, config)
     * @property {Phaser.Game} game - A reference to the Phaser Game instance.
     */
     this.game = game;
-
-    if (!PIXI.defaultRenderer)
-    {
-        PIXI.defaultRenderer = this;
-    }
-
+    
     /**
      * The renderer type.
      *
