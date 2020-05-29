@@ -109,5 +109,5 @@ Phaser.RoundedRectangle.prototype = {
 
 Phaser.RoundedRectangle.prototype.constructor = Phaser.RoundedRectangle;
 
-//  Because PIXI uses its own type, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.RoundedRectangle = Phaser.RoundedRectangle;
+//  Because PIXILegacy uses its own type, we'll replace it with ours to avoid duplicating code or confusion.
+PIXILegacy.RoundedRectangle = Phaser.RoundedRectangle;

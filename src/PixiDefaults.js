@@ -7,30 +7,30 @@
 
 //  Pixi expects these globals to exist
 
-if (PIXI.blendModes === undefined)
+if (PIXILegacy.blendModes === undefined)
 {
-    PIXI.blendModes = Phaser.blendModes;
+    PIXILegacy.blendModes = Phaser.blendModes;
 }
 
-if (PIXI.scaleModes === undefined)
+if (PIXILegacy.scaleModes === undefined)
 {
-    PIXI.scaleModes = Phaser.scaleModes;
+    PIXILegacy.scaleModes = Phaser.scaleModes;
 }
 
-if (PIXI.Texture.emptyTexture === undefined)
+if (PIXILegacy.Texture.emptyTexture === undefined)
 {
-    PIXI.Texture.emptyTexture = new PIXI.Texture(new PIXI.BaseTexture());
+    PIXILegacy.Texture.emptyTexture = new PIXILegacy.Texture(new PIXILegacy.BaseTexture());
 }
 
-if (PIXI.DisplayObject._tempMatrix === undefined)
+if (PIXILegacy.DisplayObject._tempMatrix === undefined)
 {
-    PIXI.DisplayObject._tempMatrix = new Phaser.Matrix();
+    PIXILegacy.DisplayObject._tempMatrix = new Phaser.Matrix();
 }
 
-PIXI.TextureSilentFail = true;
+PIXILegacy.TextureSilentFail = true;
 
 // Required by Particle Storm
-PIXI.canUseNewCanvasBlendModes = function ()
+PIXILegacy.canUseNewCanvasBlendModes = function ()
 {
     return Phaser.Device.canUseMultiply;
 };

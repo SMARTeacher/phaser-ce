@@ -1,6 +1,6 @@
 /**
 * Original shader by TriggerHLM (https://www.shadertoy.com/view/MdXGDH)
-* Tweaked, uniforms added and converted to Phaser/PIXI by Richard Davey
+* Tweaked, uniforms added and converted to Phaser/PIXILegacy by Richard Davey
 */
 Phaser.Filter.Plasma = function (game) {
 

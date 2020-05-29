@@ -5,15 +5,15 @@
 /**
  * The Sprite object is the base for all textured objects that are rendered to the screen
  *
- * @class PIXI.Sprite
- * @extends PIXI.DisplayObjectContainer
+ * @class PIXILegacy.Sprite
+ * @extends PIXILegacy.DisplayObjectContainer
  * @constructor
  * @param texture {Texture} The texture for this sprite
  */
-PIXI.Sprite = function (texture)
+PIXILegacy.Sprite = function (texture)
 {
 
-    PIXI.DisplayObjectContainer.call(this);
+    PIXILegacy.DisplayObjectContainer.call(this);
 
     /**
      * The anchor sets the origin point of the texture.
@@ -21,12 +21,12 @@ PIXI.Sprite = function (texture)
      * (0.5, 0.5) is the center.
      * (1, 1) is the bottom right.
      *
-     * You can modify the default values in PIXI.Sprite.defaultAnchor.
+     * You can modify the default values in PIXILegacy.Sprite.defaultAnchor.
      *
      * @property anchor
      * @type Point
      */
-    this.anchor = new PIXI.Point(PIXI.Sprite.defaultAnchor.x, PIXI.Sprite.defaultAnchor.y);
+    this.anchor = new PIXILegacy.Point(PIXILegacy.Sprite.defaultAnchor.x, PIXILegacy.Sprite.defaultAnchor.y);
 
     /**
      * The texture that the sprite is using
@@ -34,7 +34,7 @@ PIXI.Sprite = function (texture)
      * @property texture
      * @type Texture
      */
-    this.texture = texture || PIXI.Texture.emptyTexture;
+    this.texture = texture || PIXILegacy.Texture.emptyTexture;
 
     /**
      * The width of the sprite (this is initially set by the texture)
@@ -83,15 +83,15 @@ PIXI.Sprite = function (texture)
     this.tintedTexture = null;
 
     /**
-     * The blend mode to be applied to the sprite. Set to PIXI.blendModes.NORMAL to remove any blend mode.
+     * The blend mode to be applied to the sprite. Set to PIXILegacy.blendModes.NORMAL to remove any blend mode.
      *
      * Warning: You cannot have a blend mode and a filter active on the same Sprite. Doing so will render the sprite invisible.
      *
      * @property blendMode
      * @type Number
-     * @default PIXI.blendModes.NORMAL;
+     * @default PIXILegacy.blendModes.NORMAL;
      */
-    this.blendMode = PIXI.blendModes.NORMAL;
+    this.blendMode = PIXILegacy.blendModes.NORMAL;
 
     /**
      * The shader that will be used to render this Sprite.
@@ -122,15 +122,15 @@ PIXI.Sprite = function (texture)
 };
 
 /**
- * @property PIXI.Sprite.defaultAnchor - A Point-like object.
+ * @property PIXILegacy.Sprite.defaultAnchor - A Point-like object.
  * @type {{x: number, y: number}}
  * @default
  */
-PIXI.Sprite.defaultAnchor = {x: 0, y: 0};
+PIXILegacy.Sprite.defaultAnchor = {x: 0, y: 0};
 
 // constructor
-PIXI.Sprite.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
-PIXI.Sprite.prototype.constructor = PIXI.Sprite;
+PIXILegacy.Sprite.prototype = Object.create(PIXILegacy.DisplayObjectContainer.prototype);
+PIXILegacy.Sprite.prototype.constructor = PIXILegacy.Sprite;
 
 /**
  * The width of the sprite, setting this will actually modify the scale to achieve the value set
@@ -138,7 +138,7 @@ PIXI.Sprite.prototype.constructor = PIXI.Sprite;
  * @property width
  * @type Number
  */
-Object.defineProperty(PIXI.Sprite.prototype, 'width', {
+Object.defineProperty(PIXILegacy.Sprite.prototype, 'width', {
 
     get: function ()
     {
@@ -159,7 +159,7 @@ Object.defineProperty(PIXI.Sprite.prototype, 'width', {
  * @property height
  * @type Number
  */
-Object.defineProperty(PIXI.Sprite.prototype, 'height', {
+Object.defineProperty(PIXILegacy.Sprite.prototype, 'height', {
 
     get: function ()
     {
@@ -178,11 +178,11 @@ Object.defineProperty(PIXI.Sprite.prototype, 'height', {
  * Sets the texture of the sprite. Be warned that this doesn't remove or destroy the previous
  * texture this Sprite was using.
  *
- * @method PIXI.Sprite#setTexture
- * @param texture {Texture} The PIXI texture that is displayed by the sprite
+ * @method PIXILegacy.Sprite#setTexture
+ * @param texture {Texture} The PIXILegacy texture that is displayed by the sprite
  * @param [destroy=false] {boolean} Call Texture.destroy on the current texture before replacing it with the new one?
  */
-PIXI.Sprite.prototype.setTexture = function (texture, destroyBase)
+PIXILegacy.Sprite.prototype.setTexture = function (texture, destroyBase)
 {
     if (destroyBase)
     {
@@ -199,11 +199,11 @@ PIXI.Sprite.prototype.setTexture = function (texture, destroyBase)
 /**
  * When the texture is updated, this event will fire to update the scale and frame
  *
- * @method PIXI.Sprite#onTextureUpdate
+ * @method PIXILegacy.Sprite#onTextureUpdate
  * @param event
  * @private
  */
-PIXI.Sprite.prototype.onTextureUpdate = function ()
+PIXILegacy.Sprite.prototype.onTextureUpdate = function ()
 {
     // so if _width is 0 then width was not set..
     if (this._width) { this.scale.x = this._width / this.texture.frame.width; }
@@ -220,11 +220,11 @@ PIXI.Sprite.prototype.onTextureUpdate = function ()
 * those changes have not yet have been applied to this Sprite's worldTransform. Call `updateTransform`
 * on the root-most (highest) ancestor that was changed.
 *
-* @method PIXI.Sprite#getBounds
+* @method PIXILegacy.Sprite#getBounds
 * @param matrix {Matrix} the transformation matrix of the sprite
 * @return {Rectangle} the framing rectangle
 */
-PIXI.Sprite.prototype.getBounds = function (matrix)
+PIXILegacy.Sprite.prototype.getBounds = function (matrix)
 {
     var width = this.texture.frame.width;
     var height = this.texture.frame.height;
@@ -328,10 +328,10 @@ PIXI.Sprite.prototype.getBounds = function (matrix)
 /**
  * Retrieves the non-global local bounds of the Sprite as a rectangle. The calculation takes all visible children into consideration.
  *
- * @method PIXI.Sprite#getLocalBounds
+ * @method PIXILegacy.Sprite#getLocalBounds
  * @return {Rectangle} The rectangular bounding area
  */
-PIXI.Sprite.prototype.getLocalBounds = function ()
+PIXILegacy.Sprite.prototype.getLocalBounds = function ()
 {
     if (!this.active)
     {
@@ -363,12 +363,12 @@ PIXI.Sprite.prototype.getLocalBounds = function ()
 /**
 * Renders the object using the WebGL renderer
 *
-* @method PIXI.Sprite#_renderWebGL
+* @method PIXILegacy.Sprite#_renderWebGL
 * @param renderSession {RenderSession}
 * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
 * @private
 */
-PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
+PIXILegacy.Sprite.prototype._renderWebGL = function (renderSession, matrix)
 {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.active || !this.visible || this.alpha <= 0 || !this.renderable) { return; }
@@ -441,12 +441,12 @@ PIXI.Sprite.prototype._renderWebGL = function (renderSession, matrix)
 /**
 * Renders the object using the Canvas renderer
 *
-* @method PIXI.Sprite#_renderCanvas
+* @method PIXILegacy.Sprite#_renderCanvas
 * @param renderSession {RenderSession}
 * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
 * @private
 */
-PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
+PIXILegacy.Sprite.prototype._renderCanvas = function (renderSession, matrix)
 {
     // If the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.active || !this.visible || this.alpha === 0 || !this.renderable || this.texture.crop.width < 1 || this.texture.crop.height < 1)
@@ -465,7 +465,7 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
     if (this.blendMode !== renderSession.currentBlendMode)
     {
         renderSession.currentBlendMode = this.blendMode;
-        renderSession.context.globalCompositeOperation = PIXI.blendModesCanvas[renderSession.currentBlendMode];
+        renderSession.context.globalCompositeOperation = PIXILegacy.blendModesCanvas[renderSession.currentBlendMode];
     }
 
     if (this._mask)
@@ -502,7 +502,7 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
     if (renderSession.smoothProperty && renderSession.scaleMode !== this.texture.baseTexture.scaleMode)
     {
         renderSession.scaleMode = this.texture.baseTexture.scaleMode;
-        renderSession.context[renderSession.smoothProperty] = (renderSession.scaleMode === PIXI.scaleModes.LINEAR);
+        renderSession.context[renderSession.smoothProperty] = (renderSession.scaleMode === PIXILegacy.scaleModes.LINEAR);
     }
 
     //  If the texture is trimmed we offset by the trim x/y, otherwise we use the frame dimensions
@@ -566,7 +566,7 @@ PIXI.Sprite.prototype._renderCanvas = function (renderSession, matrix)
     {
         if (this.texture.requiresReTint || this.cachedTint !== this.tint)
         {
-            this.tintedTexture = PIXI.CanvasTinter.getTintedTexture(this, this.tint);
+            this.tintedTexture = PIXILegacy.CanvasTinter.getTintedTexture(this, this.tint);
 
             this.cachedTint = this.tint;
             this.texture.requiresReTint = false;

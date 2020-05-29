@@ -6,14 +6,14 @@
  * A DisplayObjectContainer represents a collection of display objects.
  * It is the base class of all display objects that act as a container for other objects.
  *
- * @class PIXI.DisplayObjectContainer
- * @extends PIXI.DisplayObject
+ * @class PIXILegacy.DisplayObjectContainer
+ * @extends PIXILegacy.DisplayObject
  * @constructor
  */
-PIXI.DisplayObjectContainer = function ()
+PIXILegacy.DisplayObjectContainer = function ()
 {
 
-    PIXI.DisplayObject.call(this);
+    PIXILegacy.DisplayObject.call(this);
 
     /**
      * [read-only] The array of children of this container.
@@ -37,17 +37,17 @@ PIXI.DisplayObjectContainer = function ()
 
 };
 
-PIXI.DisplayObjectContainer.prototype = Object.create(PIXI.DisplayObject.prototype);
-PIXI.DisplayObjectContainer.prototype.constructor = PIXI.DisplayObjectContainer;
+PIXILegacy.DisplayObjectContainer.prototype = Object.create(PIXILegacy.DisplayObject.prototype);
+PIXILegacy.DisplayObjectContainer.prototype.constructor = PIXILegacy.DisplayObjectContainer;
 
 /**
  * Adds a child to the container.
  *
- * @method PIXI.DisplayObjectContainer#addChild
+ * @method PIXILegacy.DisplayObjectContainer#addChild
  * @param child {DisplayObject} The DisplayObject to add to the container
  * @return {DisplayObject} The child that was added.
  */
-PIXI.DisplayObjectContainer.prototype.addChild = function (child)
+PIXILegacy.DisplayObjectContainer.prototype.addChild = function (child)
 {
 
     return this.addChildAt(child, this.children.length);
@@ -57,12 +57,12 @@ PIXI.DisplayObjectContainer.prototype.addChild = function (child)
 /**
  * Adds a child to the container at a specified index. If the index is out of bounds an error will be thrown
  *
- * @method PIXI.DisplayObjectContainer#addChildAt
+ * @method PIXILegacy.DisplayObjectContainer#addChildAt
  * @param child {DisplayObject} The child to add
  * @param index {Number} The index to place the child in
  * @return {DisplayObject} The child that was added.
  */
-PIXI.DisplayObjectContainer.prototype.addChildAt = function (child, index)
+PIXILegacy.DisplayObjectContainer.prototype.addChildAt = function (child, index)
 {
 
     if (index >= 0 && index <= this.children.length)
@@ -88,11 +88,11 @@ PIXI.DisplayObjectContainer.prototype.addChildAt = function (child, index)
 /**
  * Swaps the position of 2 Display Objects within this container.
  *
- * @method PIXI.DisplayObjectContainer#swapChildren
+ * @method PIXILegacy.DisplayObjectContainer#swapChildren
  * @param child {DisplayObject}
  * @param child2 {DisplayObject}
  */
-PIXI.DisplayObjectContainer.prototype.swapChildren = function (child, child2)
+PIXILegacy.DisplayObjectContainer.prototype.swapChildren = function (child, child2)
 {
 
     if (child === child2)
@@ -116,11 +116,11 @@ PIXI.DisplayObjectContainer.prototype.swapChildren = function (child, child2)
 /**
  * Returns the index position of a child DisplayObject instance
  *
- * @method PIXI.DisplayObjectContainer#getChildIndex
+ * @method PIXILegacy.DisplayObjectContainer#getChildIndex
  * @param child {DisplayObject} The DisplayObject instance to identify
  * @return {Number} The index position of the child display object to identify
  */
-PIXI.DisplayObjectContainer.prototype.getChildIndex = function (child)
+PIXILegacy.DisplayObjectContainer.prototype.getChildIndex = function (child)
 {
 
     var index = this.children.indexOf(child);
@@ -137,11 +137,11 @@ PIXI.DisplayObjectContainer.prototype.getChildIndex = function (child)
 /**
  * Changes the position of an existing child in the display object container
  *
- * @method PIXI.DisplayObjectContainer#setChildIndex
+ * @method PIXILegacy.DisplayObjectContainer#setChildIndex
  * @param child {DisplayObject} The child DisplayObject instance for which you want to change the index number
  * @param index {Number} The resulting index number for the child display object
  */
-PIXI.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
+PIXILegacy.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
 {
 
     if (index < 0 || index >= this.children.length)
@@ -159,11 +159,11 @@ PIXI.DisplayObjectContainer.prototype.setChildIndex = function (child, index)
 /**
  * Returns the child at the specified index
  *
- * @method PIXI.DisplayObjectContainer#getChildAt
+ * @method PIXILegacy.DisplayObjectContainer#getChildAt
  * @param index {Number} The index to get the child from
  * @return {DisplayObject} The child at the given index, if any.
  */
-PIXI.DisplayObjectContainer.prototype.getChildAt = function (index)
+PIXILegacy.DisplayObjectContainer.prototype.getChildAt = function (index)
 {
 
     if (index < 0 || index >= this.children.length)
@@ -178,11 +178,11 @@ PIXI.DisplayObjectContainer.prototype.getChildAt = function (index)
 /**
  * Removes a child from the container.
  *
- * @method PIXI.DisplayObjectContainer#removeChild
+ * @method PIXILegacy.DisplayObjectContainer#removeChild
  * @param child {DisplayObject} The DisplayObject to remove
  * @return {DisplayObject} The child that was removed.
  */
-PIXI.DisplayObjectContainer.prototype.removeChild = function (child)
+PIXILegacy.DisplayObjectContainer.prototype.removeChild = function (child)
 {
 
     var index = this.children.indexOf(child);
@@ -199,11 +199,11 @@ PIXI.DisplayObjectContainer.prototype.removeChild = function (child)
 /**
  * Removes a child from the specified index position.
  *
- * @method PIXI.DisplayObjectContainer#removeChildAt
+ * @method PIXILegacy.DisplayObjectContainer#removeChildAt
  * @param index {Number} The index to get the child from
  * @return {DisplayObject} The child that was removed.
  */
-PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
+PIXILegacy.DisplayObjectContainer.prototype.removeChildAt = function (index)
 {
 
     var child = this.getChildAt(index);
@@ -219,7 +219,7 @@ PIXI.DisplayObjectContainer.prototype.removeChildAt = function (index)
 
 };
 
-PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
+PIXILegacy.DisplayObjectContainer.prototype.bringChildToTop = function (child)
 {
 
     if (child.parent !== this)
@@ -231,7 +231,7 @@ PIXI.DisplayObjectContainer.prototype.bringChildToTop = function (child)
 
 };
 
-PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
+PIXILegacy.DisplayObjectContainer.prototype.sendChildToBack = function (child)
 {
 
     if (child.parent !== this)
@@ -246,11 +246,11 @@ PIXI.DisplayObjectContainer.prototype.sendChildToBack = function (child)
 /**
 * Removes all children from this container that are within the begin and end indexes.
 *
-* @method PIXI.DisplayObjectContainer#removeChildren
+* @method PIXILegacy.DisplayObjectContainer#removeChildren
 * @param beginIndex {Number} The beginning position. Default value is 0.
 * @param endIndex {Number} The ending position. Default value is size of the container.
 */
-PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, endIndex)
+PIXILegacy.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, endIndex)
 {
 
     if (beginIndex === undefined) { beginIndex = 0; }
@@ -284,10 +284,10 @@ PIXI.DisplayObjectContainer.prototype.removeChildren = function (beginIndex, end
 /*
  * Updates the transform on all children of this container for rendering
  *
- * @method PIXI.DisplayObjectContainer#updateTransform
+ * @method PIXILegacy.DisplayObjectContainer#updateTransform
  * @private
  */
-PIXI.DisplayObjectContainer.prototype.updateTransform = function ()
+PIXILegacy.DisplayObjectContainer.prototype.updateTransform = function ()
 {
 
     if (!this.active || !this.visible)
@@ -310,26 +310,26 @@ PIXI.DisplayObjectContainer.prototype.updateTransform = function ()
 };
 
 // performance increase to avoid using call.. (10x faster)
-PIXI.DisplayObjectContainer.prototype.displayObjectContainerUpdateTransform = PIXI.DisplayObjectContainer.prototype.updateTransform;
+PIXILegacy.DisplayObjectContainer.prototype.displayObjectContainerUpdateTransform = PIXILegacy.DisplayObjectContainer.prototype.updateTransform;
 
 /**
  * Retrieves the global bounds of the displayObjectContainer as a rectangle. The bounds calculation takes all visible children into consideration.
  *
- * @method PIXI.DisplayObjectContainer#getBounds
- * @param {PIXI.DisplayObject|Phaser.Matrix} [targetCoordinateSpace] Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
+ * @method PIXILegacy.DisplayObjectContainer#getBounds
+ * @param {PIXILegacy.DisplayObject|Phaser.Matrix} [targetCoordinateSpace] Returns a rectangle that defines the area of the display object relative to the coordinate system of the targetCoordinateSpace object.
  * @return {Rectangle} The rectangular bounding area
  */
-PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpace)
+PIXILegacy.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpace)
 {
 
-    var isTargetCoordinateSpaceDisplayObject = (targetCoordinateSpace && targetCoordinateSpace instanceof PIXI.DisplayObject);
+    var isTargetCoordinateSpaceDisplayObject = (targetCoordinateSpace && targetCoordinateSpace instanceof PIXILegacy.DisplayObject);
     var isTargetCoordinateSpaceThisOrParent = true;
 
     if (!isTargetCoordinateSpaceDisplayObject)
     {
         targetCoordinateSpace = this;
     }
-    else if (targetCoordinateSpace instanceof PIXI.DisplayObjectContainer)
+    else if (targetCoordinateSpace instanceof PIXILegacy.DisplayObjectContainer)
     {
         isTargetCoordinateSpaceThisOrParent = targetCoordinateSpace.contains(this);
     }
@@ -391,7 +391,7 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
 
     if (!childVisible)
     {
-        bounds = new PIXI.Rectangle();
+        bounds = new PIXILegacy.Rectangle();
 
         var w0 = bounds.x;
         var w1 = bounds.width + bounds.x;
@@ -473,10 +473,10 @@ PIXI.DisplayObjectContainer.prototype.getBounds = function (targetCoordinateSpac
 /**
  * Retrieves the non-global local bounds of the displayObjectContainer as a rectangle without any transformations. The calculation takes all visible children into consideration.
  *
- * @method PIXI.DisplayObjectContainer#getLocalBounds
+ * @method PIXILegacy.DisplayObjectContainer#getLocalBounds
  * @return {Rectangle} The rectangular bounding area
  */
-PIXI.DisplayObjectContainer.prototype.getLocalBounds = function ()
+PIXILegacy.DisplayObjectContainer.prototype.getLocalBounds = function ()
 {
 
     return this.getBounds(this);
@@ -486,11 +486,11 @@ PIXI.DisplayObjectContainer.prototype.getLocalBounds = function ()
 /**
 * Determines whether the specified display object is a child of the DisplayObjectContainer instance or the instance itself.
 *
-* @method PIXI.DisplayObjectContainer#contains
+* @method PIXILegacy.DisplayObjectContainer#contains
 * @param {DisplayObject} child
 * @returns {boolean}
 */
-PIXI.DisplayObjectContainer.prototype.contains = function (child)
+PIXILegacy.DisplayObjectContainer.prototype.contains = function (child)
 {
 
     if (!child)
@@ -510,11 +510,11 @@ PIXI.DisplayObjectContainer.prototype.contains = function (child)
 /**
 * Renders the object using the WebGL renderer
 *
-* @method PIXI.DisplayObjectContainer#_renderWebGL
+* @method PIXILegacy.DisplayObjectContainer#_renderWebGL
 * @param renderSession {RenderSession}
 * @private
 */
-PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
+PIXILegacy.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 {
 
     if (!this.active || !this.visible || this.alpha <= 0)
@@ -581,11 +581,11 @@ PIXI.DisplayObjectContainer.prototype._renderWebGL = function (renderSession)
 /**
 * Renders the object using the Canvas renderer
 *
-* @method PIXI.DisplayObjectContainer#_renderCanvas
+* @method PIXILegacy.DisplayObjectContainer#_renderCanvas
 * @param renderSession {RenderSession}
 * @private
 */
-PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
+PIXILegacy.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
 {
 
     if (this.active === false || this.visible === false || this.alpha === 0)
@@ -623,10 +623,10 @@ PIXI.DisplayObjectContainer.prototype._renderCanvas = function (renderSession)
 /**
  * The width of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @name PIXI.DisplayObjectContainer#width
+ * @name PIXILegacy.DisplayObjectContainer#width
  * @type Number
  */
-Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
+Object.defineProperty(PIXILegacy.DisplayObjectContainer.prototype, 'width', {
 
     get: function ()
     {
@@ -654,10 +654,10 @@ Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'width', {
 /**
  * The height of the displayObjectContainer, setting this will actually modify the scale to achieve the value set
  *
- * @name PIXI.DisplayObjectContainer#height
+ * @name PIXILegacy.DisplayObjectContainer#height
  * @type Number
  */
-Object.defineProperty(PIXI.DisplayObjectContainer.prototype, 'height', {
+Object.defineProperty(PIXILegacy.DisplayObjectContainer.prototype, 'height', {
 
     get: function ()
     {

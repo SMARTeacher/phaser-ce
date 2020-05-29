@@ -1,25 +1,25 @@
-Phaser/PIXI Tilemap modifications
+Phaser/PIXILegacy Tilemap modifications
 
 day one:
 
 Background/comprehension - understanding the existing system
-Experiments in PIXI - adjusting the first test code
-Rewriting the PIXI component - created a new shader and handling code
+Experiments in PIXILegacy - adjusting the first test code
+Rewriting the PIXILegacy component - created a new shader and handling code
 Tile-mapping - added a single "tile" drawer using the "mario" test images, extended it to draw the whole map full of tiles
 Optimised the code to reduce unneccesary webgl initialisation
 
 
 day two:
 
-Modify TilemapLayer to create and use PIXI.TileSprite using pixiTest flag (carried through Phaser.Tilemap.createLayer)
-Tests indicate that the PIXI.TileSprite drawing isn't properly embedded in the draw list.
-Created a new TilemapLayerGL class which extends PIXI.Tilemap in the same way that Phaser.TileSprite extends PIXI.TilingSprite.  Used pixiTest flag in createLayer to branch and create the appropriate version.  Adjusted sci-fly demo to use the new TilemapLayerGL class and tested.
+Modify TilemapLayer to create and use PIXILegacy.TileSprite using pixiTest flag (carried through Phaser.Tilemap.createLayer)
+Tests indicate that the PIXILegacy.TileSprite drawing isn't properly embedded in the draw list.
+Created a new TilemapLayerGL class which extends PIXILegacy.Tilemap in the same way that Phaser.TileSprite extends PIXILegacy.TilingSprite.  Used pixiTest flag in createLayer to branch and create the appropriate version.  Adjusted sci-fly demo to use the new TilemapLayerGL class and tested.
 We've now got a running demo with the ship over the map.  It's running very slowly (profiling indicates 87% of the time is spent drawing tiles, so that will have to be modified to only draw the visible area) and it doesn't scroll when the ship hits the edges.
-I think the scrolling might be related to the inability to set this.fixedToCamera (which blows up because there is no this.position value when it tries to establish the fixed position).  Modified PIXI.Tilemap to extend PIXI.Sprite instead, but that didn't fix either problem.  Realised that the problem was with lack of Core functions, so copied code from TileSprite to create core and experimented turning off the various mixins that it included.  Successful test with only 'FixedToCamera' provided that this.fixedToCamera is set after the Core.init call.
+I think the scrolling might be related to the inability to set this.fixedToCamera (which blows up because there is no this.position value when it tries to establish the fixed position).  Modified PIXILegacy.Tilemap to extend PIXILegacy.Sprite instead, but that didn't fix either problem.  Realised that the problem was with lack of Core functions, so copied code from TileSprite to create core and experimented turning off the various mixins that it included.  Successful test with only 'FixedToCamera' provided that this.fixedToCamera is set after the Core.init call.
 Modified Pixi.TilingSprite to use this.x and this.y when drawing tiles, which has provided a scrolling map surface.
-It's still very slow - probably because it's rebuilding the entire PIXI surface (2560x704 pixels) from 16x16 pixel tiles.
+It's still very slow - probably because it's rebuilding the entire PIXILegacy surface (2560x704 pixels) from 16x16 pixel tiles.
 
-TODO: modify PIXI.Tilemap to create a surface only the size of the visible screen.  Render only that part of the map into the new smaller surface.
+TODO: modify PIXILegacy.Tilemap to create a surface only the size of the visible screen.  Render only that part of the map into the new smaller surface.
 
 day three:
 
@@ -71,11 +71,11 @@ With some help from Rich, finally discovered the Tileset class and it's firstgid
 
 day four:
 
-Read through the new PIXI 4 tilemap code to see another approach to this task.  It looks very similar (beautiful code though, mine is still very rough).  They're using TRIANGLE rather than TRIANGLE_STRIP which I believe will give this implementation a slight speed edge when I add proper batching.  There's an anim x,y property which is passed to the shaders, I'll need to look at their shader code to see how that's being used... might be a clever way of allowing map tile animations and passing most of the work off to the GPU.
+Read through the new PIXILegacy 4 tilemap code to see another approach to this task.  It looks very similar (beautiful code though, mine is still very rough).  They're using TRIANGLE rather than TRIANGLE_STRIP which I believe will give this implementation a slight speed edge when I add proper batching.  There's an anim x,y property which is passed to the shaders, I'll need to look at their shader code to see how that's being used... might be a clever way of allowing map tile animations and passing most of the work off to the GPU.
 
 Ran a profiler on my code using FireFox which runs the sci-fly demo extremely slowly (6 fps).  As expected 95% of the time is locked in the _renderTile function, I'm virtually certain that the GPU is blocking because I'm only sending pairs in my TRIANGLE_STRIP at the moment.  I shall prioritise the batch processing then re-run those tests to make sure the problem is solved.  It would be very interesting to find out why Chrome and Canary on my computer do not suffer from the same problem (after all, it's the same GPU!). But I suspect I won't ever be able to answer that question in light of Rich's results (it ran slowly on his Chrome browser with a more powerful GPU...)
 
-The batch changes are in, in a very rough form.  The entire visible screen is now drawn with a single gl.drawArrays call after the JS sets up a large VBO with degenerate tris to separate the individual tiles from each other.  This approach was hugely successful at drawing in the "pbRenderer" (now called "Beam"), however it is still choking FireFox.  Further investigation is needed including: test the old pbRenderer demos to make sure they don't choke FireFox, if it does then check the PIXI 4 tilemap renderer to see if that does too.  If the old demos work properly, then compare them with this new implementation line-by-line to find out what's causing the problem now.
+The batch changes are in, in a very rough form.  The entire visible screen is now drawn with a single gl.drawArrays call after the JS sets up a large VBO with degenerate tris to separate the individual tiles from each other.  This approach was hugely successful at drawing in the "pbRenderer" (now called "Beam"), however it is still choking FireFox.  Further investigation is needed including: test the old pbRenderer demos to make sure they don't choke FireFox, if it does then check the PIXILegacy 4 tilemap renderer to see if that does too.  If the old demos work properly, then compare them with this new implementation line-by-line to find out what's causing the problem now.
 
 False alarm? After a restart FireFox is now running the new demo correctly (60 fps)... I'm certain I cleared the cache before testing the new version, but maybe there was something jamming up the GPU which got cleared when I reset the browser.  Still, this is good news, and now I can go ahead and finish this implementation with proper scroll offsets then get Rich to test it on his rig.
 Added the scroll offsets and gave the code a cursory first-pass clean up.  I've noticed that when switching from Chrome to FireFox it runs slowly for a few seconds before settling in to the solid 60 fps... I think this might be some webgl feature not being cleaned up immediately after Chrome closes because it's very consistent.
@@ -87,7 +87,7 @@ However testing other demos shows a large corrupt tile in the ones which use the
 
 day five (part 1):
 
-I can reference firstgid (in Phaser.Tileset) through PIXI.Tilemap.map.tilesets[X].firstgid.  Currently I'm limited to one tileset per map so I've hardwired this to tilesets[0].firstgid and it's working for many examples.
+I can reference firstgid (in Phaser.Tileset) through PIXILegacy.Tilemap.map.tilesets[X].firstgid.  Currently I'm limited to one tileset per map so I've hardwired this to tilesets[0].firstgid and it's working for many examples.
 Test results show that most of the demos which previously had "out by one" errors are working properly now.  The exceptions are "fill tiles" and anything else using that desert tileset.  I'll need to investigate that further, it still looks like an 'out by one' error so maybe it's using a second tileset and I'm grabbing the wrong firstgid value.
 
 The large corrupt tile was caused by drawing a VBO with insufficient data.  I've found two possible cases where this can happen and fixed them.  I'll need to get Rich to test again to see if the previously slow demos with corrupt tiles are now working smoothly on his rig.
@@ -99,20 +99,20 @@ What we could maybe do is run the canvas tile rendering code to generate a sourc
 
 Had a chat with Rich and he suggested a number of things that are helpful.
 It *looks* like I can avoid a lot of code duplication by adding an alternative to Phaser.Tileset.draw for drawGl.  If I do things this way I can leverage all of the existing Phaser support for tilesets with margins and separators, plus the code to handle multiple tilesets in a single map (which is currently broken even in canvas if the tilesets aren't the same size, see example "Create From Objects" - the large tiles are messed up).
-My new drawGl function builds a list of data objects with texture coordinates and destination coordinate - exactly like the canvas drawImage function uses... then the tricky bit will be finding a good mechanism for transferring that list over to PIXI such that it draws as part of the PIXI draw loops to maintain layer order with all the other gl drawing.
-My older attempt uses TilemapLayerGL which extends PIXI.Tilemap which extends PIXI.DisplayObject... with this new approach I would like to avoid using TilemapLayerGL (which will mainly be a duplicate of Phaser.TilemapLayer), but I need to dig a bit deeper to see if that will be possible.
+My new drawGl function builds a list of data objects with texture coordinates and destination coordinate - exactly like the canvas drawImage function uses... then the tricky bit will be finding a good mechanism for transferring that list over to PIXILegacy such that it draws as part of the PIXILegacy draw loops to maintain layer order with all the other gl drawing.
+My older attempt uses TilemapLayerGL which extends PIXILegacy.Tilemap which extends PIXILegacy.DisplayObject... with this new approach I would like to avoid using TilemapLayerGL (which will mainly be a duplicate of Phaser.TilemapLayer), but I need to dig a bit deeper to see if that will be possible.
 
 
 day six:
 
-After several attempts I can't find a neat way to discard TilemapLayerGL.  In order to make PIXI accept this drawing as part of it's own system it is essential to extend PIXI.Tilemap, and for Canvas drawing TilemapLayer has to extend Phaser.Sprite.
+After several attempts I can't find a neat way to discard TilemapLayerGL.  In order to make PIXILegacy accept this drawing as part of it's own system it is essential to extend PIXILegacy.Tilemap, and for Canvas drawing TilemapLayer has to extend Phaser.Sprite.
 I've copied over a ton more content from TilemapLayer so that TilemapLayerGL is now a duplicate in all regards except what it extends and the actual tile batch list build and draw stuff.  This should be looked at again in the future because it violates the DRY principle, however I don't want to spend any more time on non-essential work getting this GL tile drawing system up and running.
-There is now a drawGL function in Phaser.Tileset which simply pushes the tile information into a list of Objects.  This information is being added to the TilemapLayerGL this.glBatch list (which extends PIXI.Tilemap and so is visible to the renderer).
-PIXI.Tilemap uses this list to build a GL buffer of TRIANGLE_STRIP with degenerate triangles between each pair of triangles that represent a tile.  It then draws the entire layer in a single GL draw call.
+There is now a drawGL function in Phaser.Tileset which simply pushes the tile information into a list of Objects.  This information is being added to the TilemapLayerGL this.glBatch list (which extends PIXILegacy.Tilemap and so is visible to the renderer).
+PIXILegacy.Tilemap uses this list to build a GL buffer of TRIANGLE_STRIP with degenerate triangles between each pair of triangles that represent a tile.  It then draws the entire layer in a single GL draw call.
 To test the demos, we currently need to set drawing mode to Phaser.WEBGL (in the Phaser.Game constructor arguments), and pass 'true' as the final argument to map.createLayer (eg. from sci-fly example):
     map = game.add.tilemap('level3');
     map.addTilesetImage('CybernoidMap3BG_bank.png', 'tiles');
-    layer = map.createLayer(0, undefined, undefined, undefined, true);		<-- true specifies to use the new PIXI tilemap system
+    layer = map.createLayer(0, undefined, undefined, undefined, true);		<-- true specifies to use the new PIXILegacy tilemap system
 
 bug - in the sci-fly demo there is a new problem with collisions when the map has scrolled, I'm guessing this is some sort of scroll offset conflict between the display and the collision system.
 
@@ -122,7 +122,7 @@ Removed requirement for pixiTest parameter in createLayer by using renderType in
 
 another bug - when scrolling not only are the collisions off, the redrawing tile area gets smaller as we move away from the map origin.  This could be linked to the collisions via the scroll offsets being wrong, however the area of map which is drawn appears to be in the correct place... are there two separate scroll offsets in this system?  There are some calculations for start/end of drawing region, might be a good place to start looking.
 
-I need to make the PIXI.Tilemap access multiple source textures and use tile width and height from the batch buffer data in order to reinstate the Phaser multiple tilesets per map capabilities.  NOTE: decided this is a stupid approach, see task list below for better idea.
+I need to make the PIXILegacy.Tilemap access multiple source textures and use tile width and height from the batch buffer data in order to reinstate the Phaser multiple tilesets per map capabilities.  NOTE: decided this is a stupid approach, see task list below for better idea.
 
 After testing, *all* examples seem to work (with these three restrictions)
 
@@ -162,7 +162,7 @@ The Tile objects have incorrect data... in the "create from objects" example the
 
 The image texture appears to also be incorrect in Tile objects that use different tilesets.  This might explain why we get garbage drawn to screen, however looking at the phaser.io example I'm seeing the correct tiles being drawn.  Need to check all my new code to find how it has got the wrong values.
 
-Bug found in TilemapLayerGL where it sets the PIXI baseTexture.  I'm seeing the top-left corner of the 70x70 tiles.
+Bug found in TilemapLayerGL where it sets the PIXILegacy baseTexture.  I'm seeing the top-left corner of the 70x70 tiles.
 
 Added a tileset parameter to the map's layer data objects when creating an 'internal' layer.
 Made TilemapLayerGL grab the tile dimensions from the new tileset parameter instead of relying on the map containing only one size.
@@ -183,14 +183,14 @@ Task list updated:
 Added offset parameters to renderRegion to correctly bottom-left align the large tiles.
 NOTE: the canvas version does not do this and consequently displays the tiles in the wrong positions.
 
-Added alpha blending based on TilemapLayerGL.alpha property.  NOTE: this appears to punch holes through the background and blends with the CSS background colour of the web-page.  See: http://webglfundamentals.org/webgl/lessons/webgl-and-alpha.html for list of possible solutions to this... looks like PIXI is currently set to use premultiplied alpha by Phaser (need to find out where, or if this is a default?)
+Added alpha blending based on TilemapLayerGL.alpha property.  NOTE: this appears to punch holes through the background and blends with the CSS background colour of the web-page.  See: http://webglfundamentals.org/webgl/lessons/webgl-and-alpha.html for list of possible solutions to this... looks like PIXILegacy is currently set to use premultiplied alpha by Phaser (need to find out where, or if this is a default?)
 
 Prepared code to pass each Tile alpha value through to the batch renderer, however realised that implementing this will break the batching!
 Need to talk with Rich about it before proceeding further.
 
 Modified the batch creation code and the batch drawing code to only insert degenerate triangles at the end of rows or when a row is broken (e.g. by some empty tiles which we won't draw at all).  This should speed things up by optimising the draw, and reducing the amount of data required to describe the batch.
 
-Took a look at the PIXI triangle strip shader and noticed that the alpha is being used as a multiplier on the whole colour vector... I was applying it directly to the .a fourth vector value.  Changed the tilemap shader to match and it's working great now!
+Took a look at the PIXILegacy triangle strip shader and noticed that the alpha is being used as a multiplier on the whole colour vector... I was applying it directly to the .a fourth vector value.  Changed the tilemap shader to match and it's working great now!
 
 
 day eight:

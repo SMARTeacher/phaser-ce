@@ -3,7 +3,7 @@
 *
 * Use a JSDoc plugin to handle custom @sourcefile/@sourceline and reattach meta-data.
 *
-* This works on the current PIXI source code (and exposes a few documentation bugs).
+* This works on the current PIXILegacy source code (and exposes a few documentation bugs).
 *
 * Known limitations:
 * - Does not support (from YUIDoc):
@@ -506,7 +506,7 @@ function typedesc_to_attrs (typedesc, typedescs)
 
     var attrs = [];
 
-    // Bug in PIXI (test) docs has a "static constructor", whoops!
+    // Bug in PIXILegacy (test) docs has a "static constructor", whoops!
     if (typedescs.is_constructor || !typedescs.static)
     {
 

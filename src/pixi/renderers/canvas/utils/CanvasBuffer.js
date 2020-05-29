@@ -5,12 +5,12 @@
 /**
  * Creates a Canvas element of the given size.
  *
- * @class PIXI.CanvasBuffer
+ * @class PIXILegacy.CanvasBuffer
  * @constructor
  * @param width {Number} the width for the newly created canvas
  * @param height {Number} the height for the newly created canvas
  */
-PIXI.CanvasBuffer = function (width, height)
+PIXILegacy.CanvasBuffer = function (width, height)
 {
     /**
      * The width of the Canvas in pixels.
@@ -48,15 +48,15 @@ PIXI.CanvasBuffer = function (width, height)
     this.canvas.height = height;
 };
 
-PIXI.CanvasBuffer.prototype.constructor = PIXI.CanvasBuffer;
+PIXILegacy.CanvasBuffer.prototype.constructor = PIXILegacy.CanvasBuffer;
 
 /**
  * Clears the canvas that was created by the CanvasBuffer class.
  *
- * @method PIXI.CanvasBuffer#clear
+ * @method PIXILegacy.CanvasBuffer#clear
  * @private
  */
-PIXI.CanvasBuffer.prototype.clear = function ()
+PIXILegacy.CanvasBuffer.prototype.clear = function ()
 {
     this.context.setTransform(1, 0, 0, 1, 0, 0);
     this.context.clearRect(0,0, this.width, this.height);
@@ -65,11 +65,11 @@ PIXI.CanvasBuffer.prototype.clear = function ()
 /**
  * Resizes the canvas to the specified width and height.
  *
- * @method PIXI.CanvasBuffer#resize
+ * @method PIXILegacy.CanvasBuffer#resize
  * @param width {Number} the new width of the canvas
  * @param height {Number} the new height of the canvas
  */
-PIXI.CanvasBuffer.prototype.resize = function (width, height)
+PIXILegacy.CanvasBuffer.prototype.resize = function (width, height)
 {
     this.width = this.canvas.width = width;
     this.height = this.canvas.height = height;
@@ -78,9 +78,9 @@ PIXI.CanvasBuffer.prototype.resize = function (width, height)
 /**
  * Frees the canvas up for use again.
  *
- * @method PIXI.CanvasBuffer#destroy
+ * @method PIXILegacy.CanvasBuffer#destroy
  */
-PIXI.CanvasBuffer.prototype.destroy = function ()
+PIXILegacy.CanvasBuffer.prototype.destroy = function ()
 {
     Phaser.CanvasPoolStatic.remove(this);
 };

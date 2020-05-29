@@ -13,7 +13,7 @@
  * @constructor
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.CreatureShader = function (gl)
+PIXILegacy.CreatureShader = function (gl)
 {
     /**
    * @property _UID
@@ -87,21 +87,21 @@ PIXI.CreatureShader = function (gl)
     this.init();
 };
 
-PIXI.CreatureShader.prototype.constructor = PIXI.CreatureShader;
+PIXILegacy.CreatureShader.prototype.constructor = PIXILegacy.CreatureShader;
 
 /**
  * Initialises the shader.
  *
- * @method PIXI.CreatureShader#init
+ * @method PIXILegacy.CreatureShader#init
  */
-PIXI.CreatureShader.prototype.init = function ()
+PIXILegacy.CreatureShader.prototype.init = function ()
 {
     var gl = this.gl;
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = PIXILegacy.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
-    this.uSampler = PIXI._enableMultiTextureToggle ?
+    this.uSampler = PIXILegacy._enableMultiTextureToggle ?
         gl.getUniformLocation(program, 'uSamplerArray[0]') :
         gl.getUniformLocation(program, 'uSampler');
 
@@ -129,9 +129,9 @@ PIXI.CreatureShader.prototype.init = function ()
 /**
  * Destroys the shader.
  *
- * @method PIXI.CreatureShader#destroy
+ * @method PIXILegacy.CreatureShader#destroy
  */
-PIXI.CreatureShader.prototype.destroy = function ()
+PIXILegacy.CreatureShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;
@@ -158,7 +158,7 @@ PIXI.CreatureShader.prototype.destroy = function ()
 * So you'll need to do `grunt custom` to create a build that includes them.
 *
 * @class Phaser.Creature
-* @extends PIXI.DisplayObjectContainer
+* @extends PIXILegacy.DisplayObjectContainer
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.AutoCull
@@ -172,7 +172,7 @@ PIXI.CreatureShader.prototype.destroy = function ()
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} x - The x coordinate of the Game Object. The coordinate is relative to any parent container this Game Object may be in.
 * @param {number} y - The y coordinate of the Game Object. The coordinate is relative to any parent container this Game Object may be in.
-* @param {string|PIXI.Texture} key - The texture used by the Creature Object during rendering. It can be a string which is a reference to the Cache entry, or an instance of a PIXI.Texture.
+* @param {string|PIXILegacy.Texture} key - The texture used by the Creature Object during rendering. It can be a string which is a reference to the Cache entry, or an instance of a PIXILegacy.Texture.
 * @param {string} mesh - The mesh data for the Creature Object. It should be a string which is a reference to the Cache JSON entry.
 * @param {string} [animation='default'] - The animation within the mesh data  to play.
 * @param {string} [useFlatData=false] - Use flat data
@@ -226,7 +226,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
 
     if (typeof key === 'string')
     {
-        var texture = new PIXI.Texture(game.cache.getBaseTexture(key));
+        var texture = new PIXILegacy.Texture(game.cache.getBaseTexture(key));
     }
     else
     {
@@ -234,14 +234,14 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
     }
 
     /**
-    * @property {PIXI.Texture} texture - The texture the animation is using.
+    * @property {PIXILegacy.Texture} texture - The texture the animation is using.
     */
     this.texture = texture;
 
-    PIXI.DisplayObjectContainer.call(this);
+    PIXILegacy.DisplayObjectContainer.call(this);
 
     this.dirty = true;
-    this.blendMode = PIXI.blendModes.NORMAL;
+    this.blendMode = PIXILegacy.blendModes.NORMAL;
 
     /**
     * @property {Phaser.Point} creatureBoundsMin - The minimum bounds point.
@@ -309,7 +309,7 @@ Phaser.Creature = function (game, x, y, key, mesh, animation, useFlatData)
 
 };
 
-Phaser.Creature.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.Creature.prototype = Object.create(PIXILegacy.DisplayObjectContainer.prototype);
 Phaser.Creature.prototype.constructor = Phaser.Creature;
 
 Phaser.Component.Core.install.call(Phaser.Creature.prototype, [

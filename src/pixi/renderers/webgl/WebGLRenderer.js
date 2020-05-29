@@ -2,8 +2,8 @@
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
 
-PIXI.glContexts = []; // this is where we store the webGL contexts for easy access.
-PIXI._enableMultiTextureToggle = false;
+PIXILegacy.glContexts = []; // this is where we store the webGL contexts for easy access.
+PIXILegacy._enableMultiTextureToggle = false;
 
 /**
  * The WebGLRenderer draws the stage and all its content onto a webGL enabled canvas. This renderer
@@ -11,11 +11,11 @@ PIXI._enableMultiTextureToggle = false;
  * So no need for Sprite Batches or Sprite Clouds.
  * Don't forget to add the view to your DOM or you will not see anything :)
  *
- * @class PIXI.WebGLRenderer
+ * @class PIXILegacy.WebGLRenderer
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.WebGLRenderer = function (game, config)
+PIXILegacy.WebGLRenderer = function (game, config)
 {
 
     /**
@@ -118,13 +118,13 @@ PIXI.WebGLRenderer = function (game, config)
      * @property projection
      * @type Point
      */
-    this.projection = new PIXI.Point();
+    this.projection = new PIXILegacy.Point();
 
     /**
      * @property offset
      * @type Point
      */
-    this.offset = new PIXI.Point();
+    this.offset = new PIXILegacy.Point();
 
     // time to create the render managers! each one focuses on managing a state in webGL
 
@@ -133,42 +133,42 @@ PIXI.WebGLRenderer = function (game, config)
      * @property shaderManager
      * @type WebGLShaderManager
      */
-    this.shaderManager = new PIXI.WebGLShaderManager(game);
+    this.shaderManager = new PIXILegacy.WebGLShaderManager(game);
 
     /**
      * Manages the rendering of sprites
      * @property spriteBatch
      * @type WebGLSpriteBatch
      */
-    this.spriteBatch = new PIXI.WebGLSpriteBatch(game);
+    this.spriteBatch = new PIXILegacy.WebGLSpriteBatch(game);
 
     /**
      * Manages the masks using the stencil buffer
      * @property maskManager
      * @type WebGLMaskManager
      */
-    this.maskManager = new PIXI.WebGLMaskManager();
+    this.maskManager = new PIXILegacy.WebGLMaskManager();
 
     /**
      * Manages the filters
      * @property filterManager
      * @type WebGLFilterManager
      */
-    this.filterManager = new PIXI.WebGLFilterManager(game);
+    this.filterManager = new PIXILegacy.WebGLFilterManager(game);
 
     /**
      * Manages the stencil buffer
      * @property stencilManager
      * @type WebGLStencilManager
      */
-    this.stencilManager = new PIXI.WebGLStencilManager();
+    this.stencilManager = new PIXILegacy.WebGLStencilManager();
 
     /**
      * Manages the blendModes
      * @property blendModeManager
      * @type WebGLBlendModeManager
      */
-    this.blendModeManager = new PIXI.WebGLBlendModeManager();
+    this.blendModeManager = new PIXILegacy.WebGLBlendModeManager();
 
     /**
      * @property renderSession
@@ -206,12 +206,12 @@ PIXI.WebGLRenderer = function (game, config)
 };
 
 // constructor
-PIXI.WebGLRenderer.prototype.constructor = PIXI.WebGLRenderer;
+PIXILegacy.WebGLRenderer.prototype.constructor = PIXILegacy.WebGLRenderer;
 
 /**
-* @method PIXI.WebGLRenderer#initContext
+* @method PIXILegacy.WebGLRenderer#initContext
 */
-PIXI.WebGLRenderer.prototype.initContext = function ()
+PIXILegacy.WebGLRenderer.prototype.initContext = function ()
 {
     var gl = this.view.getContext('webgl', this._contextOptions) || this.view.getContext('experimental-webgl', this._contextOptions);
 
@@ -226,9 +226,9 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
     this.maxTextures = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.maxTextureSize = this.gl.getParameter(gl.MAX_TEXTURE_SIZE);
 
-    this.glContextId = gl.id = PIXI.WebGLRenderer.glContextId++;
+    this.glContextId = gl.id = PIXILegacy.WebGLRenderer.glContextId++;
 
-    PIXI.glContexts[this.glContextId] = gl;
+    PIXILegacy.glContexts[this.glContextId] = gl;
 
     // set up the default pixi settings..
     gl.disable(gl.DEPTH_TEST);
@@ -279,14 +279,14 @@ PIXI.WebGLRenderer.prototype.initContext = function ()
 *
 * Note: Throws a warning if you haven't enabled Multiple Texture batching support in the Phaser Game config.
 *
-* @method PIXI.WebGLRenderer#setTexturePriority
+* @method PIXILegacy.WebGLRenderer#setTexturePriority
 * @param textureNameCollection {Array} An Array of Texture Cache keys to use for multi-texture batching.
 * @return {Array} An array containing the texture keys that were enabled for batching.
 */
-PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollection)
+PIXILegacy.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollection)
 {
 
-    if (!PIXI._enableMultiTextureToggle)
+    if (!PIXILegacy._enableMultiTextureToggle)
     {
         console.warn('setTexturePriority error: Multi Texture support hasn\'t been enabled in the Phaser Game Config.');
         return;
@@ -361,10 +361,10 @@ PIXI.WebGLRenderer.prototype.setTexturePriority = function (textureNameCollectio
 /**
  * Renders the stage to its webGL view
  *
- * @method PIXI.WebGLRenderer#render
+ * @method PIXILegacy.WebGLRenderer#render
  * @param stage {Stage} the Stage element to be rendered
  */
-PIXI.WebGLRenderer.prototype.render = function (stage)
+PIXILegacy.WebGLRenderer.prototype.render = function (stage)
 {
     // no point rendering if our context has been blown up!
     if (this.contextLost)
@@ -396,14 +396,14 @@ PIXI.WebGLRenderer.prototype.render = function (stage)
 /**
  * Renders a Display Object.
  *
- * @method PIXI.WebGLRenderer#renderDisplayObject
+ * @method PIXILegacy.WebGLRenderer#renderDisplayObject
  * @param displayObject {DisplayObject} The DisplayObject to render
  * @param projection {Point} The projection
  * @param buffer {Array} a standard WebGL buffer
  */
-PIXI.WebGLRenderer.prototype.renderDisplayObject = function (displayObject, projection, buffer, matrix)
+PIXILegacy.WebGLRenderer.prototype.renderDisplayObject = function (displayObject, projection, buffer, matrix)
 {
-    this.renderSession.blendModeManager.setBlendMode(PIXI.blendModes.NORMAL);
+    this.renderSession.blendModeManager.setBlendMode(PIXILegacy.blendModes.NORMAL);
 
     // reset the render session data..
     this.renderSession.drawCount = 0;
@@ -433,11 +433,11 @@ PIXI.WebGLRenderer.prototype.renderDisplayObject = function (displayObject, proj
 /**
  * Resizes the webGL view to the specified width and height.
  *
- * @method PIXI.WebGLRenderer#resize
+ * @method PIXILegacy.WebGLRenderer#resize
  * @param width {Number} the new width of the webGL view
  * @param height {Number} the new height of the webGL view
  */
-PIXI.WebGLRenderer.prototype.resize = function (width, height)
+PIXILegacy.WebGLRenderer.prototype.resize = function (width, height)
 {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
@@ -460,11 +460,11 @@ PIXI.WebGLRenderer.prototype.resize = function (width, height)
 /**
  * Updates and creates a WebGL compressed texture for the renderers context.
  *
- * @method PIXI.WebGLRenderer#updateCompressedTexture
+ * @method PIXILegacy.WebGLRenderer#updateCompressedTexture
  * @param texture {Texture} the texture to update
  * @return {boolean} True if the texture was successfully bound, otherwise false.
  */
-PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
+PIXILegacy.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
 {
     if (!texture.hasLoaded)
     {
@@ -491,16 +491,16 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
         textureMetaData.textureData
     );
 
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, texture.scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, texture.scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
 
     if (texture.mipmap && Phaser.Math.isPowerOfTwo(texture.width, texture.height))
     {
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
         gl.generateMipmap(gl.TEXTURE_2D);
     }
     else
     {
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
     }
 
     if (!texture._powerOf2)
@@ -520,11 +520,11 @@ PIXI.WebGLRenderer.prototype.updateCompressedTexture = function (texture)
 /**
  * Updates and Creates a WebGL texture for the renderers context.
  *
- * @method PIXI.WebGLRenderer#updateTexture
+ * @method PIXILegacy.WebGLRenderer#updateTexture
  * @param texture {Texture} the texture to update
  * @return {boolean} True if the texture was successfully bound, otherwise false.
  */
-PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
+PIXILegacy.WebGLRenderer.prototype.updateTexture = function (texture)
 {
     if (!texture.hasLoaded || !texture.source)
     {
@@ -549,16 +549,16 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.source);
 
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, texture.scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, texture.scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
 
     if (texture.mipmap && Phaser.Math.isPowerOfTwo(texture.width, texture.height))
     {
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
         gl.generateMipmap(gl.TEXTURE_2D);
     }
     else
     {
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
     }
 
     if (!texture._powerOf2)
@@ -582,11 +582,11 @@ PIXI.WebGLRenderer.prototype.updateTexture = function (texture)
 /**
  * Removes everything from the renderer (event listeners, spritebatch, etc...)
  *
- * @method PIXI.WebGLRenderer#destroy
+ * @method PIXILegacy.WebGLRenderer#destroy
  */
-PIXI.WebGLRenderer.prototype.destroy = function ()
+PIXILegacy.WebGLRenderer.prototype.destroy = function ()
 {
-    PIXI.glContexts[this.glContextId] = null;
+    PIXILegacy.glContexts[this.glContextId] = null;
 
     this.projection = null;
     this.offset = null;
@@ -606,22 +606,22 @@ PIXI.WebGLRenderer.prototype.destroy = function ()
 
     this.game.canvasPool.remove(this);
 
-    PIXI.WebGLRenderer.glContextId--;
+    PIXILegacy.WebGLRenderer.glContextId--;
 };
 
 /**
  * Maps Pixi blend modes to WebGL blend modes.
  *
- * @method PIXI.WebGLRenderer#mapBlendModes
+ * @method PIXILegacy.WebGLRenderer#mapBlendModes
  */
-PIXI.WebGLRenderer.prototype.mapBlendModes = function ()
+PIXILegacy.WebGLRenderer.prototype.mapBlendModes = function ()
 {
     var gl = this.gl;
 
-    if (!PIXI.blendModesWebGL)
+    if (!PIXILegacy.blendModesWebGL)
     {
         var b = [];
-        var modes = PIXI.blendModes;
+        var modes = PIXILegacy.blendModes;
 
         b[modes.NORMAL] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
         b[modes.ADD] = [ gl.SRC_ALPHA, gl.DST_ALPHA ];
@@ -641,20 +641,20 @@ PIXI.WebGLRenderer.prototype.mapBlendModes = function ()
         b[modes.COLOR] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
         b[modes.LUMINOSITY] = [ gl.ONE, gl.ONE_MINUS_SRC_ALPHA ];
 
-        PIXI.blendModesWebGL = b;
+        PIXILegacy.blendModesWebGL = b;
     }
 };
 
-PIXI.WebGLRenderer.prototype.getMaxTextureUnit = function ()
+PIXILegacy.WebGLRenderer.prototype.getMaxTextureUnit = function ()
 {
     var gl = this.gl;
     return gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
 };
 
-PIXI.enableMultiTexture = function ()
+PIXILegacy.enableMultiTexture = function ()
 {
-    PIXI._enableMultiTextureToggle = true;
+    PIXILegacy._enableMultiTextureToggle = true;
 };
 
-PIXI.WebGLRenderer.glContextId = 0;
-PIXI.WebGLRenderer.textureArray = [];
+PIXILegacy.WebGLRenderer.glContextId = 0;
+PIXILegacy.WebGLRenderer.textureArray = [];

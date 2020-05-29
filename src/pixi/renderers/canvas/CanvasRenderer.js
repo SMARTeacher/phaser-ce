@@ -6,11 +6,11 @@
  * The CanvasRenderer draws the Stage and all its content onto a 2d canvas. This renderer should be used for browsers that do not support webGL.
  * Don't forget to add the CanvasRenderer.view to your DOM or you will not see anything :)
  *
- * @class PIXI.CanvasRenderer
+ * @class PIXILegacy.CanvasRenderer
  * @constructor
  * @param game {Phaser.Game} A reference to the Phaser Game instance
  */
-PIXI.CanvasRenderer = function (game, config)
+PIXILegacy.CanvasRenderer = function (game, config)
 {
 
     /**
@@ -117,11 +117,11 @@ PIXI.CanvasRenderer = function (game, config)
     this.count = 0;
 
     /**
-     * Instance of a PIXI.CanvasMaskManager, handles masking when using the canvas renderer
+     * Instance of a PIXILegacy.CanvasMaskManager, handles masking when using the canvas renderer
      * @property CanvasMaskManager
      * @type CanvasMaskManager
      */
-    this.maskManager = new PIXI.CanvasMaskManager();
+    this.maskManager = new PIXILegacy.CanvasMaskManager();
 
     /**
      * The render session is just a bunch of parameter used for rendering
@@ -148,15 +148,15 @@ PIXI.CanvasRenderer = function (game, config)
 };
 
 // constructor
-PIXI.CanvasRenderer.prototype.constructor = PIXI.CanvasRenderer;
+PIXILegacy.CanvasRenderer.prototype.constructor = PIXILegacy.CanvasRenderer;
 
 /**
  * Renders the DisplayObjectContainer, usually the Phaser.Stage, to this canvas view.
  *
- * @method PIXI.CanvasRenderer#render
- * @param root {Phaser.Stage|PIXI.DisplayObjectContainer} The root element to be rendered.
+ * @method PIXILegacy.CanvasRenderer#render
+ * @param root {Phaser.Stage|PIXILegacy.DisplayObjectContainer} The root element to be rendered.
  */
-PIXI.CanvasRenderer.prototype.render = function (root)
+PIXILegacy.CanvasRenderer.prototype.render = function (root)
 {
 
     this.context.setTransform(1, 0, 0, 1, 0, 0);
@@ -192,7 +192,7 @@ PIXI.CanvasRenderer.prototype.render = function (root)
 
 };
 
-PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
+PIXILegacy.CanvasRenderer.prototype.setTexturePriority = function ()
 {
 
     //  Does nothing on Canvas, but here to allow you to simply set
@@ -204,10 +204,10 @@ PIXI.CanvasRenderer.prototype.setTexturePriority = function ()
 /**
  * Removes everything from the renderer and optionally removes the Canvas DOM element.
  *
- * @method PIXI.CanvasRenderer#destroy
+ * @method PIXILegacy.CanvasRenderer#destroy
  * @param [removeView=true] {boolean} Removes the Canvas element from the DOM.
  */
-PIXI.CanvasRenderer.prototype.destroy = function (removeView)
+PIXILegacy.CanvasRenderer.prototype.destroy = function (removeView)
 {
 
     if (removeView === undefined) { removeView = true; }
@@ -227,11 +227,11 @@ PIXI.CanvasRenderer.prototype.destroy = function (removeView)
 /**
  * Resizes the canvas view to the specified width and height
  *
- * @method PIXI.CanvasRenderer#resize
+ * @method PIXILegacy.CanvasRenderer#resize
  * @param width {Number} the new width of the canvas view
  * @param height {Number} the new height of the canvas view
  */
-PIXI.CanvasRenderer.prototype.resize = function (width, height)
+PIXILegacy.CanvasRenderer.prototype.resize = function (width, height)
 {
 
     this.width = width * this.resolution;
@@ -248,7 +248,7 @@ PIXI.CanvasRenderer.prototype.resize = function (width, height)
 
     if (this.renderSession.smoothProperty)
     {
-        this.context[this.renderSession.smoothProperty] = (this.renderSession.scaleMode === PIXI.scaleModes.LINEAR);
+        this.context[this.renderSession.smoothProperty] = (this.renderSession.scaleMode === PIXILegacy.scaleModes.LINEAR);
     }
 
 };
@@ -256,13 +256,13 @@ PIXI.CanvasRenderer.prototype.resize = function (width, height)
 /**
  * Renders a display object
  *
- * @method PIXI.CanvasRenderer#renderDisplayObject
+ * @method PIXILegacy.CanvasRenderer#renderDisplayObject
  * @param displayObject {DisplayObject} The displayObject to render
  * @param context {CanvasRenderingContext2D} the context 2d method of the canvas
  * @param [matrix] {Matrix} Optional matrix to apply to the display object before rendering.
  * @private
  */
-PIXI.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, context, matrix)
+PIXILegacy.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, context, matrix)
 {
 
     this.renderSession.context = context || this.context;
@@ -274,16 +274,16 @@ PIXI.CanvasRenderer.prototype.renderDisplayObject = function (displayObject, con
 /**
  * Maps Pixi blend modes to canvas blend modes.
  *
- * @method PIXI.CanvasRenderer#mapBlendModes
+ * @method PIXILegacy.CanvasRenderer#mapBlendModes
  * @private
  */
-PIXI.CanvasRenderer.prototype.mapBlendModes = function ()
+PIXILegacy.CanvasRenderer.prototype.mapBlendModes = function ()
 {
 
-    if (!PIXI.blendModesCanvas)
+    if (!PIXILegacy.blendModesCanvas)
     {
         var b = [];
-        var modes = PIXI.blendModes;
+        var modes = PIXILegacy.blendModes;
         var useNew = this.game.device.canUseMultiply;
 
         b[modes.NORMAL] = 'source-over';
@@ -304,7 +304,7 @@ PIXI.CanvasRenderer.prototype.mapBlendModes = function ()
         b[modes.COLOR] = (useNew) ? 'color' : 'source-over';
         b[modes.LUMINOSITY] = (useNew) ? 'luminosity' : 'source-over';
 
-        PIXI.blendModesCanvas = b;
+        PIXILegacy.blendModesCanvas = b;
     }
 
 };

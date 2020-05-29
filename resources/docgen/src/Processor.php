@@ -134,7 +134,7 @@
             {
                 if ($this->blocks[$i]->isClass)
                 {
-                    //  Some files like PIXI.Graphics have multiple class blocks within them
+                    //  Some files like PIXILegacy.Graphics have multiple class blocks within them
                     if ($this->class === null)
                     {
                         $tempClass = new ClassDesc($this, $this->blocks[$i]);
@@ -251,7 +251,7 @@
                     }
                     else if ($tidy === 'Texture' || $tidy === 'DisplayObject')
                     {
-                        $tidy = 'PIXI.' . $tidy;
+                        $tidy = 'PIXILegacy.' . $tidy;
                     }
 
                     $types[$key] = 'array ' . $tidy;
@@ -298,7 +298,7 @@
                 }
                 else if ($type === "Texture")
                 {
-                    $types[$key] = "PIXI.Texture";
+                    $types[$key] = "PIXILegacy.Texture";
                 }
                 else if ($type === "Polygon")
                 {
@@ -314,11 +314,11 @@
                 }
                 else if ($type === "Matrix")
                 {
-                    $types[$key] = "PIXI.Matrix";
+                    $types[$key] = "PIXILegacy.Matrix";
                 }
                 else if ($type === "DisplayObject")
                 {
-                    $types[$key] = "PIXI.DisplayObject";
+                    $types[$key] = "PIXILegacy.DisplayObject";
                 }
                 else if ($type === "Any" || $type === "{Any}" || $type === "*" || $type === "...*")
                 {
@@ -332,25 +332,25 @@
                         if ($pixi === null)
                         {
                             //  It's a ReturnType but we don't know which sort
-                            if (substr($type, 0, 7) !== 'Phaser.' && substr($type, 0, 5) !== 'PIXI.' && substr($type, 0, 3) !== 'p2.')
+                            if (substr($type, 0, 7) !== 'Phaser.' && substr($type, 0, 5) !== 'PIXILegacy.' && substr($type, 0, 3) !== 'p2.')
                             {
-                                //  Going to assume PIXI here as Phaser has the return types properly namespaced
-                                $types[$key] = "PIXI.$type";
+                                //  Going to assume PIXILegacy here as Phaser has the return types properly namespaced
+                                $types[$key] = "PIXILegacy.$type";
                             }
                         }
                         else
                         {
-                            //  Not a DOM type, shall we add PIXI to the front?
+                            //  Not a DOM type, shall we add PIXILegacy to the front?
                             if ($pixi)
                             {
-                                if (substr($type, 0, 5) !== 'PIXI.')
+                                if (substr($type, 0, 5) !== 'PIXILegacy.')
                                 {
-                                    $types[$key] = "PIXI.$type";
+                                    $types[$key] = "PIXILegacy.$type";
                                 }
                             }
                             else
                             {
-                                if (substr($type, 0, 7) !== 'Phaser.' && substr($type, 0, 5) !== 'PIXI.' && substr($type, 0, 3) !== 'p2.')
+                                if (substr($type, 0, 7) !== 'Phaser.' && substr($type, 0, 5) !== 'PIXILegacy.' && substr($type, 0, 3) !== 'p2.')
                                 {
                                     $types[$key] = "wtf.$type";
                                     echo($name . '=');

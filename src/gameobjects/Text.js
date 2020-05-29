@@ -57,7 +57,7 @@ Phaser.Text = function (game, x, y, text, style)
      */
     this.canvas = game.canvasPool.create(this);
 
-    Phaser.Sprite.call(this, game, x, y, PIXI.Texture.fromCanvas(this.canvas));
+    Phaser.Sprite.call(this, game, x, y, PIXILegacy.Texture.fromCanvas(this.canvas));
 
     /**
     * @property {number} type - The const type of this object.
@@ -1562,7 +1562,7 @@ Phaser.Text.prototype._renderWebGL = function (renderSession)
         this.dirty = false;
     }
 
-    PIXI.Sprite.prototype._renderWebGL.call(this, renderSession);
+    PIXILegacy.Sprite.prototype._renderWebGL.call(this, renderSession);
 
 };
 
@@ -1586,7 +1586,7 @@ Phaser.Text.prototype._renderCanvas = function (renderSession)
         this.dirty = false;
     }
 
-    PIXI.Sprite.prototype._renderCanvas.call(this, renderSession);
+    PIXILegacy.Sprite.prototype._renderCanvas.call(this, renderSession);
 
 };
 
@@ -1729,7 +1729,7 @@ Phaser.Text.prototype.getBounds = function (matrix)
         this.dirty = false;
     }
 
-    return PIXI.Sprite.prototype.getBounds.call(this, matrix);
+    return PIXILegacy.Sprite.prototype.getBounds.call(this, matrix);
 
 };
 

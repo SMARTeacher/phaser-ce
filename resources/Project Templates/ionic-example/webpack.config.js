@@ -29,7 +29,7 @@ var webpackExtension = {
       // exposing pixi, correct phaser and p2 into global scope (begin)
       {
         test: /pixi\.js/,
-        loader: "expose-loader?PIXI"
+        loader: "expose-loader?PIXILegacy"
       }, {
         test: /phaser-split\.js/,
         loader: "expose-loader?Phaser"

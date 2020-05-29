@@ -9,7 +9,7 @@
 * It also handles browser visibility handling and the pausing due to loss of focus.
 *
 * @class Phaser.Stage
-* @extends PIXI.DisplayObjectContainer
+* @extends PIXILegacy.DisplayObjectContainer
 * @constructor
 * @param {Phaser.Game} game - Game reference to the currently running game.
  */
@@ -21,7 +21,7 @@ Phaser.Stage = function (game)
     */
     this.game = game;
 
-    PIXI.DisplayObjectContainer.call(this);
+    PIXILegacy.DisplayObjectContainer.call(this);
 
     /**
     * @property {string} name - The name of this object.
@@ -96,7 +96,7 @@ Phaser.Stage = function (game)
 
 };
 
-Phaser.Stage.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.Stage.prototype = Object.create(PIXILegacy.DisplayObjectContainer.prototype);
 Phaser.Stage.prototype.constructor = Phaser.Stage;
 
 /**
@@ -493,7 +493,7 @@ Object.defineProperty(Phaser.Stage.prototype, 'smoothed', {
     get: function ()
     {
 
-        return PIXI.scaleModes.DEFAULT === PIXI.scaleModes.LINEAR;
+        return PIXILegacy.scaleModes.DEFAULT === PIXILegacy.scaleModes.LINEAR;
 
     },
 
@@ -502,11 +502,11 @@ Object.defineProperty(Phaser.Stage.prototype, 'smoothed', {
 
         if (value)
         {
-            PIXI.scaleModes.DEFAULT = PIXI.scaleModes.LINEAR;
+            PIXILegacy.scaleModes.DEFAULT = PIXILegacy.scaleModes.LINEAR;
         }
         else
         {
-            PIXI.scaleModes.DEFAULT = PIXI.scaleModes.NEAREST;
+            PIXILegacy.scaleModes.DEFAULT = PIXILegacy.scaleModes.NEAREST;
         }
     }
 

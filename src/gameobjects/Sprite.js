@@ -13,7 +13,7 @@
 *
 * @class Phaser.Sprite
 * @constructor
-* @extends PIXI.Sprite
+* @extends PIXILegacy.Sprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -38,7 +38,7 @@
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {number} x - The x coordinate (in world space) to position the Sprite at.
 * @param {number} y - The y coordinate (in world space) to position the Sprite at.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|PIXILegacy.Texture} key - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
 * @param {string|number} frame - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
 Phaser.Sprite = function (game, x, y, key, frame)
@@ -61,13 +61,13 @@ Phaser.Sprite = function (game, x, y, key, frame)
     */
     this.physicsType = Phaser.SPRITE;
 
-    PIXI.Sprite.call(this, Phaser.Cache.DEFAULT);
+    PIXILegacy.Sprite.call(this, Phaser.Cache.DEFAULT);
 
     Phaser.Component.Core.init.call(this, game, x, y, key, frame);
 
 };
 
-Phaser.Sprite.prototype = Object.create(PIXI.Sprite.prototype);
+Phaser.Sprite.prototype = Object.create(PIXILegacy.Sprite.prototype);
 Phaser.Sprite.prototype.constructor = Phaser.Sprite;
 
 Phaser.Component.Core.install.call(Phaser.Sprite.prototype, [

@@ -1,5 +1,5 @@
 /**
-* Mark various PIXI properties/methods as private if they are not relevant to Phaser.
+* Mark various PIXILegacy properties/methods as private if they are not relevant to Phaser.
 */
 
 var path = require('path');
@@ -13,7 +13,7 @@ function docletParamsAcceptInteractionData (doclet)
         {
             return p.type && p.type.names.some(function (n)
             {
-                return n === 'PIXI.InteractionData';
+                return n === 'PIXILegacy.InteractionData';
             });
         });
     }
@@ -21,8 +21,8 @@ function docletParamsAcceptInteractionData (doclet)
 }
 
 var unwantedNames = {
-    'PIXI.DisplayObject#defaultCursor': 1,
-    'PIXI.DisplayObject#interactive': 1
+    'PIXILegacy.DisplayObject#defaultCursor': 1,
+    'PIXILegacy.DisplayObject#interactive': 1
 };
 
 function hasUnwantedName (doclet)

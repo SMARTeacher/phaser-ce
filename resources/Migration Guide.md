@@ -12,13 +12,13 @@ Updated to Pixi.js 1.5
 
 This was a big change. Not only did we totally re-vamp the internals of Phaser as a result, we also now intelligently extend Pixi objects.
 
-* Group now extends PIXI.DisplayObjectContainer, rather than owning a _container property, which makes life a whole lot easier re: nesting and child iteration.
+* Group now extends PIXILegacy.DisplayObjectContainer, rather than owning a _container property, which makes life a whole lot easier re: nesting and child iteration.
 * Removed Sprite.group property. You can use Sprite.parent for all similar needs now.
-* PIXI.Point is now aliased to Phaser.Point - saves on code duplication and works exactly the same.
-* PIXI.Rectangle is now aliased to Phaser.Rectangle - saves on code duplication and works exactly the same.
-* PIXI.Circle is now aliased to Phaser.Circle - saves on code duplication and works exactly the same.
+* PIXILegacy.Point is now aliased to Phaser.Point - saves on code duplication and works exactly the same.
+* PIXILegacy.Rectangle is now aliased to Phaser.Rectangle - saves on code duplication and works exactly the same.
+* PIXILegacy.Circle is now aliased to Phaser.Circle - saves on code duplication and works exactly the same.
 * PixiPatch no longer needed, all features that it patched are now native in Pixi :)
-* Phaser.Stage now extends PIXI.Stage, rather than containing a _stage object.
+* Phaser.Stage now extends PIXILegacy.Stage, rather than containing a _stage object.
 
 Added Phaser.Image
 ------------------

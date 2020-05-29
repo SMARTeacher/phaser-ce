@@ -1,6 +1,6 @@
 /**
 * Original shader from http://glsl.heroku.com/e#9213.0
-* Tweaked, uniforms added and converted to Phaser/PIXI by Richard Davey
+* Tweaked, uniforms added and converted to Phaser/PIXILegacy by Richard Davey
 */
 Phaser.Filter.Marble = function (game) {
 

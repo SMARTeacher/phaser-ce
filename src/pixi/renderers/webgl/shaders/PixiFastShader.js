@@ -3,11 +3,11 @@
  */
 
 /**
- * @class PIXI.PixiFastShader
+ * @class PIXILegacy.PixiFastShader
  * @constructor
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.PixiFastShader = function (gl)
+PIXILegacy.PixiFastShader = function (gl)
 {
     /**
      * @property _UID
@@ -29,7 +29,7 @@ PIXI.PixiFastShader = function (gl)
      */
     this.program = null;
 
-    if (PIXI._enableMultiTextureToggle)
+    if (PIXILegacy._enableMultiTextureToggle)
     {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
@@ -134,27 +134,27 @@ PIXI.PixiFastShader = function (gl)
     this.init();
 };
 
-PIXI.PixiFastShader.prototype.constructor = PIXI.PixiFastShader;
+PIXILegacy.PixiFastShader.prototype.constructor = PIXILegacy.PixiFastShader;
 
 /**
  * Initialises the shader.
  *
- * @method PIXI.PixiFastShader#init
+ * @method PIXILegacy.PixiFastShader#init
  */
-PIXI.PixiFastShader.prototype.init = function ()
+PIXILegacy.PixiFastShader.prototype.init = function ()
 {
 
     var gl = this.gl;
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = PIXILegacy.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
 
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
-    this.uSampler = PIXI._enableMultiTextureToggle ?
+    this.uSampler = PIXILegacy._enableMultiTextureToggle ?
         gl.getUniformLocation(program, 'uSamplerArray[0]') :
         gl.getUniformLocation(program, 'uSampler');
 
-    if (PIXI._enableMultiTextureToggle)
+    if (PIXILegacy._enableMultiTextureToggle)
     {
         var indices = [];
 
@@ -206,9 +206,9 @@ PIXI.PixiFastShader.prototype.init = function ()
 /**
  * Destroys the shader.
  *
- * @method PIXI.PixiFastShader#destroy
+ * @method PIXILegacy.PixiFastShader#destroy
  */
-PIXI.PixiFastShader.prototype.destroy = function ()
+PIXILegacy.PixiFastShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

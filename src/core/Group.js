@@ -15,7 +15,7 @@
 * Groups are also display objects and can be nested as children within other Groups.
 *
 * @class Phaser.Group
-* @extends PIXI.DisplayObjectContainer
+* @extends PIXILegacy.DisplayObjectContainer
 * @param {Phaser.Game} game - A reference to the currently running game.
 * @param {DisplayObject|null} [parent=(game world)] - The parent Group (or other {@link DisplayObject}) that this group will be added to.
 *     If undefined/unspecified the Group will be added to the {@link Phaser.Game#world Game World}; if null the Group will not be added to any parent.
@@ -57,7 +57,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
     */
     this.z = 0;
 
-    PIXI.DisplayObjectContainer.call(this);
+    PIXILegacy.DisplayObjectContainer.call(this);
 
     if (addToStage)
     {
@@ -299,7 +299,7 @@ Phaser.Group = function (game, parent, name, addToStage, enableBody, physicsBody
 
 };
 
-Phaser.Group.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+Phaser.Group.prototype = Object.create(PIXILegacy.DisplayObjectContainer.prototype);
 Phaser.Group.prototype.constructor = Phaser.Group;
 
 /**
@@ -570,7 +570,7 @@ Phaser.Group.prototype.getAt = function (index)
 * @method Phaser.Group#create
 * @param {number} x - The x coordinate to display the newly created Sprite at. The value is in relation to the group.x point.
 * @param {number} y - The y coordinate to display the newly created Sprite at. The value is in relation to the group.y point.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
 * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @param {boolean} [exists=true] - The default exists state of the Sprite.
 * @param {integer} [index] - The index within the group to insert the child to. Where 0 is the bottom of the Group.
@@ -1608,7 +1608,7 @@ Phaser.Group.prototype.reviveAll = function ()
 * @method Phaser.Group#resetAll
 * @param {number} [x] - The x coordinate to reset each child to. The value is in relation to the group.x point.
 * @param {number} [y] - The y coordinate to reset each child to. The value is in relation to the group.y point.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image or texture used by the Sprite during rendering.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - The image or texture used by the Sprite during rendering.
 * @param {string|number} [frame] - The frame of a sprite sheet or texture atlas.
 * @param {boolean} [checkExists=false] - Reset only existing children.
 */
@@ -2315,7 +2315,7 @@ Phaser.Group.prototype.getFirst = function (key, value)
 * @param {boolean} [createIfNull=false] - If `true` and no alive children are found a new one is created.
 * @param {number} [x] - The x coordinate to reset the child to. The value is in relation to the group.x point.
 * @param {number} [y] - The y coordinate to reset the child to. The value is in relation to the group.y point.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
 * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @return {DisplayObject} The first child, or `null` if none found and `createIfNull` was false.
 */
@@ -2351,7 +2351,7 @@ Phaser.Group.prototype.getFirstExists = function (exists, createIfNull, x, y, ke
 * @param {boolean} [createIfNull=false] - If `true` and no alive children are found a new one is created.
 * @param {number} [x] - The x coordinate to reset the child to. The value is in relation to the group.x point.
 * @param {number} [y] - The y coordinate to reset the child to. The value is in relation to the group.y point.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
 * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @return {DisplayObject} The alive dead child, or `null` if none found and `createIfNull` was false.
 */
@@ -2382,7 +2382,7 @@ Phaser.Group.prototype.getFirstAlive = function (createIfNull, x, y, key, frame)
 * @param {boolean} [createIfNull=false] - If `true` and no dead children are found a new one is created.
 * @param {number} [x] - The x coordinate to reset the child to. The value is in relation to the group.x point.
 * @param {number} [y] - The y coordinate to reset the child to. The value is in relation to the group.y point.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
 * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @return {DisplayObject} The first dead child, or `null` if none found and `createIfNull` was false.
 */
@@ -2408,7 +2408,7 @@ Phaser.Group.prototype.getFirstDead = function (createIfNull, x, y, key, frame)
 * @param {DisplayObject} child - The child to reset and/or load the texture on.
 * @param {number} [x] - The x coordinate to reset the child to. The value is in relation to the group.x point.
 * @param {number} [y] - The y coordinate to reset the child to. The value is in relation to the group.y point.
-* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
 * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @return {DisplayObject} The child that was reset: usually a {@link Phaser.Sprite}.
 */
@@ -3282,8 +3282,8 @@ Object.defineProperty(Phaser.Group.prototype, 'bottom', {
 /**
 * A display object is any object that can be rendered in the Phaser/pixi.js scene graph:
 *
-* - {@link PIXI.DisplayObject}
-*   - {@link PIXI.DisplayObjectContainer}
+* - {@link PIXILegacy.DisplayObject}
+*   - {@link PIXILegacy.DisplayObjectContainer}
 *     - {@link Phaser.BitmapText}
 *     - {@link Phaser.Creature}
 *     - {@link Phaser.Graphics}
@@ -3295,7 +3295,7 @@ Object.defineProperty(Phaser.Group.prototype, 'bottom', {
 *       - {@link Phaser.World}
 *     - {@link Phaser.Rope}
 *     - {@link Phaser.Stage}
-*     - {@link PIXI.Sprite}
+*     - {@link PIXILegacy.Sprite}
 *       - {@link Phaser.Image}
 *         - {@link Phaser.Button}
 *       - {@link Phaser.Sprite}

@@ -694,5 +694,5 @@ Phaser.Circle.intersectsLine = function (c, l, returnPoints)
 };
 
 
-//   Because PIXI uses its own Circle, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.Circle = Phaser.Circle;
+//   Because PIXILegacy uses its own Circle, we'll replace it with ours to avoid duplicating code or confusion.
+PIXILegacy.Circle = Phaser.Circle;

@@ -26,7 +26,7 @@
 
             if (substr($this->name, 0, 6) !== 'Phaser')
             {
-                $this->name = 'PIXI.' . $this->name;
+                $this->name = 'PIXILegacy.' . $this->name;
             }
 
             $this->processor->log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
@@ -44,9 +44,9 @@
             {
                 $this->extends = $block->getLineContent('@extends');
 
-                if (substr($this->extends, 0, 6) !== 'Phaser' && substr($this->extends, 0, 4) !== 'PIXI')
+                if (substr($this->extends, 0, 6) !== 'Phaser' && substr($this->extends, 0, 4) !== 'PIXILegacy')
                 {
-                    $this->extends = 'PIXI.' . $this->extends;
+                    $this->extends = 'PIXILegacy.' . $this->extends;
                 }
             }
 
