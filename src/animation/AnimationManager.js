@@ -406,7 +406,7 @@ Phaser.AnimationManager.prototype = {
     {
 
         //  TODO
-        // this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
+        // this.sprite.setTexture(PIXILegacy.TextureCache[this.currentFrame.uuid]);
 
     },
 

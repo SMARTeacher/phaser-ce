@@ -266,7 +266,7 @@ declare module Phaser {
 
     interface BitmapFont {
 
-        base: PIXI.BaseTexture;
+        base: PIXILegacy.BaseTexture;
         data: HTMLImageElement;
         font: Phaser.BMFont;
         url: string;
@@ -292,7 +292,7 @@ declare module Phaser {
         yOffset: number;
         xAdvance: number;
         kerning: number[];
-        texture: PIXI.BaseTexture;
+        texture: PIXILegacy.BaseTexture;
 
     }
 
@@ -300,7 +300,7 @@ declare module Phaser {
 
         constructor(game: Phaser.Game, key: string, width?: number, height?: number, skipPool?: boolean);
 
-        baseTexture: PIXI.BaseTexture;
+        baseTexture: PIXILegacy.BaseTexture;
         buffer: ArrayBuffer;
         canvas: HTMLCanvasElement;
         context: CanvasRenderingContext2D;
@@ -316,7 +316,7 @@ declare module Phaser {
         pixels: Uint32Array;
         smoothed: boolean;
         smoothProperty: string;
-        texture: PIXI.Texture;
+        texture: PIXILegacy.Texture;
         textureFrame: Phaser.Frame;
         type: number;
         width: number;
@@ -365,7 +365,7 @@ declare module Phaser {
         drawGroup(group: Phaser.Group, blendMode?: string, roundPx?: boolean): Phaser.BitmapData;
         extract(destination: Phaser.BitmapData, r: number, g: number, b: number, a?: number, resize?: boolean, r2?: number, g2?: number, b2?: number): Phaser.BitmapData;
         fill(r: number, g: number, b: number, a?: number): Phaser.BitmapData;
-        generateTexture(key: string, callback?: (texture: PIXI.Texture) => void, callbackContext?: any): PIXI.Texture;
+        generateTexture(key: string, callback?: (texture: PIXILegacy.Texture) => void, callbackContext?: any): PIXILegacy.Texture;
         getBounds(rect?: Phaser.Rectangle): Phaser.Rectangle;
         getFirstPixel(direction: number): { r: number; g: number; b: number; x: number; y: number; };
         getPixel(x: number, y: number, out?: any): any;
@@ -398,7 +398,7 @@ declare module Phaser {
 
     }
 
-    class BitmapText extends PIXI.DisplayObjectContainer {
+    class BitmapText extends PIXILegacy.DisplayObjectContainer {
 
         constructor(game: Phaser.Game, x: number, y: number, font: string, text?: string, size?: number, align?: string);
 
@@ -427,7 +427,7 @@ declare module Phaser {
         inputEnabled: boolean;
         inCamera: boolean;
         inWorld: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
         left: number;
         name: string;
         components: any;
@@ -549,8 +549,8 @@ declare module Phaser {
         static XML: number;
         static VIDEO: number;
 
-        static DEFAULT: PIXI.Texture;
-        static MISSING: PIXI.Texture;
+        static DEFAULT: PIXILegacy.Texture;
+        static MISSING: PIXILegacy.Texture;
 
         autoResolveURL: boolean;
         game: Phaser.Game;
@@ -597,7 +597,7 @@ declare module Phaser {
         clearGLTextures(): void;
         decodedSound(key: string, data: any): void;
         destroy(): void;
-        getBaseTexture(key: string, cache?: number): PIXI.BaseTexture;
+        getBaseTexture(key: string, cache?: number): PIXILegacy.BaseTexture;
         getBinary(key: string): any;
         getBitmapData(key: string): Phaser.BitmapData;
         getBitmapFont(key: string): Phaser.BitmapFont;
@@ -677,7 +677,7 @@ declare module Phaser {
         atLimit: { x: boolean; y: boolean; };
         bounds: Phaser.Rectangle;
         deadzone: Phaser.Rectangle;
-        displayObject: PIXI.DisplayObject;
+        displayObject: PIXILegacy.DisplayObject;
         id: number;
         fixedView: Phaser.Rectangle;
         fx: Phaser.Graphics;
@@ -703,7 +703,7 @@ declare module Phaser {
         checkBounds(): void;
         fade(color?: number, duration?: number, force?: boolean, alpha?: number): boolean;
         flash(color?: number, duration?: number, force?: boolean, alpha?: number): boolean;
-        focusOn(displayObject: PIXI.DisplayObject): void;
+        focusOn(displayObject: PIXILegacy.DisplayObject): void;
         focusOnXY(x: number, y: number): void;
         follow(target: Phaser.Sprite, style?: number, lerpX?: number, lerpY?: number): void;
         reset(): void;
@@ -904,8 +904,8 @@ declare module Phaser {
         palettes: any;
 
         copy(dest?: Phaser.BitmapData, x?: number, y?: number, width?: number, height?: number, blendMode?: string, roundPx?: boolean): Phaser.BitmapData;
-        grid(key: string, width: number, height: number, cellWidth: number, cellHeight: number, color: string, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXI.Texture;
-        texture(key: string, data: any, pixelWidth?: number, pixelHeight?: number, palette?: number, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXI.Texture;
+        grid(key: string, width: number, height: number, cellWidth: number, cellHeight: number, color: string, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXILegacy.Texture;
+        texture(key: string, data: any, pixelWidth?: number, pixelHeight?: number, palette?: number, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXILegacy.Texture;
 
     }
 
@@ -1173,7 +1173,7 @@ declare module Phaser {
 
     }
 
-    class Filter extends PIXI.AbstractFilter {
+    class Filter extends PIXILegacy.AbstractFilter {
 
         constructor(game: Phaser.Game, uniforms: any, fragmentSrc: string | string[]);
 
@@ -1384,10 +1384,10 @@ declare module Phaser {
         ratioV: number;
         multiplier: number;
 
-        createCustomLayer(width: number, height: number, children?: PIXI.DisplayObject[], addToWorld?: boolean): Phaser.FlexLayer;
-        createFluidLayer(children: PIXI.DisplayObject[]): Phaser.FlexLayer;
-        createFullLayer(children: PIXI.DisplayObject[]): Phaser.FlexLayer;
-        createFixedLayer(children: PIXI.DisplayObject[]): Phaser.FlexLayer;
+        createCustomLayer(width: number, height: number, children?: PIXILegacy.DisplayObject[], addToWorld?: boolean): Phaser.FlexLayer;
+        createFluidLayer(children: PIXILegacy.DisplayObject[]): Phaser.FlexLayer;
+        createFullLayer(children: PIXILegacy.DisplayObject[]): Phaser.FlexLayer;
+        createFixedLayer(children: PIXILegacy.DisplayObject[]): Phaser.FlexLayer;
         debug(): void;
         fitSprite(sprite: Phaser.Sprite): void;
         onResize(width: number, height: number): void;
@@ -1569,7 +1569,7 @@ declare module Phaser {
         plugins: PluginManager;
         preserveDrawingBuffer: Boolean;
         raf: Phaser.RequestAnimationFrame;
-        renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
+        renderer: PIXILegacy.CanvasRenderer | PIXILegacy.WebGLRenderer;
         renderType: number;
         resolution: number;
         rnd: Phaser.RandomDataGenerator;
@@ -1775,7 +1775,7 @@ declare module Phaser {
 
     }
 
-    class Graphics extends PIXI.DisplayObjectContainer {
+    class Graphics extends PIXILegacy.DisplayObjectContainer {
 
         constructor(game: Phaser.Game, x?: number, y?: number);
 
@@ -1807,7 +1807,7 @@ declare module Phaser {
         input: Phaser.InputHandler;
         inputEnabled: boolean;
         isMask: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
         left: number;
         lifespan: number;
         lineColor: number;
@@ -1881,9 +1881,9 @@ declare module Phaser {
 
     }
 
-    class Group extends PIXI.DisplayObjectContainer {
+    class Group extends PIXILegacy.DisplayObjectContainer {
 
-        constructor(game: Phaser.Game, parent?: PIXI.DisplayObjectContainer, name?: string, addToStage?: boolean, enableBody?: boolean, physicsBodyType?: number);
+        constructor(game: Phaser.Game, parent?: PIXILegacy.DisplayObjectContainer, name?: string, addToStage?: boolean, enableBody?: boolean, physicsBodyType?: number);
 
         static RETURN_CHILD: number;
         static RETURN_NONE: number;
@@ -1907,7 +1907,7 @@ declare module Phaser {
         exists: boolean;
         fixedToCamera: boolean;
         game: Phaser.Game;
-        hash: PIXI.DisplayObject[];
+        hash: PIXILegacy.DisplayObject[];
         ignoreDestroy: boolean;
         inputEnableChildren: boolean;
         left: number;
@@ -1937,7 +1937,7 @@ declare module Phaser {
         addAll(property: string, amount: number, checkAlive?: boolean, checkVisible?: boolean): void;
         addAt(child: any, index: number, silent?: boolean): any;
         addMultiple(children: any[], silent?: boolean): any[];
-        addToHash(child: PIXI.DisplayObject): boolean;
+        addToHash(child: PIXILegacy.DisplayObject): boolean;
         align(width: number, height: number, cellWidth: number, cellHeight: number, position?: number, offset?: number): boolean;
         alignIn(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): Phaser.Group;
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): Phaser.Group;
@@ -1951,7 +1951,7 @@ declare module Phaser {
         count(key: string, value: any): number;
         countDead(): number;
         countLiving(): number;
-        create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, exists?: boolean, index?: number): any;
+        create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, exists?: boolean, index?: number): any;
         createMultiple(quantity: number, key: string | string[], frame?: any | any[], exists?: boolean, callback?: Function, callbackContext?: any): any[];
         customSort(sortHandler: Function, context?: any): void;
         destroy(destroyChildren?: boolean, soft?: boolean): void;
@@ -1962,14 +1962,14 @@ declare module Phaser {
         forEachExists(callback: Function, callbackContext?: any): void;
         filter(predicate: Function, checkExists?: boolean): ArraySet;
         getAll(property?: string, value?: any, startIndex?: number, endIndex?: number): any[];
-        getAt(index: number): PIXI.DisplayObject | number;
+        getAt(index: number): PIXILegacy.DisplayObject | number;
         getBottom(): any;
         getByName(name: string): any;
         getClosestTo(object: any, callback?: Function, callbackContext?: any): any;
         getFirst(key: string, value: any): any;
-        getFirstAlive(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
-        getFirstDead(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
-        getFirstExists(exists: boolean, createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
+        getFirstAlive(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
+        getFirstDead(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
+        getFirstExists(exists: boolean, createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
         getFurthestFrom(object: any, callback?: Function, callbackContext?: any): any;
         getIndex(child: any): number;
         getRandom(startIndex?: number, length?: number): any;
@@ -1989,10 +1989,10 @@ declare module Phaser {
         remove(child: any, destroy?: boolean, silent?: boolean): boolean;
         removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
         removeBetween(startIndex: number, endIndex?: number, destroy?: boolean, silent?: boolean): void;
-        removeFromHash(child: PIXI.DisplayObject): boolean;
+        removeFromHash(child: PIXILegacy.DisplayObject): boolean;
         replace(oldChild: any, newChild: any): any;
-        resetAll(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, checkExists?: boolean): void;
-        resetChild(child: any, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
+        resetAll(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, checkExists?: boolean): void;
+        resetChild(child: any, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
         resetCursor(index?: number): any;
         reverse(): void;
         revive(): void;
@@ -2013,9 +2013,9 @@ declare module Phaser {
 
     }
 
-    class Image extends PIXI.Sprite {
+    class Image extends PIXILegacy.Sprite {
 
-        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number);
+        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture, frame?: string | number);
 
         alive: boolean;
         angle: number;
@@ -2046,7 +2046,7 @@ declare module Phaser {
         input: Phaser.InputHandler;
         inputEnabled: boolean;
         inWorld: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
         lifespan: number;
         left: number;
         name: string;
@@ -2073,11 +2073,11 @@ declare module Phaser {
         crop(rect: Phaser.Rectangle, copy?: boolean): void;
         destroy(destroyChildren?: boolean): void;
         kill(): Phaser.Image;
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
         resizeFrame(parent: any, width: number, height: number): void;
         moveDown(): Phaser.Image;
         moveUp(): Phaser.Image;
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
         play(name: string, frameRate?: number, loop?: boolean, killOnComplete?: boolean): Phaser.Animation;
         postUpdate(): void;
         preUpdate(): void;
@@ -2183,7 +2183,7 @@ declare module Phaser {
         getPointer(isActive?: boolean): Phaser.Pointer;
         getPointerFromId(pointerID: number): Phaser.Pointer;
         getPointerFromIdentifier(identifier: number): Phaser.Pointer;
-        hitTest(displayObject: PIXI.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
+        hitTest(displayObject: PIXILegacy.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
         reset(hard?: boolean): void;
         resetSpeed(x: number, y: number): void;
         setInteractiveCandidateHandler(callback: Function, context?: any): void;
@@ -2714,9 +2714,9 @@ declare module Phaser {
 
     class LoaderParser {
 
-        static bitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
-        static xmlBitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
-        static jsonBitmapFont(json: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static bitmapFont(xml: any, baseTexture: PIXILegacy.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static xmlBitmapFont(xml: any, baseTexture: PIXILegacy.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static jsonBitmapFont(json: any, baseTexture: PIXILegacy.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
 
     }
 
@@ -3037,7 +3037,7 @@ declare module Phaser {
                 y: number;
 
                 at(object: any): Phaser.Particles.Arcade.Emitter;
-                emitParticle(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): boolean;
+                emitParticle(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): boolean;
                 explode(lifespan?: number, quantity?: number): Phaser.Particles.Arcade.Emitter;
                 flow(lifespan?: number, frequency?: number, quantity?: number, total?: number, immediate?: boolean): Phaser.Particles.Arcade.Emitter;
                 kill(): Phaser.Particles.Arcade.Emitter;
@@ -3093,8 +3093,8 @@ declare module Phaser {
         game: Phaser.Game;
         key: string;
         video: HTMLVideoElement;
-        baseTexture: PIXI.BaseTexture;
-        texture: PIXI.Texture;
+        baseTexture: PIXILegacy.BaseTexture;
+        texture: PIXILegacy.Texture;
         textureFrame: Phaser.Frame;
         type: number;
         disableTextureUpload: boolean;
@@ -3872,7 +3872,7 @@ declare module Phaser {
         hasPreUpdate: boolean;
         hasRender: boolean;
         hasUpdate: boolean;
-        parent: PIXI.DisplayObject;
+        parent: PIXILegacy.DisplayObject;
         visible: boolean;
 
         destroy(): void;
@@ -3900,9 +3900,9 @@ declare module Phaser {
             static DISTANCE_MANHATTAN: string;
             static DISTANCE_EUCLIDIAN: string;
 
-            constructor(parent: PIXI.DisplayObject);
+            constructor(parent: PIXILegacy.DisplayObject);
 
-            parent: PIXI.DisplayObject;
+            parent: PIXILegacy.DisplayObject;
             version: string;
 
             findPath(startPoint: Phaser.Point, goalPoint: Phaser.Point): Phaser.Plugin.AStar.AStarPath;
@@ -3957,7 +3957,7 @@ declare module Phaser {
 
         class CSS3Filters extends Phaser.Plugin {
 
-            constructor(parent: PIXI.DisplayObject);
+            constructor(parent: PIXILegacy.DisplayObject);
 
             blur: number;
             brightness: number;
@@ -4008,7 +4008,7 @@ declare module Phaser {
 
         class SamplePlugin extends Phaser.Plugin {
 
-            constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
+            constructor(game: Phaser.Game, parent: PIXILegacy.DisplayObject);
 
             addSprite(sprite: Phaser.Sprite): void;
             update(): void;
@@ -4051,7 +4051,7 @@ declare module Phaser {
 
         class Webcam extends Phaser.Plugin {
 
-            constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
+            constructor(game: Phaser.Game, parent: PIXILegacy.DisplayObject);
 
             active: boolean;
             context: any;
@@ -4130,7 +4130,7 @@ declare module Phaser {
 
     }
 
-    class Point extends PIXI.Point {
+    class Point extends PIXILegacy.Point {
 
         constructor(x?: number, y?: number);
 
@@ -4451,19 +4451,19 @@ declare module Phaser {
 
     }
 
-    class RenderTexture extends PIXI.Texture {
+    class RenderTexture extends PIXILegacy.Texture {
 
         constructor(game: Phaser.Game, width?: number, height?: number, key?: string, scaleMode?: Phaser.scaleModes, resolution?: number);
 
-        crop: PIXI.Rectangle;
+        crop: PIXILegacy.Rectangle;
         game: Phaser.Game;
         key: string;
         type: number;
 
         clear(): void;
-        render(displayObject: PIXI.DisplayObject, matrix?: Phaser.Matrix, clear?: boolean): void;
-        renderXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
-        renderRawXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
+        render(displayObject: PIXILegacy.DisplayObject, matrix?: Phaser.Matrix, clear?: boolean): void;
+        renderXY(displayObject: PIXILegacy.DisplayObject, x: number, y: number, clear?: boolean): void;
+        renderRawXY(displayObject: PIXILegacy.DisplayObject, x: number, y: number, clear?: boolean): void;
 
     }
 
@@ -4532,9 +4532,9 @@ declare module Phaser {
 
     }
 
-    class Rope extends PIXI.Rope {
+    class Rope extends PIXILegacy.Rope {
 
-        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture | Phaser.Video, frame?: string | number, points?: Phaser.Point[]);
+        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture | Phaser.Video, frame?: string | number, points?: Phaser.Point[]);
 
         angle: number;
         animations: Phaser.AnimationManager;
@@ -4565,12 +4565,12 @@ declare module Phaser {
         inWorld: boolean;
         left: number;
         lifespan: number;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture | Phaser.Video;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture | Phaser.Video;
         name: string;
         offsetX: number;
         offsetY: number;
         outOfBoundsKill: boolean;
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
         pendingDestroy: boolean;
         points: Phaser.Point[];
         position: Phaser.Point;
@@ -4597,7 +4597,7 @@ declare module Phaser {
         crop(rect: Phaser.Rectangle, copy?: boolean): void;
         destroy(destroyChildren?: boolean): void;
         kill(): Phaser.Rope;
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
         moveUp(): Phaser.Rope;
         moveDown(): Phaser.Rope;
         play(name: string, frameRate?: number, loop?: boolean, killOnComplete?: boolean): Phaser.Animation;
@@ -4810,9 +4810,9 @@ declare module Phaser {
 
     }
 
-    class Sprite extends PIXI.Sprite {
+    class Sprite extends PIXILegacy.Sprite {
 
-        constructor(game: Phaser.Game, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number);
+        constructor(game: Phaser.Game, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture, frame?: string | number);
 
         alive: boolean;
         anchor: Phaser.Point;
@@ -4846,7 +4846,7 @@ declare module Phaser {
         input: Phaser.InputHandler;
         inputEnabled: boolean;
         inWorld: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
         left: number;
         lifespan: number;
         maxHealth: number;
@@ -4887,10 +4887,10 @@ declare module Phaser {
         drawPolygon(): void;
         heal(amount: number): Phaser.Sprite;
         kill(): Phaser.Sprite;
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
         moveUp(): Phaser.Sprite;
         moveDown(): Phaser.Sprite;
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
         play(name: string, frameRate?: number, loop?: boolean, killOnComplete?: boolean): Phaser.Animation;
         postUpdate(): void;
         preUpdate(): void;
@@ -4908,13 +4908,13 @@ declare module Phaser {
 
     class SpriteBatch extends Phaser.Group {
 
-        constructor(game: Phaser.Game, parent: PIXI.DisplayObjectContainer, name?: string, addedToStage?: boolean);
+        constructor(game: Phaser.Game, parent: PIXILegacy.DisplayObjectContainer, name?: string, addedToStage?: boolean);
 
         type: number;
 
     }
 
-    class Stage extends PIXI.DisplayObjectContainer {
+    class Stage extends PIXILegacy.DisplayObjectContainer {
 
         constructor(game: Phaser.Game);
 
@@ -5520,9 +5520,9 @@ declare module Phaser {
 
     }
 
-    class TileSprite extends PIXI.TilingSprite {
+    class TileSprite extends PIXILegacy.TilingSprite {
 
-        constructor(game: Phaser.Game, x: number, y: number, width: number, height: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number);
+        constructor(game: Phaser.Game, x: number, y: number, width: number, height: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture, frame?: string | number);
 
         alive: boolean;
         angle: number;
@@ -5548,7 +5548,7 @@ declare module Phaser {
         input: Phaser.InputHandler;
         inputEnabled: boolean;
         inWorld: boolean;
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
         left: number;
         name: string;
         offsetX: number;
@@ -5571,11 +5571,11 @@ declare module Phaser {
         alignTo(container: Phaser.Rectangle | Phaser.Sprite | Phaser.Image | Phaser.Text | Phaser.BitmapText | Phaser.Button | Phaser.Graphics | Phaser.TileSprite, position?: number, offsetX?: number, offsetY?: number): any;
         autoScroll(x: number, y: number): void;
         destroy(destroyChildren?: boolean): void;
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
         play(name: string, frameRate?: number, loop?: boolean, killOnComplete?: boolean): Phaser.Animation;
         postUpdate(): void;
         preUpdate(): void;
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
         reset(x: number, y: number, health?: number): Phaser.TileSprite;
         resizeFrame(parent: any, width: number, height: number): void;
         resetFrame(): void;

@@ -10,12 +10,12 @@
 *
 * This is an abstract class and should not be used on its own, rather it should be extended.
 *
-* It is used internally by the likes of PIXI.Sprite.
+* It is used internally by the likes of PIXILegacy.Sprite.
 *
-* @class PIXI.DisplayObject
+* @class PIXILegacy.DisplayObject
 * @constructor
 */
-PIXI.DisplayObject = function ()
+PIXILegacy.DisplayObject = function ()
 {
     /**
     * This is used to turn off or on a DisplayObjects rendering and updates, as
@@ -31,10 +31,10 @@ PIXI.DisplayObject = function ()
     * The value of this property does not reflect any positioning happening further up the display list.
     * To obtain that value please see the `worldPosition` property.
     *
-    * @property {PIXI.Point} position
+    * @property {PIXILegacy.Point} position
     * @default
     */
-    this.position = new PIXI.Point(0, 0);
+    this.position = new PIXILegacy.Point(0, 0);
 
     /**
     * The scale of this DisplayObject. A scale of 1:1 represents the DisplayObject
@@ -43,18 +43,18 @@ PIXI.DisplayObject = function ()
     * The value of this property does not reflect any scaling happening further up the display list.
     * To obtain that value please see the `worldScale` property.
     *
-    * @property {PIXI.Point} scale
+    * @property {PIXILegacy.Point} scale
     * @default
     */
-    this.scale = new PIXI.Point(1, 1);
+    this.scale = new PIXILegacy.Point(1, 1);
 
     /**
     * The pivot point of this DisplayObject that it rotates around. The values are expressed
     * in pixel values.
-    * @property {PIXI.Point} pivot
+    * @property {PIXILegacy.Point} pivot
     * @default
     */
-    this.pivot = new PIXI.Point(0, 0);
+    this.pivot = new PIXILegacy.Point(0, 0);
 
     /**
     * The rotation of this DisplayObject. The value is given, and expressed, in radians, and is based on
@@ -121,7 +121,7 @@ PIXI.DisplayObject = function ()
     * The root parent is the Stage object. This property is set automatically when the
     * DisplayObject is added to, or removed from, a DisplayObjectContainer.
     *
-    * @property {PIXI.DisplayObjectContainer} parent
+    * @property {PIXILegacy.DisplayObjectContainer} parent
     * @default
     * @readOnly
     */
@@ -168,10 +168,10 @@ PIXI.DisplayObject = function ()
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
     *
-    * @property {PIXI.Point} worldPosition
+    * @property {PIXILegacy.Point} worldPosition
     * @readOnly
     */
-    this.worldPosition = new PIXI.Point(0, 0);
+    this.worldPosition = new PIXILegacy.Point(0, 0);
 
     /**
     * The global scale of this DisplayObject.
@@ -183,10 +183,10 @@ PIXI.DisplayObject = function ()
     * that happens this property will contain values based on the previous frame. Be mindful of this if
     * accessing this property outside of the normal game flow, i.e. from an asynchronous event callback.
     *
-    * @property {PIXI.Point} worldScale
+    * @property {PIXILegacy.Point} worldScale
     * @readOnly
     */
-    this.worldScale = new PIXI.Point(1, 1);
+    this.worldScale = new PIXILegacy.Point(1, 1);
 
     /**
     * The rotation, in radians, of this DisplayObject.
@@ -206,7 +206,7 @@ PIXI.DisplayObject = function ()
     /**
     * The rectangular area used by filters when rendering a shader for this DisplayObject.
     *
-    * @property {PIXI.Rectangle} filterArea
+    * @property {PIXILegacy.Rectangle} filterArea
     * @type Rectangle
     * @default
     */
@@ -225,19 +225,19 @@ PIXI.DisplayObject = function ()
     this._cr = 1;
 
     /**
-    * @property {PIXI.Rectangle} _bounds - The cached bounds of this object.
+    * @property {PIXILegacy.Rectangle} _bounds - The cached bounds of this object.
     * @private
     */
-    this._bounds = new PIXI.Rectangle(0, 0, 0, 0);
+    this._bounds = new PIXILegacy.Rectangle(0, 0, 0, 0);
 
     /**
-    * @property {PIXI.Rectangle} _currentBounds - The most recently calculated bounds of this object.
+    * @property {PIXILegacy.Rectangle} _currentBounds - The most recently calculated bounds of this object.
     * @private
     */
     this._currentBounds = null;
 
     /**
-    * @property {PIXI.Rectangle} _mask - The cached mask of this object.
+    * @property {PIXILegacy.Rectangle} _mask - The cached mask of this object.
     * @private
     */
     this._mask = null;
@@ -256,9 +256,9 @@ PIXI.DisplayObject = function ()
 
 };
 
-PIXI.DisplayObject.prototype = {
+PIXILegacy.DisplayObject.prototype = {
 
-    constructor: PIXI.DisplayObject,
+    constructor: PIXILegacy.DisplayObject,
 
     /**
     * Destroy this DisplayObject.
@@ -267,7 +267,7 @@ PIXI.DisplayObject.prototype = {
     *
     * Also iteratively calls `destroy` on any children.
     *
-    * @method PIXI.DisplayObject#destroy
+    * @method PIXILegacy.DisplayObject#destroy
     */
     destroy: function ()
     {
@@ -313,9 +313,9 @@ PIXI.DisplayObject.prototype = {
     * If a `transformCallback` has been specified, it is called at the end of this method, and is passed
     * the new, updated, worldTransform property, along with the parent transform used.
     *
-    * @method PIXI.DisplayObject#updateTransform
-    * @param {PIXI.DisplayObjectContainer} [parent] - Optional parent to calculate this DisplayObjects transform from.
-    * @return {PIXI.DisplayObject} - A reference to this DisplayObject.
+    * @method PIXILegacy.DisplayObject#updateTransform
+    * @param {PIXILegacy.DisplayObjectContainer} [parent] - Optional parent to calculate this DisplayObjects transform from.
+    * @return {PIXILegacy.DisplayObject} - A reference to this DisplayObject.
     */
    updateTransform: function (parent)
    {
@@ -447,7 +447,7 @@ PIXI.DisplayObject.prototype = {
     /**
     * To be overridden by classes that require it.
     *
-    * @method PIXI.DisplayObject#preUpdate
+    * @method PIXILegacy.DisplayObject#preUpdate
     */
     preUpdate: function ()
     {
@@ -461,10 +461,10 @@ PIXI.DisplayObject.prototype = {
     * Please note that no garbage collection takes place on old textures. It is up to you to destroy old textures,
     * and references to them, so they don't linger in memory.
     *
-    * @method PIXI.DisplayObject#generateTexture
+    * @method PIXILegacy.DisplayObject#generateTexture
     * @param {number} [resolution=1] - The resolution of the texture being generated.
-    * @param {number} [scaleMode=PIXI.scaleModes.DEFAULT] - See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values.
-    * @param {PIXI.CanvasRenderer|PIXI.WebGLRenderer} renderer - The renderer used to generate the texture.
+    * @param {number} [scaleMode=PIXILegacy.scaleModes.DEFAULT] - See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values.
+    * @param {PIXILegacy.CanvasRenderer|PIXILegacy.WebGLRenderer} renderer - The renderer used to generate the texture.
     * @return {Phaser.RenderTexture} - A RenderTexture containing an image of this DisplayObject at the time it was invoked.
     */
     generateTexture: function (resolution, scaleMode, renderer)
@@ -474,10 +474,10 @@ PIXI.DisplayObject.prototype = {
 
         var renderTexture = new Phaser.RenderTexture(this.game, bounds.width | 0, bounds.height | 0, renderer, scaleMode, resolution);
 
-        PIXI.DisplayObject._tempMatrix.tx = -bounds.x;
-        PIXI.DisplayObject._tempMatrix.ty = -bounds.y;
+        PIXILegacy.DisplayObject._tempMatrix.tx = -bounds.x;
+        PIXILegacy.DisplayObject._tempMatrix.ty = -bounds.y;
 
-        renderTexture.render(this, PIXI.DisplayObject._tempMatrix);
+        renderTexture.render(this, PIXILegacy.DisplayObject._tempMatrix);
 
         return renderTexture;
 
@@ -486,8 +486,8 @@ PIXI.DisplayObject.prototype = {
     /**
     * If this DisplayObject has a cached Sprite, this method generates and updates it.
     *
-    * @method PIXI.DisplayObject#updateCache
-    * @return {PIXI.DisplayObject} - A reference to this DisplayObject.
+    * @method PIXILegacy.DisplayObject#updateCache
+    * @return {PIXILegacy.DisplayObject} - A reference to this DisplayObject.
     */
     updateCache: function ()
     {
@@ -501,9 +501,9 @@ PIXI.DisplayObject.prototype = {
     /**
     * Calculates the global position of this DisplayObject, based on the position given.
     *
-    * @method PIXI.DisplayObject#toGlobal
-    * @param {PIXI.Point} position - The global position to calculate from.
-    * @return {PIXI.Point} - A point object representing the position of this DisplayObject based on the global position given.
+    * @method PIXILegacy.DisplayObject#toGlobal
+    * @param {PIXILegacy.Point} position - The global position to calculate from.
+    * @return {PIXILegacy.Point} - A point object representing the position of this DisplayObject based on the global position given.
     */
     toGlobal: function (position)
     {
@@ -517,10 +517,10 @@ PIXI.DisplayObject.prototype = {
     /**
     * Calculates the local position of this DisplayObject, relative to another point.
     *
-    * @method PIXI.DisplayObject#toLocal
-    * @param {PIXI.Point} position - The world origin to calculate from.
-    * @param {PIXI.DisplayObject} [from] - An optional DisplayObject to calculate the global position from.
-    * @return {PIXI.Point} - A point object representing the position of this DisplayObject based on the global position given.
+    * @method PIXILegacy.DisplayObject#toLocal
+    * @param {PIXILegacy.Point} position - The world origin to calculate from.
+    * @param {PIXILegacy.DisplayObject} [from] - An optional DisplayObject to calculate the global position from.
+    * @return {PIXILegacy.Point} - A point object representing the position of this DisplayObject based on the global position given.
     */
     toLocal: function (position, from)
     {
@@ -539,7 +539,7 @@ PIXI.DisplayObject.prototype = {
     /**
     * Internal method.
     *
-    * @method PIXI.DisplayObject#_renderCachedSprite
+    * @method PIXILegacy.DisplayObject#_renderCachedSprite
     * @private
     * @param {Object} renderSession - The render session
     */
@@ -550,11 +550,11 @@ PIXI.DisplayObject.prototype = {
 
         if (renderSession.gl)
         {
-            PIXI.Sprite.prototype._renderWebGL.call(this._cachedSprite, renderSession);
+            PIXILegacy.Sprite.prototype._renderWebGL.call(this._cachedSprite, renderSession);
         }
         else
         {
-            PIXI.Sprite.prototype._renderCanvas.call(this._cachedSprite, renderSession);
+            PIXILegacy.Sprite.prototype._renderCanvas.call(this._cachedSprite, renderSession);
         }
 
     },
@@ -562,7 +562,7 @@ PIXI.DisplayObject.prototype = {
     /**
     * Internal method.
     *
-    * @method PIXI.DisplayObject#_generateCachedSprite
+    * @method PIXILegacy.DisplayObject#_generateCachedSprite
     * @private
     */
     _generateCachedSprite: function ()
@@ -581,12 +581,12 @@ PIXI.DisplayObject.prototype = {
         if (!this._cachedSprite)
         {
             var textureUnit = 0;
-            if (this.texture && this.texture.baseTexture && PIXI._enableMultiTextureToggle)
+            if (this.texture && this.texture.baseTexture && PIXILegacy._enableMultiTextureToggle)
             {
                 textureUnit = this.texture.baseTexture.textureIndex;
             }
             var renderTexture = new Phaser.RenderTexture(this.game, bounds.width, bounds.height, undefined, undefined, undefined, undefined, textureUnit);
-            this._cachedSprite = new PIXI.Sprite(renderTexture);
+            this._cachedSprite = new PIXILegacy.Sprite(renderTexture);
             this._cachedSprite.worldTransform = this.worldTransform;
         }
         else
@@ -600,9 +600,9 @@ PIXI.DisplayObject.prototype = {
         this._filters = null;
         this._cachedSprite.filters = tempFilters;
 
-        PIXI.DisplayObject._tempMatrix.tx = -bounds.x;
-        PIXI.DisplayObject._tempMatrix.ty = -bounds.y;
-        this._cachedSprite.texture.render(this, PIXI.DisplayObject._tempMatrix, true);
+        PIXILegacy.DisplayObject._tempMatrix.tx = -bounds.x;
+        PIXILegacy.DisplayObject._tempMatrix.ty = -bounds.y;
+        this._cachedSprite.texture.render(this, PIXILegacy.DisplayObject._tempMatrix, true);
         this._cachedSprite.anchor.x = -(bounds.x / bounds.width);
         this._cachedSprite.anchor.y = -(bounds.y / bounds.height);
 
@@ -615,7 +615,7 @@ PIXI.DisplayObject.prototype = {
     /**
     * Destroys a cached Sprite.
     *
-    * @method PIXI.DisplayObject#_destroyCachedSprite
+    * @method PIXILegacy.DisplayObject#_destroyCachedSprite
     * @private
     */
     _destroyCachedSprite: function ()
@@ -634,14 +634,14 @@ PIXI.DisplayObject.prototype = {
 };
 
 //  Alias for updateTransform. As used in DisplayObject container, etc.
-PIXI.DisplayObject.prototype.displayObjectUpdateTransform = PIXI.DisplayObject.prototype.updateTransform;
+PIXILegacy.DisplayObject.prototype.displayObjectUpdateTransform = PIXILegacy.DisplayObject.prototype.updateTransform;
 
-Object.defineProperties(PIXI.DisplayObject.prototype, {
+Object.defineProperties(PIXILegacy.DisplayObject.prototype, {
 
     /**
     * The horizontal position of the DisplayObject, in pixels, relative to its parent.
     * If you need the world position of the DisplayObject, use `DisplayObject.worldPosition` instead.
-    * @name PIXI.DisplayObject#x
+    * @name PIXILegacy.DisplayObject#x
     * @property {number} x - The horizontal position of the DisplayObject, in pixels, relative to its parent.
     */
     x: {
@@ -665,7 +665,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     /**
     * The vertical position of the DisplayObject, in pixels, relative to its parent.
     * If you need the world position of the DisplayObject, use `DisplayObject.worldPosition` instead.
-    * @name PIXI.DisplayObject#y
+    * @name PIXILegacy.DisplayObject#y
     * @property {number} y - The vertical position of the DisplayObject, in pixels, relative to its parent.
     */
     y: {
@@ -688,7 +688,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
 
     /**
     * Indicates if this DisplayObject is visible, based on it, and all of its parents, `visible` property values.
-    * @name PIXI.DisplayObject#worldVisible
+    * @name PIXILegacy.DisplayObject#worldVisible
     * @property {boolean} worldVisible - Indicates if this DisplayObject is visible, based on it, and all of its parents, `visible` property values.
     */
     worldVisible: {
@@ -736,7 +736,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * Under a Canvas renderer it uses shape clipping. Under a WebGL renderer it uses a Stencil Buffer.
     * To remove a mask, set this property to `null`.
     *
-    * @name PIXI.DisplayObject#mask
+    * @name PIXILegacy.DisplayObject#mask
     * @property {Phaser.Graphics} mask - The mask applied to this DisplayObject. Set to `null` to remove an existing mask.
     */
     mask: {
@@ -777,7 +777,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     * Note: You cannot have a filter set, and a MULTIPLY Blend Mode active, at the same time. Setting a
     * filter will reset this DisplayObjects blend mode to NORMAL.
     *
-    * @name PIXI.DisplayObject#filters
+    * @name PIXILegacy.DisplayObject#filters
     * @property {Array} filters - An Array of Phaser.Filter objects, or objects that extend them.
     */
     filters: {
@@ -813,9 +813,9 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
 
             this._filters = value;
 
-            if (this.blendMode && this.blendMode === PIXI.blendModes.MULTIPLY)
+            if (this.blendMode && this.blendMode === PIXILegacy.blendModes.MULTIPLY)
             {
-                this.blendMode = PIXI.blendModes.NORMAL;
+                this.blendMode = PIXILegacy.blendModes.NORMAL;
             }
 
         }
@@ -836,7 +836,7 @@ Object.defineProperties(PIXI.DisplayObject.prototype, {
     *
     * To remove a cached bitmap, set this property to `null`.
     *
-    * @name PIXI.DisplayObject#cacheAsBitmap
+    * @name PIXILegacy.DisplayObject#cacheAsBitmap
     * @property {boolean} cacheAsBitmap - Cache this DisplayObject as a Bitmap. Set to `null` to remove an existing cached bitmap.
     */
     cacheAsBitmap: {

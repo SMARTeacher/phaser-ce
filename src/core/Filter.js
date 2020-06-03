@@ -61,13 +61,13 @@ Phaser.Filter = function (game, uniforms, fragmentSrc)
     this.shaders = [];
 
     /**
-    * @property {boolean} dirty - Internal PIXI var.
+    * @property {boolean} dirty - Internal PIXILegacy var.
     * @default
     */
     this.dirty = true;
 
     /**
-    * @property {number} padding - Internal PIXI var.
+    * @property {number} padding - Internal PIXILegacy var.
     * @default
     */
     this.padding = 0;

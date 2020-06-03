@@ -11,8 +11,8 @@ function _CreateEmptyTexture (gl, width, height, scaleMode)
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, scaleMode === PIXI.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, scaleMode === PIXILegacy.scaleModes.LINEAR ? gl.LINEAR : gl.NEAREST);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
     return texture;
 }
@@ -77,15 +77,15 @@ function _CreateFramebuffer (gl, width, height, scaleMode, textureUnit, useStenc
 }
 
 /**
-* @class PIXI.FilterTexture
+* @class PIXILegacy.FilterTexture
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 * @param width {Number} the horizontal range of the filter
 * @param height {Number} the vertical range of the filter
-* @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+* @param scaleMode {Number} See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
 * @param useStencil {boolean} Wether to use stencils or not. Defaults to true.
 */
-PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit, useStencil)
+PIXILegacy.FilterTexture = function (gl, width, height, scaleMode, textureUnit, useStencil)
 {
     if (useStencil === undefined) { useStencil = true; }
     
@@ -108,7 +108,7 @@ PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit, useSte
      * @property frameBuffer
      * @type Any
      */
-    this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXI.scaleModes.DEFAULT, textureUnit, useStencil);
+    this.frameBuffer = _CreateFramebuffer(gl, width, height, scaleMode || PIXILegacy.scaleModes.DEFAULT, textureUnit, useStencil);
 
     /**
      * @property texture
@@ -120,14 +120,14 @@ PIXI.FilterTexture = function (gl, width, height, scaleMode, textureUnit, useSte
     this.renderBuffer = this.frameBuffer.renderBuffer;
 };
 
-PIXI.FilterTexture.prototype.constructor = PIXI.FilterTexture;
+PIXILegacy.FilterTexture.prototype.constructor = PIXILegacy.FilterTexture;
 
 /**
 * Clears the filter texture.
 *
-* @method PIXI.FilterTexture#clear
+* @method PIXILegacy.FilterTexture#clear
 */
-PIXI.FilterTexture.prototype.clear = function ()
+PIXILegacy.FilterTexture.prototype.clear = function ()
 {
     var gl = this.gl;
 
@@ -138,11 +138,11 @@ PIXI.FilterTexture.prototype.clear = function ()
 /**
  * Resizes the texture to the specified width and height
  *
- * @method PIXI.FilterTexture#resize
+ * @method PIXILegacy.FilterTexture#resize
  * @param width {Number} the new width of the texture
  * @param height {Number} the new height of the texture
  */
-PIXI.FilterTexture.prototype.resize = function (width, height)
+PIXILegacy.FilterTexture.prototype.resize = function (width, height)
 {
     if(this.width === width && this.height === height) { return; }
 
@@ -164,9 +164,9 @@ PIXI.FilterTexture.prototype.resize = function (width, height)
 /**
 * Destroys the filter texture.
 *
-* @method PIXI.FilterTexture#destroy
+* @method PIXILegacy.FilterTexture#destroy
 */
-PIXI.FilterTexture.prototype.destroy = function ()
+PIXILegacy.FilterTexture.prototype.destroy = function ()
 {
     var gl = this.gl;
     gl.deleteFramebuffer(this.frameBuffer);

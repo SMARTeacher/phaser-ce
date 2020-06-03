@@ -1,6 +1,6 @@
-// Type definitions for PIXI with Phaser Deviations.
+// Type definitions for PIXILegacy with Phaser Deviations.
 
-declare module PIXI {
+declare module PIXILegacy {
 
     export var game: Phaser.Game;
     export var WEBGL_RENDERER: number;
@@ -177,7 +177,7 @@ declare module PIXI {
         * Helper function that creates a base texture from the given canvas element.
         * 
         * @param canvas The canvas element source of the texture
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+        * @param scaleMode See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
         */
         static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): BaseTexture;
@@ -187,7 +187,7 @@ declare module PIXI {
         * A texture stores the information that represents an image. All textures have a base texture.
         * 
         * @param source the source object (image or canvas)
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+        * @param scaleMode See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
         */
         constructor(source: HTMLImageElement, scaleMode: scaleModes);
@@ -196,7 +196,7 @@ declare module PIXI {
         * A texture stores the information that represents an image. All textures have a base texture.
         * 
         * @param source the source object (image or canvas)
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+        * @param scaleMode See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
         * @param resolution the resolution of the texture (for HiDPI displays)
         */
         constructor(source: HTMLCanvasElement, scaleMode: scaleModes);
@@ -231,7 +231,7 @@ declare module PIXI {
 
         /**
         * The scale mode to apply when scaling this texture
-        * Default: PIXI.scaleModes.LINEAR
+        * Default: PIXILegacy.scaleModes.LINEAR
         */
         scaleMode: scaleModes;
 
@@ -459,7 +459,7 @@ declare module PIXI {
         count: number;
 
         /**
-        * Instance of a PIXI.CanvasMaskManager, handles masking when using the canvas renderer
+        * Instance of a PIXILegacy.CanvasMaskManager, handles masking when using the canvas renderer
         */
         maskManager: CanvasMaskManager;
 
@@ -533,7 +533,7 @@ declare module PIXI {
     * 
     * This is an abstract class and should not be used on its own, rather it should be extended.
     * 
-    * It is used internally by the likes of PIXI.Sprite.
+    * It is used internally by the likes of PIXILegacy.Sprite.
     */
     export class DisplayObject {
 
@@ -658,9 +658,9 @@ declare module PIXI {
         * Equally a DisplayObject with visible `false` will not render any of its children.
         * 
         * The value of this property does not reflect any visible values set further up the display list.
-        * To obtain that value please see the {@link PIXI.DisplayObject#worldVisible worldVisible} property.
+        * To obtain that value please see the {@link PIXILegacy.DisplayObject#worldVisible worldVisible} property.
         * 
-        * Objects that are not {@link PIXI.DisplayObject#worldVisible worldVisible} do not update their {@link PIXI.DisplayObject#worldPosition worldPosition}.
+        * Objects that are not {@link PIXILegacy.DisplayObject#worldVisible worldVisible} do not update their {@link PIXILegacy.DisplayObject#worldPosition worldPosition}.
         * Default: true
         */
         visible: boolean;
@@ -754,7 +754,7 @@ declare module PIXI {
         * and references to them, so they don't linger in memory.
         * 
         * @param resolution The resolution of the texture being generated. - Default: 1
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values. - Default: PIXI.scaleModes.DEFAULT
+        * @param scaleMode See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values. - Default: PIXILegacy.scaleModes.DEFAULT
         * @param renderer The renderer used to generate the texture.
         * @return - A RenderTexture containing an image of this DisplayObject at the time it was invoked.
         */
@@ -967,7 +967,7 @@ declare module PIXI {
         * @param gl the current WebGL drawing context
         * @param width the horizontal range of the filter
         * @param height the vertical range of the filter
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+        * @param scaleMode See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
         */
         constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: scaleModes);
 
@@ -1398,15 +1398,15 @@ declare module PIXI {
         * (0.5, 0.5) is the center.
         * (1, 1) is the bottom right.
         * 
-        * You can modify the default values in PIXI.Sprite.defaultAnchor.
+        * You can modify the default values in PIXILegacy.Sprite.defaultAnchor.
         */
         anchor: Point;
 
         /**
-        * The blend mode to be applied to the sprite. Set to PIXI.blendModes.NORMAL to remove any blend mode.
+        * The blend mode to be applied to the sprite. Set to PIXILegacy.blendModes.NORMAL to remove any blend mode.
         * 
         * Warning: You cannot have a blend mode and a filter active on the same Sprite. Doing so will render the sprite invisible.
-        * Default: PIXI.blendModes.NORMAL;
+        * Default: PIXILegacy.blendModes.NORMAL;
         */
         blendMode: blendModes;
 
@@ -1456,7 +1456,7 @@ declare module PIXI {
         * Sets the texture of the sprite. Be warned that this doesn't remove or destroy the previous
         * texture this Sprite was using.
         * 
-        * @param texture The PIXI texture that is displayed by the sprite
+        * @param texture The PIXILegacy texture that is displayed by the sprite
         * @param destroy Call Texture.destroy on the current texture before replacing it with the new one?
         */
         setTexture(texture: Texture, destroyBase?: boolean): void;
@@ -1501,7 +1501,7 @@ declare module PIXI {
 
     /**
     * A texture stores the information that represents an image or part of an image. It cannot be added
-    * to the display list directly. Instead use it as the texture for a PIXI.Sprite. If no frame is provided then the whole image is used.
+    * to the display list directly. Instead use it as the texture for a PIXILegacy.Sprite. If no frame is provided then the whole image is used.
     */
     export class Texture implements Mixin {
 
@@ -1512,14 +1512,14 @@ declare module PIXI {
         * Helper function that creates a new a Texture based on the given canvas element.
         * 
         * @param canvas The canvas element source of the texture
-        * @param scaleMode See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+        * @param scaleMode See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
         */
         static fromCanvas(canvas: HTMLCanvasElement, scaleMode?: scaleModes): Texture;
 
 
         /**
         * A texture stores the information that represents an image or part of an image. It cannot be added
-        * to the display list directly. Instead use it as the texture for a PIXI.Sprite. If no frame is provided then the whole image is used.
+        * to the display list directly. Instead use it as the texture for a PIXILegacy.Sprite. If no frame is provided then the whole image is used.
         * 
         * @param baseTexture The base texture source to create the texture from
         * @param frame The rectangle frame of the texture to show
@@ -1613,14 +1613,14 @@ declare module PIXI {
 
         constructor(texture: Texture, width: number, height: number);
 
-        canvasBuffer: PIXI.CanvasBuffer;
+        canvasBuffer: PIXILegacy.CanvasBuffer;
         blendMode: number;
         refreshTexture: boolean;
         texture: Texture;
         textureDebug: boolean;
         tint: number;
         tilePosition: Point;
-        tilePattern: PIXI.Texture;
+        tilePattern: PIXILegacy.Texture;
         tileScale: Point;
         tileScaleOffset: Point;
 
@@ -1665,7 +1665,7 @@ declare module PIXI {
         /**
         * Sets-up the given blendMode from WebGL's point of view.
         * 
-        * @param blendMode the blendMode, should be a Pixi const, such as PIXI.BlendModes.ADD
+        * @param blendMode the blendMode, should be a Pixi const, such as PIXILegacy.BlendModes.ADD
         */
         setBlendMode(blendMode: number): boolean;
 
@@ -2303,6 +2303,6 @@ declare module PIXI {
 
 declare function requestAnimFrame(callback: Function): void;
 
-declare module PIXI.PolyK {
+declare module PIXILegacy.PolyK {
     export function Triangulate(p: number[]): number[];
 }

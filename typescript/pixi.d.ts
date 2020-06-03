@@ -1,6 +1,6 @@
-// Type definitions for PIXI with Phaser Deviations.
+// Type definitions for PIXILegacy with Phaser Deviations.
 
-declare module PIXI {
+declare module PIXILegacy {
 
     export var game: Phaser.Game;
     export var WEBGL_RENDERER: number;
@@ -658,14 +658,14 @@ declare module PIXI {
 
         constructor(texture: Texture, width: number, height: number);
 
-        canvasBuffer: PIXI.CanvasBuffer;
+        canvasBuffer: PIXILegacy.CanvasBuffer;
         blendMode: number;
         refreshTexture: boolean;
         texture: Texture;
         textureDebug: boolean;
         tint: number;
         tilePosition: Point;
-        tilePattern: PIXI.Texture;
+        tilePattern: PIXILegacy.Texture;
         tileScale: Point;
         tileScaleOffset: Point;
 
@@ -908,6 +908,6 @@ declare module PIXI {
 
 declare function requestAnimFrame(callback: Function): void;
 
-declare module PIXI.PolyK {
+declare module PIXILegacy.PolyK {
     export function Triangulate(p: number[]): number[];
 }

@@ -3,23 +3,23 @@
  */
 
 /**
-* @class PIXI.WebGLMaskManager
+* @class PIXILegacy.WebGLMaskManager
 * @constructor
 * @private
 */
-PIXI.WebGLMaskManager = function ()
+PIXILegacy.WebGLMaskManager = function ()
 {
 };
 
-PIXI.WebGLMaskManager.prototype.constructor = PIXI.WebGLMaskManager;
+PIXILegacy.WebGLMaskManager.prototype.constructor = PIXILegacy.WebGLMaskManager;
 
 /**
 * Sets the drawing context to the one given in parameter.
 *
-* @method PIXI.WebGLMaskManager#setContext
+* @method PIXILegacy.WebGLMaskManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLMaskManager.prototype.setContext = function (gl)
+PIXILegacy.WebGLMaskManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 };
@@ -27,17 +27,17 @@ PIXI.WebGLMaskManager.prototype.setContext = function (gl)
 /**
 * Applies the Mask and adds it to the current filter stack.
 *
-* @method PIXI.WebGLMaskManager#pushMask
+* @method PIXILegacy.WebGLMaskManager#pushMask
 * @param maskData {Array}
 * @param renderSession {Object}
 */
-PIXI.WebGLMaskManager.prototype.pushMask = function (maskData, renderSession)
+PIXILegacy.WebGLMaskManager.prototype.pushMask = function (maskData, renderSession)
 {
     var gl = renderSession.gl;
 
     if (maskData.dirty)
     {
-        PIXI.WebGLGraphics.updateGraphics(maskData, gl);
+        PIXILegacy.WebGLGraphics.updateGraphics(maskData, gl);
     }
 
     if (maskData._webGL[gl.id] === undefined || maskData._webGL[gl.id].data === undefined || maskData._webGL[gl.id].data.length === 0)
@@ -51,11 +51,11 @@ PIXI.WebGLMaskManager.prototype.pushMask = function (maskData, renderSession)
 /**
 * Removes the last filter from the filter stack and doesn't return it.
 *
-* @method PIXI.WebGLMaskManager#popMask
+* @method PIXILegacy.WebGLMaskManager#popMask
 * @param maskData {Array}
 * @param renderSession {Object} an object containing all the useful parameters
 */
-PIXI.WebGLMaskManager.prototype.popMask = function (maskData, renderSession)
+PIXILegacy.WebGLMaskManager.prototype.popMask = function (maskData, renderSession)
 {
     var gl = this.gl;
 
@@ -71,9 +71,9 @@ PIXI.WebGLMaskManager.prototype.popMask = function (maskData, renderSession)
 /**
 * Destroys the mask stack.
 *
-* @method PIXI.WebGLMaskManager#destroy
+* @method PIXILegacy.WebGLMaskManager#destroy
 */
-PIXI.WebGLMaskManager.prototype.destroy = function ()
+PIXILegacy.WebGLMaskManager.prototype.destroy = function ()
 {
     this.gl = null;
 };

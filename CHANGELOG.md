@@ -36,7 +36,7 @@ If you're using the `loadAnchors` argument in the Phaser.Creature constructor, y
 * Fixed an issue where if the WebGL renderer failed to initialize that RenderTexture's would still try to use it if no renderer was provided (#575).
 * Fixed an inconsistent return value in BitmapData#copy (#580).
 * Tweens are now cleaned up completely when destroying the game (#581).
-* Game now nulls a reference to itself from PIXI after destroy (#583).
+* Game now nulls a reference to itself from PIXILegacy after destroy (#583).
 * Fixed a BitmapFont frame error when using trim frame in atlas (#587).
 * Fixed BitmapData#shadow ignoring blur or x/y offset when set to 0 (#591).
 
@@ -137,7 +137,7 @@ If you're starting or stopping input handlers manually, you'll have to make some
 * [Debug#spriteInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#spriteInfo) shows the sprite's parent, if any.
 * When a sprite is being dragged you can read its change in position (as `deltaX`, `deltaY`) in the [onDragUpdate](https://photonstorm.github.io/phaser-ce/Phaser.Events.html#onDragUpdate) handler.
 * [Phaser.Math.trunc()](https://photonstorm.github.io/phaser-ce/Phaser.Math.html#trunc) truncates a number.
-* Phaser.EmptyRectangle replaces PIXI.EmptyRectangle.
+* Phaser.EmptyRectangle replaces PIXILegacy.EmptyRectangle.
 * [Debug#device](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#device) shows device graphics, audio, and input support. It may be helpful on devices where you can't see `console` output easily.
 * [Debug#pointer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#pointer) shows the pointer's movementX/movementY values and button states (for mouse pointers).
 * `maxPointers` can be passed in the [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig), setting [Input#maxPointers](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#maxPointers).
@@ -235,11 +235,11 @@ If you're starting or stopping input handlers manually, you'll have to make some
 
 ### TypeScript
 
-* PIXI.Rectangle includes more of Phaser.Rectangle's properties (#491).
+* PIXILegacy.Rectangle includes more of Phaser.Rectangle's properties (#491).
 
 ### Documentation
 
-* Game Objects show [width](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObjectContainer.html#width) and [height](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObjectContainer.html#height) properties (#488).
+* Game Objects show [width](https://photonstorm.github.io/phaser-ce/PIXILegacy.DisplayObjectContainer.html#width) and [height](https://photonstorm.github.io/phaser-ce/PIXILegacy.DisplayObjectContainer.html#height) properties (#488).
 
 ### Thanks
 
@@ -317,7 +317,7 @@ If you're starting or stopping input handlers manually, you'll have to make some
     - Phaser.Polygon#points (as a setter)  → [Phaser.Polygon#setTo](https://photonstorm.github.io/phaser-ce/Phaser.Polygon.html#setTo)
     - Phaser.Touch#addTouchLockCallback    → [Phaser.Input#addTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#addTouchLockCallback)
     - Phaser.Touch#removeTouchLockCallback → [Phaser.Input#removeTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#removeTouchLockCallback)
-    - PIXI.BaseTexture#updateSourceImage   → [Phaser.Component.LoadTexture#loadTexture](https://photonstorm.github.io/phaser-ce/Phaser.Component.LoadTexture.html#loadTexture)
+    - PIXILegacy.BaseTexture#updateSourceImage   → [Phaser.Component.LoadTexture#loadTexture](https://photonstorm.github.io/phaser-ce/Phaser.Component.LoadTexture.html#loadTexture)
     - RevoluteConstraint#motorIsEnabled    → RevoluteConstraint#motorEnabled
     - Shape.RECTANGLE                      → Shape.BOX
 
@@ -496,7 +496,7 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 * Fixed p2 polygon collisions (#366).
 * Fixed a nonfatal error when clicking the game canvas in browsers not supporting [Document.hasFocus()](https://developer.mozilla.org/en-US/docs/Web/API/Document/hasFocus) (e.g., Opera Mini, older Opera) (#367). In these browsers the game may not automatically resume when refocused in an iframe; use one of the workarounds in #236.
 * [Phaser.Color.updateColor](https://photonstorm.github.io/phaser-ce/Phaser.Color.html#_updateColor) now rounds fractional RGB values to integers when updating the `rgba` property (#361).
-* Added `roundPixels` to [WebGLRenderer#renderSession](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#renderSession) (#362).
+* Added `roundPixels` to [WebGLRenderer#renderSession](https://photonstorm.github.io/phaser-ce/PIXILegacy.WebGLRenderer.html#renderSession) (#362).
 * Fixed some TypeScript definitions (#354, #368).
 
 ### Documentation
@@ -563,7 +563,7 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 
 ### Bug Fixes
 
-* Fixed sprite texture being destroyed in [PIXI.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#setTexture) contrary to `destroyBase=false`.
+* Fixed sprite texture being destroyed in [PIXILegacy.Sprite#setTexture](https://photonstorm.github.io/phaser-ce/PIXILegacy.Sprite.html#setTexture) contrary to `destroyBase=false`.
 * Fixed a ReferenceError in Phaser.Input#executeTouchLockCallbacks affecting Firefox Mobile (#336).
 
 ### Documentation
@@ -585,8 +585,8 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 
 * Arcade#collide and Arcade#overlap skip empty array members in calls like `collide(group, [undefined])`, so you don't unintentionally collide a group against itself.
 * Added an `epsilon` argument for fuzzy comparisons in [Phaser.Line#pointOnLine](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#pointOnLine) and [Phaser.Line#pointOnSegment](https://photonstorm.github.io/phaser-ce/Phaser.Line.html#pointOnSegment) (#312).
-* Removed obsolete PIXI TypeScript definitions.
-* Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXI.AbstractFilter, which was removed in 2.7.0.
+* Removed obsolete PIXILegacy TypeScript definitions.
+* Removed [filters/pixi](https://github.com/photonstorm/phaser-ce/tree/v2.8.3/filters/pixi). They require PIXILegacy.AbstractFilter, which was removed in 2.7.0.
 * Updated NPM dependencies (except [typescript](https://www.npmjs.com/package/typescript); photonstorm/phaser#2198) and added [package-lock.json](https://docs.npmjs.com/files/package-lock.json).
 * Deprecated [Phaser.Device.isConsoleOpen](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#isConsoleOpen). Now it always returns false.
 * Phaser.Input now handles touch unlocking via Phaser.Touch or Phaser.MSPointer. [Phaser.Touch#addTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Touch.html#addTouchLockCallback) and [Phaser.Touch#removeTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Touch.html#removeTouchLockCallback) are still available but deprecated; you should use [Phaser.Input#addTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#addTouchLockCallback) and [Phaser.Input.#removeTouchLockCallback](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#removeTouchLockCallback) instead (#37).
@@ -607,7 +607,7 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 ### Documentation
 
 * [Arcade Physics bodies](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html) don't scale with [camera scale](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#scale) (#315).
-* [cacheAsBitmap](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#cacheAsBitmap) and [generateTexture](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#generateTexture) can trim transparent pixels (#283).
+* [cacheAsBitmap](https://photonstorm.github.io/phaser-ce/PIXILegacy.DisplayObject.html#cacheAsBitmap) and [generateTexture](https://photonstorm.github.io/phaser-ce/PIXILegacy.DisplayObject.html#generateTexture) can trim transparent pixels (#283).
 * [Phaser.Physics.P2.Body#addPolygon](https://photonstorm.github.io/phaser-ce/Phaser.Physics.P2.Body#addPolygon.html#addPolygon) can mutate the `points` argument (#301).
 * [InputHandler#enableDrag](https://photonstorm.github.io/phaser-ce/Phaser.InputHandler.html#enableDrag) `alphaThreshold` argument is a number, not boolean.
 * [Phaser.ScaleManager#startFullScreen](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#startFullScreen)
@@ -627,9 +627,9 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 
 * Fixed some TypeScript definitions (#284, #285, #286).
 
-### PIXI Updates
+### PIXILegacy Updates
 
-* Replaced all references to PIXI.Matrix and PIXI.identityMatrix with [Phaser.Matrix](https://photonstorm.github.io/phaser-ce/Phaser.Matrix.html) and Phaser.identityMatrix.
+* Replaced all references to PIXILegacy.Matrix and PIXILegacy.identityMatrix with [Phaser.Matrix](https://photonstorm.github.io/phaser-ce/Phaser.Matrix.html) and Phaser.identityMatrix.
 
 ### Thanks
 
@@ -642,7 +642,7 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 * Phaser.Point.set is a static counterpart to [Phaser.Point#set](https://photonstorm.github.io/phaser-ce/Phaser.Point.html#set). It can be used on any point-like object, e.g.,
 
   ```javascript
-  Phaser.Point.set(PIXI.Sprite.defaultAnchor, 0.5); //-> {x: 0.5, y: 0.5}
+  Phaser.Point.set(PIXILegacy.Sprite.defaultAnchor, 0.5); //-> {x: 0.5, y: 0.5}
   ```
 
 ### Updates
@@ -650,15 +650,15 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 * Added TypeScript `types` to package.json (#276).
 * New [webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) (#95).
 * [Phaser.Component.Core.init](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html) checks types of the `game`, `x`, and `y` arguments, since these mistakes can be hard to track down (outside of TypeScript). The cost is likely trivial, but you can skip these by setting [Phaser.Component.Core.skipTypeChecks](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#skipTypeChecks) to true.
-* [Phaser.Utils.Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#currentBatchedTextures) (added by [PIXI.WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority)).
+* [Phaser.Utils.Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer) lists [currentBatchedTextures](https://photonstorm.github.io/phaser-ce/PIXILegacy.WebGLRenderer.html#currentBatchedTextures) (added by [PIXILegacy.WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXILegacy.WebGLRenderer.html#setTexturePriority)).
 * [Phaser.TilemapParser.parseTiledJSON](https://photonstorm.github.io/phaser-ce/Phaser.TilemapParser.html#parseTiledJSON) warns if a tilemap contains an external tileset, which Phaser doesn't read (#273).
 * [Phaser.Tilemap#createFromObjects](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#createFromObjects) assigns the width and height of [Object Tiles](http://doc.mapeditor.org/manual/objects/#insert-tile) to the newly created Sprite (previously these were ignored).
 
 ### Bug Fixes
 
-* Added missing [PIXI.DisplayObject#constructor](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html) (#278).
+* Added missing [PIXILegacy.DisplayObject#constructor](https://photonstorm.github.io/phaser-ce/PIXILegacy.DisplayObject.html) (#278).
 * [Arcade.Body#render](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#render), [Debug#geom](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#geom) (circles, ellipses), [Debug#rectangle](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#rectangle), and [Debug#spriteBounds](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#setBounds) use [Debug#lineWidth](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#lineWidth).
-* Fixed [PIXI.CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXI.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
+* Fixed [PIXILegacy.CanvasRenderer#renderSession.roundPixels](https://photonstorm.github.io/phaser-ce/PIXILegacy.CanvasRenderer.html#renderSession) misspelled as `roundPx` in [Debug#renderer](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#renderer). ([roundPx](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#roundPx) is a Camera property.)
 * Fixed some TypeScript definitions (#174, #270, #274, #277).
 * The debug canvas is returned to the canvas pool when the game is destroyed (#269).
 
@@ -677,21 +677,21 @@ The minor version increase is for changes to [Emitter#cursor](https://photonstor
 * [Arcade.Body#stop](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#stop) halts all motion.
 * [Emitter#count](https://photonstorm.github.io/phaser-ce/Phaser.Particles.Arcade.Emitter.html#count) records some diagnostic quantities: `count.emitted`, `count.failed`, `count.totalEmitted`, `count.totalFailed`.
 * [Group#shuffle](https://photonstorm.github.io/phaser-ce/Phaser.Group.html#shuffle) orders children randomly.
-* [PIXI.Sprite.defaultAnchor](https://photonstorm.github.io/phaser-ce/PIXI.Sprite.html#defaultAnchor) holds the initial anchor values for new Sprites (default: [x=0, y=0]).
+* [PIXILegacy.Sprite.defaultAnchor](https://photonstorm.github.io/phaser-ce/PIXILegacy.Sprite.html#defaultAnchor) holds the initial anchor values for new Sprites (default: [x=0, y=0]).
 * Phaser.Math.HALF_PI is π / 2.
 
 ### Updates
 
-* Added PIXI.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to [Phaser.Device.canUseMultiply](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#canUseMultiply).
+* Added PIXILegacy.canUseNewCanvasBlendModes to support [Particle Storm Plugin](https://phaser.io/shop/plugins/particlestorm) (photonstorm/phaser#2909). It's equivalent to [Phaser.Device.canUseMultiply](https://photonstorm.github.io/phaser-ce/Phaser.Device.html#canUseMultiply).
 * [Debug#cameraInfo](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#cameraInfo) now displays the follow target (`target`), `roundPx`, `atLimit`, and `deadzone`.
 * [Debug#isDisabled](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#isDisabled) is now defined in two additional cases: `true` when a new game is created with `enableDebug: false`; and `false` otherwise. As before, it is `true` when Phaser is built without the Debug class.
 * [ScaleManager#forceOrientation](https://photonstorm.github.io/phaser-ce/Phaser.ScaleManager.html#forceOrientation) warns if you try to force both orientations.
-* [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) warns if `maxTextureAvailableSpace` is exhausted.
+* [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXILegacy.WebGLRenderer.html#setTexturePriority) warns if `maxTextureAvailableSpace` is exhausted.
 * Documented an undocumented feature of [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html): returning `false` from a callback stops Signal propagation, just as [Signal#halt](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html#halt) does (#243).
 
 ### Bug Fixes
 
-* Fixed [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html#setTexturePriority) not clearing the current batch.
+* Fixed [WebGLRenderer#setTexturePriority](https://photonstorm.github.io/phaser-ce/PIXILegacy.WebGLRenderer.html#setTexturePriority) not clearing the current batch.
 * Fixed incorrect `worldRotation` for some objects (#259).
 * Fixed `NaN` value for some objects' `worldRotation` and `worldScale` properties. `worldTransform` was still correct.
 * Fixed [Phaser.Input#hitTest](https://photonstorm.github.io/phaser-ce/Phaser.Input.html#hitTest) when texture resolution ≠ 1.
@@ -798,9 +798,9 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 ### Bug Fixes
 
 * Fixed an issue where Sprites sharing the same texture were distorted or hidden when a WebGLFilter was applied (#39, #153, #154).
-* Fixed a 'memory exhausted' error in PIXI.PixiFastShader when compiling shaders with multiTexture enabled.
-* Fixed a TypeError in PIXI.WebGLGraphics when trying to render a Graphics object with a missing WebGL context (#178)
-* Fixed a ReferenceError in [PIXI.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXI.WebGLRenderer.html) when running Phaser in ES5 strict mode.
+* Fixed a 'memory exhausted' error in PIXILegacy.PixiFastShader when compiling shaders with multiTexture enabled.
+* Fixed a TypeError in PIXILegacy.WebGLGraphics when trying to render a Graphics object with a missing WebGL context (#178)
+* Fixed a ReferenceError in [PIXILegacy.WebGLRenderer](https://photonstorm.github.io/phaser-ce/PIXILegacy.WebGLRenderer.html) when running Phaser in ES5 strict mode.
 * Fixed some Typescript definitions (#167).
 * Phaser now correctly sets a Creature's anchor point (as set in Creature editor) when a creature mesh is loaded.
 * Fixed CreatureManager#CreateAllAnimations crashing in Chrome.
@@ -820,7 +820,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 * Fixed loading of compressed textures (#17, #162)
 * Removed `any` key in [Phaser.Physics.Arcade.Body#checkCollision](https://photonstorm.github.io/phaser-ce/Phaser.Physics.Arcade.Body.html#checkCollision). It was never used, so setting it had no effect (#161). Use `!checkCollision.none` instead.
 * Fixed [Phaser.Sound](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html) exception when using IE with AudioTag and high volume values (#157). Now volume is clamped between 0 and 1 in every browser when using AudioTags.
-* Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXI.DisplayObject.html#worldScale) calculation (#15)
+* Fixed incorrect [worldScale](https://photonstorm.github.io/phaser-ce/PIXILegacy.DisplayObject.html#worldScale) calculation (#15)
 
 ### Thanks
 
@@ -857,7 +857,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 * Fixed audio skipping when restarting playback (#78)
 * Fixed bad rendering of multiple tinted BitmapText objects (#58)
 * Fixed Object.assign not existing on older devices (#81)
-* Previously, the HEADLESS renderer essentially became a CANVAS renderer after boot, which was incorrect (#74). Phaser.HEADLESS now sets up a PIXI.CanvasRenderer and a detached (invisible) canvas. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange). [game.renderType](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#renderType) now contains either Phaser.CANVAS, Phaser.HEADLESS, or Phaser.WEBGL after boot.
+* Previously, the HEADLESS renderer essentially became a CANVAS renderer after boot, which was incorrect (#74). Phaser.HEADLESS now sets up a PIXILegacy.CanvasRenderer and a detached (invisible) canvas. It skips `render` hooks but not the `preRender` and `postRender` hooks (strange). [game.renderType](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#renderType) now contains either Phaser.CANVAS, Phaser.HEADLESS, or Phaser.WEBGL after boot.
 
 ### Thanks
 
@@ -910,7 +910,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 
 ### Pixi Updates
 
-* Fixed wrong parameter PIXI.DisplayObject#\_generateCachedSprite
+* Fixed wrong parameter PIXILegacy.DisplayObject#\_generateCachedSprite
 
 ## Version 2.7.3 - 9th January 2017
 
@@ -944,7 +944,7 @@ We've bumped the minor version (2.8) for changes in how circular Arcade Physics 
 
 ### Updates
 
-* Added a third optional parameter to PIXI.BaseTexture allowing textures to be scaled according to devicePixelRatio (thanks @cloakedninjas)
+* Added a third optional parameter to PIXILegacy.BaseTexture allowing textures to be scaled according to devicePixelRatio (thanks @cloakedninjas)
 * TypeScript definitions fixes and updates (thanks @Aleksey-Danchin)
 
 ### Bug Fixes
@@ -983,24 +983,24 @@ Phaser 2.7 is now released to the community to maintain. Please see the README f
 * Math.between has been strengthened and the docs improved (thanks @JTronLabs #2760)
 * Camera.fade has a new argument `alpha` to control the alpha level of the effect (thanks @rgk #2493)
 * Camera.flash has a new argument `alpha` to control the alpha level of the effect (thanks @rgk #2493)
-* Phaser.SpriteBatch was incorrectly applying the prototypes, causing the Sprite Batch render methods to be replaced by the normal DisplayObjectContainer ones, meaning nothing was really batched at all. This has now been fixed, and PIXI.SpriteBatch removed, as it's no longer required.
-* PIXI.RenderTexture has been removed, and all functionality merged in to Phaser.RenderTexture, to cut down on the number of internal classes and inheritance going on.
-* PIXI.TilingSprite has been removed, and all functionality merged in to Phaser.TileSprite, to cut down on the number of internal classes and inheritance going on.
-* PIXI.CanvasPool has been moved into the Phaser `utils` folder, and renamed to `Phaser.CanvasPool`. All references to PIXI.CanvasPool have been updated to match the new namespace.
-* PIXI.EarCut has been moved into the Phaser `utils` folder, and renamed to `Phaser.EarCut`. All references to PIXI.EarCut have been updated to match the new namespace.
+* Phaser.SpriteBatch was incorrectly applying the prototypes, causing the Sprite Batch render methods to be replaced by the normal DisplayObjectContainer ones, meaning nothing was really batched at all. This has now been fixed, and PIXILegacy.SpriteBatch removed, as it's no longer required.
+* PIXILegacy.RenderTexture has been removed, and all functionality merged in to Phaser.RenderTexture, to cut down on the number of internal classes and inheritance going on.
+* PIXILegacy.TilingSprite has been removed, and all functionality merged in to Phaser.TileSprite, to cut down on the number of internal classes and inheritance going on.
+* PIXILegacy.CanvasPool has been moved into the Phaser `utils` folder, and renamed to `Phaser.CanvasPool`. All references to PIXILegacy.CanvasPool have been updated to match the new namespace.
+* PIXILegacy.EarCut has been moved into the Phaser `utils` folder, and renamed to `Phaser.EarCut`. All references to PIXILegacy.EarCut have been updated to match the new namespace.
 * Device.canHandleAlpha is a new boolean property that stores is the browser is capable of tinting with alpha.
 * Device.canUseMultiply is a new boolean property that stores whether or not the Canvas BlendModes are supported, consequently the ability to tint using the multiply method.
 * Math.getNextPowerOfTwo will get the next power of two for the given value.
 * Math.isPowerOfTwo will return a boolean if the given width and height are a power of two.
 * Color.hexToRGBArray converts a hex color value to an [R, G, B] array.
 * Color.RGBArrayToHex converts an RGB color array, in the format: [R, G, B], to a hex color value.
-* PIXI.AbstractFilter has been merged into the Phaser.Filter class. All references to PIXI.AbstractFilter have been updated to use Phaser.Filter instead.
-* PIXI.Rope and PIXI.Strip have been removed, and all functionality merged in to Phaser.Rope, to cut down on the number of internal classes and inheritance going on.
-* PIXI.Graphics and PIXI.GraphicsData have been removed, and all functionality merged in to Phaser.Graphics, to cut down on the number of internal classes and inheritance going on.
+* PIXILegacy.AbstractFilter has been merged into the Phaser.Filter class. All references to PIXILegacy.AbstractFilter have been updated to use Phaser.Filter instead.
+* PIXILegacy.Rope and PIXILegacy.Strip have been removed, and all functionality merged in to Phaser.Rope, to cut down on the number of internal classes and inheritance going on.
+* PIXILegacy.Graphics and PIXILegacy.GraphicsData have been removed, and all functionality merged in to Phaser.Graphics, to cut down on the number of internal classes and inheritance going on.
 * WebGLGraphics and CanvasGraphics have been updated so that it checks for Phaser Geometry shape types internally.
-* PIXI.PI_2 has been removed, because it's available via Phaser.Math.PI2. The only place PI_2 was used has been updated to now use PI2.
+* PIXILegacy.PI_2 has been removed, because it's available via Phaser.Math.PI2. The only place PI_2 was used has been updated to now use PI2.
 * The polyfills.js file now polyfills in for Float32Array, Uint16Array and ArrayBuffer.
-* PIXI.Float32Array, PIXI.Uint16Array, PIXI.Uint32Array and PIXI.ArrayBuffer have all been removed, and replaced with their own proper native versions. The polyfill now captures any instances where the browser needs to fall back to an Array instead.
+* PIXILegacy.Float32Array, PIXILegacy.Uint16Array, PIXILegacy.Uint32Array and PIXILegacy.ArrayBuffer have all been removed, and replaced with their own proper native versions. The polyfill now captures any instances where the browser needs to fall back to an Array instead.
 
 
 ### Bug Fixes
@@ -1021,19 +1021,19 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * WebGL Renderer and shaders updated to support multi-texture batching (see main docs above)
 * WebGL and Canvas both now support rotated texture atlas frames.
 * WebGL support for compressed texture formats added.
-* PIXI.SpriteBatch has been removed as it's no longer used internally.
-* PIXI.RenderTexture has been removed as it's no longer used internally.
-* PIXI.TileSprite has been removed as it's no longer used internally.
-* PIXI.EarCut has been removed as it's no longer used internally.
-* PIXI.Utils has been removed. All functionality is now available in Phaser.
-* PIXI.EventTarget has been removed as it's no longer used internally.
-* PIXI.AbstractFilter has been removed as it's no longer used internally. All functionality is now available via Phaser.Filter.
-* PIXI.Strip and PIXI.Rope have been removed. All functionality is now available via Phaser.Rope.
-* PIXI.Graphics and PIXI.GraphicsData have been removed. All functionality is now available via Phaser.Graphics. The respective renderers have been updated.
-* PIXI.PI_2, PIXI.RAD_TO_DEG and PIXI.DEG_TO_RAD have all been removed, as they are no longer used internally, and are all available under Phaser.Math.
-* PIXI.RETINA_PREFIX has been removed, as it was never used anywhere internally.
-* PIXI._UID has been removed, all affected classes now use Phaser._UID.
-* PIXI.Float32Array, PIXI.Uint16Array, PIXI.Uint32Array and PIXI.ArrayBuffer have all been removed, and replaced with their own proper native versions.
+* PIXILegacy.SpriteBatch has been removed as it's no longer used internally.
+* PIXILegacy.RenderTexture has been removed as it's no longer used internally.
+* PIXILegacy.TileSprite has been removed as it's no longer used internally.
+* PIXILegacy.EarCut has been removed as it's no longer used internally.
+* PIXILegacy.Utils has been removed. All functionality is now available in Phaser.
+* PIXILegacy.EventTarget has been removed as it's no longer used internally.
+* PIXILegacy.AbstractFilter has been removed as it's no longer used internally. All functionality is now available via Phaser.Filter.
+* PIXILegacy.Strip and PIXILegacy.Rope have been removed. All functionality is now available via Phaser.Rope.
+* PIXILegacy.Graphics and PIXILegacy.GraphicsData have been removed. All functionality is now available via Phaser.Graphics. The respective renderers have been updated.
+* PIXILegacy.PI_2, PIXILegacy.RAD_TO_DEG and PIXILegacy.DEG_TO_RAD have all been removed, as they are no longer used internally, and are all available under Phaser.Math.
+* PIXILegacy.RETINA_PREFIX has been removed, as it was never used anywhere internally.
+* PIXILegacy._UID has been removed, all affected classes now use Phaser._UID.
+* PIXILegacy.Float32Array, PIXILegacy.Uint16Array, PIXILegacy.Uint32Array and PIXILegacy.ArrayBuffer have all been removed, and replaced with their own proper native versions.
 
 ## Version 2.6.2 - "Kore Springs" - 26th August 2016
 
@@ -1160,24 +1160,24 @@ As a result this also fixes how empty Groups are treated when they have no other
 
 Please note that Phaser uses a custom build of Pixi and always has done. The following changes have been made to our custom build, not to Pixi in general.
 
-* Removed `_renderWebGL`, `_renderCanvas`, `getLocalBounds` and `getBounds` from PIXI.DisplayObject, as they were only there to pass ancient jshint rules.
+* Removed `_renderWebGL`, `_renderCanvas`, `getLocalBounds` and `getBounds` from PIXILegacy.DisplayObject, as they were only there to pass ancient jshint rules.
 * All Pixi.Graphics methods that change the Graphics, i.e. `drawShape`, `lineTo`, `arc`, etc will now all automatically call `Graphics.updateLocalBounds`. This is so that the bounds of the Graphics object are kept updated, allowing you to scale and rotate the Graphics object and still obtain correct dimensions from it (thanks @kelu-smiley #2573)
-* PIXI.CanvasPool no longer _just_ checks for `null` parent comparisons. It will check for all falsy parents, helping free-up canvases when the parent objects have been removed elsewhere.
-* PIXI.CanvasPool.remove and `removeByCanvas` both now set the removed canvas width and height to 1.
-* PIXI.Texture.fromImage, PIXI.BaseTexture.fromImage and PIXI.Sprite.fromImage have all been removed. They should never have actually been used, as they bypass the Phaser Loader, and don't factor in CORs or any other advanced loader settings.
-* The PIXI.BaseTexture.imageUrl property has been removed, as it was never actually populated.
-* The PIXI.BaseTexture._UID property has been removed, as it was never actually used internally.
-* All references to PIXI.BaseTextureCache have been removed (primarily from BaseTexture.destroy and Texture.destroy), as the BaseTextureCache was never used internally by Phaser, or by our custom version of Pixi.
-* PIXI.TextureCache has been removed. It was only ever used by the __default and __missing images that Phaser generates on start-up. It wasn't used internally by Phaser anywhere else, and the only references Pixi has to it have all been removed. If you need it in your own game, please refactor it to avoid it, or re-create the object on the PIXI global object.
+* PIXILegacy.CanvasPool no longer _just_ checks for `null` parent comparisons. It will check for all falsy parents, helping free-up canvases when the parent objects have been removed elsewhere.
+* PIXILegacy.CanvasPool.remove and `removeByCanvas` both now set the removed canvas width and height to 1.
+* PIXILegacy.Texture.fromImage, PIXILegacy.BaseTexture.fromImage and PIXILegacy.Sprite.fromImage have all been removed. They should never have actually been used, as they bypass the Phaser Loader, and don't factor in CORs or any other advanced loader settings.
+* The PIXILegacy.BaseTexture.imageUrl property has been removed, as it was never actually populated.
+* The PIXILegacy.BaseTexture._UID property has been removed, as it was never actually used internally.
+* All references to PIXILegacy.BaseTextureCache have been removed (primarily from BaseTexture.destroy and Texture.destroy), as the BaseTextureCache was never used internally by Phaser, or by our custom version of Pixi.
+* PIXILegacy.TextureCache has been removed. It was only ever used by the __default and __missing images that Phaser generates on start-up. It wasn't used internally by Phaser anywhere else, and the only references Pixi has to it have all been removed. If you need it in your own game, please refactor it to avoid it, or re-create the object on the PIXILegacy global object.
 * Canvases created by `BaseTexture.fromCanvas` no longer have the `_pixiId` property attached to them, as this was never used internally by Phaser or Pixi.
-* PIXI.BaseTexture.updateSourceImage is now deprecated. Please use `Sprite.loadTexture` instead.
-* The property PIXI.BaseTextureCacheIdGenerator has been removed, as it is no longer used internally by Phaser or Pixi.
-* PIXI.Texture.addTextureToCache has been removed. The PIXI Texture Cache was never actually used by Phaser, and was leading to complications internally.
-* PIXI.Texture.removeTextureFromCache has been removed. The PIXI Texture Cache was never actually used by Phaser, and was leading to complications internally.
-* PIXI.Texture.fromFrame and PIXI.Sprite.fromFrame have been removed. They relied on the PIXI Texture Cache, which was never actually used by Phaser, and was never used internally by Pixi either.
-* The property PIXI.TextureCacheIdGenerator has been removed, as it was not used internally.
-* The property PIXI.FrameCache has been removed, as it was not used internally.
-* PIXI.DisplayObjectContainer calls `updateTransform` at the start of `getBounds` to help avoid the bounds being out of date.
+* PIXILegacy.BaseTexture.updateSourceImage is now deprecated. Please use `Sprite.loadTexture` instead.
+* The property PIXILegacy.BaseTextureCacheIdGenerator has been removed, as it is no longer used internally by Phaser or Pixi.
+* PIXILegacy.Texture.addTextureToCache has been removed. The PIXILegacy Texture Cache was never actually used by Phaser, and was leading to complications internally.
+* PIXILegacy.Texture.removeTextureFromCache has been removed. The PIXILegacy Texture Cache was never actually used by Phaser, and was leading to complications internally.
+* PIXILegacy.Texture.fromFrame and PIXILegacy.Sprite.fromFrame have been removed. They relied on the PIXILegacy Texture Cache, which was never actually used by Phaser, and was never used internally by Pixi either.
+* The property PIXILegacy.TextureCacheIdGenerator has been removed, as it was not used internally.
+* The property PIXILegacy.FrameCache has been removed, as it was not used internally.
+* PIXILegacy.DisplayObjectContainer calls `updateTransform` at the start of `getBounds` to help avoid the bounds being out of date.
 
 Thanks to Corin Wilkins at Aardman Digital, for lots of the investigation work, leading to the Pixi changes listed above.
 
@@ -1203,7 +1203,7 @@ Thanks to Corin Wilkins at Aardman Digital, for lots of the investigation work, 
 * There are two new Phaser consts available, for help with orientation of games or Game Objects. They are `Phaser.HORIZONTAL`, `Phaser.VERTICAL`, `Phaser.LANDSCAPE` and `Phaser.PORTRAIT`.
 * InputHandler.dragStopBlocksInputUp is a boolean that allows you to control what happens with the input events. If `false` (the default) then both the `onInputUp` and `onDragStop` events will get dispatched when a Sprite stops being dragged. If `true` then only the `onDragStop` event is dispatched, and the `onInputUp` is skipped.
 * Group.inputEnableChildren is a new property. If set to `true` will automatically call `inputEnabled = true` on any children _added_ to, or _created_ by, the Group.
-* PIXI.DisplayObjectContainer.ignoreChildInput is a new property. If `true` then the children will _not_ be considered as valid for Input events. Because this has been applied to `DisplayObjectContainer` it means it's available in Group, Sprite and any other display level object. Using this boolean you can disable input events for all children in an entire Group, without having to iterate anything or deep-set flags.
+* PIXILegacy.DisplayObjectContainer.ignoreChildInput is a new property. If `true` then the children will _not_ be considered as valid for Input events. Because this has been applied to `DisplayObjectContainer` it means it's available in Group, Sprite and any other display level object. Using this boolean you can disable input events for all children in an entire Group, without having to iterate anything or deep-set flags.
 * InputHandler._pointerOverHandler and _pointerOutHandler have new arguments `silent` - if `true` then they will not dispatch any Signals from the parent Sprite.
 * Pointer.interactiveCandidates is a new Array that is erased and re-populated every time this Pointer is updated. It contains references to all of the Game Objects that were considered as being valid for processing by this Pointer, during the most recent update. To be valid they must have suitable a `priorityID`, be Input enabled, be visible and actually have the Pointer over them. You can check the contents of this array in events such as `onInputDown`, but beware: it is reset every update.
 * Pointer.swapTarget allows you to change the `Pointer.targetObject` object to be the one provided. This allows you to have fine-grained control over which object the Pointer is targeting.
@@ -1278,7 +1278,7 @@ Thanks to Corin Wilkins at Aardman Digital, for lots of the investigation work, 
 * Docs typo fixes (thanks @dedoubleyou1 @mortonfox @zeterain)
 * You can now access the intensity of the Camera shake effect via the getter / setter `Camera.shakeIntensity`. Useful if you wish to tween the intensity while running. (thanks @drhayes #2443)
 * The Arcade Physics overlap method would return false if two bodies were overlapping but neither had any velocity (i.e. they were embedded into each other)
-* PIXI.defaultRenderer is now set to `null` in Game.destroy, allowing it to be reset if a new Game instance is created on the same page (thanks @xtforgame ##2474)
+* PIXILegacy.defaultRenderer is now set to `null` in Game.destroy, allowing it to be reset if a new Game instance is created on the same page (thanks @xtforgame ##2474)
 * BitmapData.drawGroupProxy is now capable of iterating through Sprites that have children, and also now uses the world positions for drawing instead. This change updates the functionality of BitmapData.drawGroup.
 * Text.setStyle has a new argument `update` which will optionally automatically call `updateText` after setting the new style (thanks @staff0rd  #2478)
 
@@ -1379,7 +1379,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 Please note that Phaser uses a custom build of Pixi and always has done. The following changes have been made to our custom build, not to Pixi in general.
 
 * DisplayObjectContainer.getLocalBounds destroys the worldTransforms on children until the next `stage.updateTransform()` call. This can make a number of things break including mouse input if width, height or getLocalBounds methods are called inside of an update or preUpdate method. This is now fixed in our Pixi build (thanks @st0nerhat #2357)
-* PIXI.CanvasRenderer.resize now applies the `renderSession.smoothProperty` to the Canvas context when it resizes. This should help with unwanted canvas smoothing (thanks @sergey7c4 #2395 #2317)
+* PIXILegacy.CanvasRenderer.resize now applies the `renderSession.smoothProperty` to the Canvas context when it resizes. This should help with unwanted canvas smoothing (thanks @sergey7c4 #2395 #2317)
 
 ## Version 2.4.6 - "Baerlon" - 18th February 2016
 
@@ -1480,7 +1480,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * InputHandler.pointerOver could fail to return anything in some instances, now always returns a boolean.
 * Tween.onLoop would be fired when a Tween repeated and Tween.onRepeat would be fired when a Tween looped. These are now reversed to fire correctly (thanks @vladkens #2024)
 * Text with lineSpacing set wouldn't apply the lineSpacing to the final line of text in the Text string, or to text with just single lines. This could lead to incorrect height calculations for further layout and unwanted padding at the bottom of Text objects (thanks @Lopdo #2137)
-* SpriteBatch incorrectly applied the PIXI SpriteBatch prototype over the top of Phaser.Group meaning that Sprites with animations wouldn't render correctly (thanks @qdrj #1951)
+* SpriteBatch incorrectly applied the PIXILegacy SpriteBatch prototype over the top of Phaser.Group meaning that Sprites with animations wouldn't render correctly (thanks @qdrj #1951)
 * Color.updateColor would pass `color.a` to the `getColor32` method without first putting the value into the range 0 - 255 (thanks @mainpsyhos #2327)
 
 ### Pixi Updates
@@ -1491,8 +1491,8 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * TilingSprite would ignore the `renderable` property, and render it regardless. Now it skips render if `renderable` is false (thanks @Green92 #2214)
 * We have replaced the PolyK Triangulation calls within Pixi with EarCut 2.0.8. This allows for faster polygon triangulation, and also deals with more complex polygons that PolyK would crash on.
 * Graphics.arc has a new argument `segments` that allows you to control how many segments are created when the arc is drawn. The default is 40. Use a higher number for more fidelity, i.e. if you find that reversed arcs are not joining up fully (#2064)
-* PIXI.WebGLMaskManager.pushMask and popMask are now more robust in checking that they have been given valid mask data (#2152)
-* PIXI.WebGLGraphics.stencilBufferLimit is a new integer that allows you to define how many points exist in a Graphics object before Pixi swaps to using the Stencil Buffer to render it. The default is 6 but can be increased. This fixes issues with things like Quadratic curves not rendering as masks in WebGL.
+* PIXILegacy.WebGLMaskManager.pushMask and popMask are now more robust in checking that they have been given valid mask data (#2152)
+* PIXILegacy.WebGLGraphics.stencilBufferLimit is a new integer that allows you to define how many points exist in a Graphics object before Pixi swaps to using the Stencil Buffer to render it. The default is 6 but can be increased. This fixes issues with things like Quadratic curves not rendering as masks in WebGL.
 * If a Display Object with a mask contained a child with a Filter, then the child would not render. The WebGLFilterManager now retains state and creates a new stencil buffer as required (thanks @hightopo #1842)
 * The Filter Texture and GL Viewport are now properly resized, fixing issues with custom resolutions and filters (thanks @englercj @amadeus #2326 #2320)
 * Graphics.generateTexture has a new argument `padding` which allows you to add extra spacing onto the generated texture. This is useful for small Graphics objects where you find a few pixels getting sliced off the edges due to rounding issues (#1933)
@@ -1544,7 +1544,7 @@ can be controlled per-input mode.
 * New Color stub added for the custom build process. Contains just the bare minimum of functions that Phaser needs to work. Cuts file size from 48.7KB to 7.4KB. Note: Do not stub this out if using BitmapData objects.
 * New DOM stub added for the custom build process. Contains just the bare minimum of functions that Phaser needs to work. Cuts file size from 14.8KB to 2.4KB. Note: Do not stub this out if using the full Scale Manager.
 * New Scale Manager stub added. Removes all Scale Manager handling from Phaser! But saves 75KB in the process. If you know you don't need to scale the Phaser canvas, or are handling that externally, then you can safely stub it out in a custom build.
-* Added the PIXI.PolyK, PIXI.WebGLGraphics and PIXI.CanvasGraphics files to the Graphics custom build option. They weren't used anyway and this removes an extra 40.2KB from the build size.
+* Added the PIXILegacy.PolyK, PIXILegacy.WebGLGraphics and PIXILegacy.CanvasGraphics files to the Graphics custom build option. They weren't used anyway and this removes an extra 40.2KB from the build size.
 * Phaser.Create no longer automatically creates a BitmapData object when it starts. It now only does it when you first make a texture or grid.
 * New Create stub added for the custom build process. Cuts file size by 8KB.
 * You can now exclude the FlexGrid from custom builds, saving 15KB.
@@ -1575,8 +1575,8 @@ can be controlled per-input mode.
 Please note that Phaser uses a custom build of Pixi and always has done. The following changes have been made to our custom build, not to Pixi in general.
 
 * CanvasRenderer.mapBlendModes optimised to cut down on file size.
-* PIXI.WebGLRenderer.updateTexture now returns a boolean depending on if the texture was successfully bound to the gl context or not.
-* PIXI.WebGLSpriteBatch.renderBatch would still try and render a texture even if `updateTexture` failed to bind it. It now checks the return value from `updateTexture` and ignores failed binds.
+* PIXILegacy.WebGLRenderer.updateTexture now returns a boolean depending on if the texture was successfully bound to the gl context or not.
+* PIXILegacy.WebGLSpriteBatch.renderBatch would still try and render a texture even if `updateTexture` failed to bind it. It now checks the return value from `updateTexture` and ignores failed binds.
 * WebGLRenderer.mapBlendModes optimised to cut down on file size.
 * Sprite.getBounds would report an inaccurate value if the sprite was negatively scaled (causing things like generateTexture to be cut off) (thanks @DavidAPC #2108)
 * Removed DisplayObject.transformCallback as it's a Game Object component.
@@ -1591,7 +1591,7 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 * Tween.frameBased does the same as TweenManager.frameBased but allows you to set the value on a per-tween basis.
 * BitmapText.smoothed is a new boolean property that allows you to set texture smoothing on a bitmap font or not. By default smoothing is always on, but you can turn it off which helps for bitmap fonts created from pixel art style character sets.
 * Text.addFontStyle and Text.addFontWeight allow you to apply font weights and styles to specific characters in a Text object. For example you can now include bold or italics within single Text objects (thanks @jdnichollsc #1950)
-* PIXI.CanvasPool is a new static global created to deal with the issue of resource leaks and continuous DOM node build-up when creating lots of Text or BitmapData objects, or when calling `generateTexture` on any display object. The CanvasPool will do its best to re-use out dated canvas elements rather than filling up the DOM with new ones.
+* PIXILegacy.CanvasPool is a new static global created to deal with the issue of resource leaks and continuous DOM node build-up when creating lots of Text or BitmapData objects, or when calling `generateTexture` on any display object. The CanvasPool will do its best to re-use out dated canvas elements rather than filling up the DOM with new ones.
 * Sprite.setTexture has a new `destroyBase` parameter - set this to `true` if you know the base used a generated texture that isn't being used by any other sprites. This will free-up the canvas for further re-use by other calls to `generateTexture` or Text objects.
 * Line.midPoint will return a Point object where the `x` and `y` values correspond to the center (or midpoint) of the Line segment.
 * Line.rotateAround allows you to rotate a Line around the given coordinates (in world space)
@@ -1661,37 +1661,37 @@ Please note that Phaser uses a custom build of Pixi and always has done. The fol
 
 This is a small point release that updates the Creature runtimes and fixes a couple of small cache issues.
 
-It also modifies the Grunt build scripts so that all third party libs (such as Creature, P2, gl-matrix and PIXI) are now kept well and truly outside of Phaser. They are defined and placed first in the build files. So no more PIXI hiding within the Phaser namespace or UMD patching for Phaser required.
+It also modifies the Grunt build scripts so that all third party libs (such as Creature, P2, gl-matrix and PIXILegacy) are now kept well and truly outside of Phaser. They are defined and placed first in the build files. So no more PIXILegacy hiding within the Phaser namespace or UMD patching for Phaser required.
 
 ### Updates
 
 * The Creature Runtimes have been updated to the latest versions and the `Phaser.Creature` class updated to use them.
 * GameObjectFactory.creature is a new method to help with quick Creature animation object creation.
-* Cache.getPixiTexture will now search the image cache if it couldn't find a texture in the PIXI.TextureCache global array, if it finds a matching image in the image cache then it returns a new PIXI.Texture based on it.
-* Cache.getPixiBaseTexture will now search the image cache if it couldn't find a BaseTexture in the PIXI.BaseTextureCache global array.
+* Cache.getPixiTexture will now search the image cache if it couldn't find a texture in the PIXILegacy.TextureCache global array, if it finds a matching image in the image cache then it returns a new PIXILegacy.Texture based on it.
+* Cache.getPixiBaseTexture will now search the image cache if it couldn't find a BaseTexture in the PIXILegacy.BaseTextureCache global array.
 
 ### Bug Fixes
 
 * Fixed Cache.getKeys to use the `_cacheMap` (thanks @jamesgroat #1929)
 * Safari on OSX wouldn't recognise button presses on trackpads (thanks JakeCake)
-* Cache.removeImage now calls destroy on the image BaseTexture, removing it from the PIXI global caches without throwing a warning.
+* Cache.removeImage now calls destroy on the image BaseTexture, removing it from the PIXILegacy global caches without throwing a warning.
 
 ## Version 2.4 - "Katar" - 22nd July 2015
 
 ### API Changes
 
 * RenderTexture.render now takes a Matrix as its second parameter, not a Point object. This brings it in line with Pixi and allows you to perform much more complex transformations on the object being rendered. If you need to replicate the old behavior please use RenderTexture.renderXY(sprite, point.x, point.y) instead.
-* PIXI.DisplayObject.updateTransform has a new optional parameter `parent`. If the DisplayObject doesn't have a parent (i.e. it isn't on the display list yet) then in the past `updateTransform` would fail. This meant you couldn't do things like scale or rotate a Sprite and then draw it to a RenderTexture or BitmapData, as calls to updateTransform would be ignored. The new checks now look to see if the `parent` parameter is set. If so this takes priority over the actual parent and is used to modify the transform (note that it **doesn't** reparent the DisplayObject, it merely uses it for the transform.) If there is no parent (explicitly or via the parameter) then it falls back to use Phaser.World as the parent. If it can't reach that then no transform takes place.
+* PIXILegacy.DisplayObject.updateTransform has a new optional parameter `parent`. If the DisplayObject doesn't have a parent (i.e. it isn't on the display list yet) then in the past `updateTransform` would fail. This meant you couldn't do things like scale or rotate a Sprite and then draw it to a RenderTexture or BitmapData, as calls to updateTransform would be ignored. The new checks now look to see if the `parent` parameter is set. If so this takes priority over the actual parent and is used to modify the transform (note that it **doesn't** reparent the DisplayObject, it merely uses it for the transform.) If there is no parent (explicitly or via the parameter) then it falls back to use Phaser.World as the parent. If it can't reach that then no transform takes place.
 * If Phaser.Sound.noAudio has been set then Phaser.Loader will not load any audio files. No errors are thrown, but all calls to Loader.audio and Loader.audiosprite are silently ignored. `noAudio` can be set either via the `PhaserGlobal` global var or is set if the device your game is running on has no audio playback support.
 * Files can now be added to the Loader with an absolute URL even if you have a Loader.baseURL set. In previous versions the baseURL would still be prepended to the file URL, but the Loader now checks if the a file URL begins with `http` or `//` and skips prepending the baseURL to it.
 * Phaser.StateManager would incorrectly call `loadUpdate` and `loadRender` while the game was paused or if the State didn't have an `update` or `render` method defined, even after the loader was completed. Although this is a bug fix it's still an API change should you have been using the `loadUpdate/Render` calls in the old way. Also the StateManager no longer calls `preRender` unless the State `create` method has *finished*. If the State doesn't have a `create` method then `preRender` runs immediately.
-* Frame.uuid has been removed (was flagged as deprecated for several releases). This has a two-fold effect: First it means that the property no longer exists and secondly it means that the AnimationParser (the class responsible for loading sprite sheets and texture atlases) no longer has to call either RandomDataGenerator.uuid OR populates the PIXI.TextureCache. The first saves some CPU time and the second saves memory by not creating references to textures it doesn't ever use. The PIXI.TextureCache is now ignored by Phaser other than for the `__missing` and `__default` textures.
+* Frame.uuid has been removed (was flagged as deprecated for several releases). This has a two-fold effect: First it means that the property no longer exists and secondly it means that the AnimationParser (the class responsible for loading sprite sheets and texture atlases) no longer has to call either RandomDataGenerator.uuid OR populates the PIXILegacy.TextureCache. The first saves some CPU time and the second saves memory by not creating references to textures it doesn't ever use. The PIXILegacy.TextureCache is now ignored by Phaser other than for the `__missing` and `__default` textures.
 * Phaser.AnimationParser methods `JSONData`, `JSONDataHash` and `XMLData` have all had their `cacheKey` parameter removed as it's no longer used.
 * Input.deleteMoveCallback no longer takes an integer as its parameter. Now you have to give it the original callback and context in order to remove it. This is to protect against index invalidation (see the fixed Bugs list)
 * Group.add and Group.addAt will only create a Physics Body on the child if it doesn't already have one. This is a change from 2.3 where it would replace the physics body property with the new body, but this could lead to garbage build-up over time, so you should now properly destroy the body before changing it.
 * Button game objects now have `Input.useHandCursor` set to `true` by default.
-* Phaser.BitmapText no longer extends PIXI.BitmapText but replaces it entirely.
-* Phaser.Text no longer extends PIXI.Text but replaces it entirely. Phaser.Text now natively extends a Phaser Sprite, meaning it can be enabled for physics, damaged, etc.
+* Phaser.BitmapText no longer extends PIXILegacy.BitmapText but replaces it entirely.
+* Phaser.Text no longer extends PIXILegacy.Text but replaces it entirely. Phaser.Text now natively extends a Phaser Sprite, meaning it can be enabled for physics, damaged, etc.
 * Mouse.button and MSPointer.button have been deprecated and are no longer set (they remain at -1). They never supported complex button events such as holding down 2 buttons and releasing just one, or any buttons other than left and right. They have been replaced with the far more robust and accurate Pointer DeviceButton properties such as `Pointer.leftButton`, `Pointer.rightButton` and so on.
 * Phaser.DeviceButton is a new class that handles a specific button on an input device, for example the middle button of a mouse, the eraser button of a stylus or a shoulder button on a Gamepad.
 * Phaser.DeviceButton.shiftKey is a boolean that holds if the shift key was held down or not during the last button event.
@@ -1716,8 +1716,8 @@ For the full list of p2 additions please read [their change log](https://github.
 ### Build Updates
 
 * The Grunt build script now lets you exclude four new modules: rope, tilesprite, creature and video.
-* Rope removes the ability to create Rope sprites and also removes the PIXI.Rope and PIXI.Strip classes.
-* TileSprite removes the ability to create Tile Sprites and also removes the PIXI.TilingSprite class.
+* Rope removes the ability to create Rope sprites and also removes the PIXILegacy.Rope and PIXILegacy.Strip classes.
+* TileSprite removes the ability to create Tile Sprites and also removes the PIXILegacy.TilingSprite class.
 * Creature is not enabled by default, but allows you to control support for Creature bone based animations.
 * Video removes the ability to render Videos and video streams to textures.
 * Pixi is no longer an optional module. Phaser no longer uses any main stream branch of Pixi and has multiple fixes and tweaks internally through-out it. Therefore it's now no longer possible to replace the version of Pixi that Phaser uses with any other version, so we removed the option from the custom list. Over time we will do away with the Pixi globals and merge it fully into Phaser to avoid conflicts with any other version of Pixi present.
@@ -1730,8 +1730,8 @@ For the full list of p2 additions please read [their change log](https://github.
 * Tilemap.getTileWorldXY has a new optional parameter: `nonNull` which if set makes it behave in the same way as `getTile` does (thanks @GGAlanSmithee #1722)
 * Group.hash is an array (previously available as `Group._hash`, but protected) into which you can add any of its children via `Group.addToHash` and `Group.removeFromHash`. Only children of the Group can be added to and removed from the hash. The hash is used automatically by Arcade Physics in order to perform non z-index based destructive sorting. However if you don't use Arcade Physics, or it isn't a physics enabled Group, then you can use the hash to perform your own sorting and filtering of Group children without touching their z-index (and therefore display draw order).
 * Group.physicsSortDirection is a new property allowing you to set a custom sort direction for Arcade Physics Sprites within the Group hash. Previously Arcade Physics used one single sort direction (defined on `Phaser.Physics.Arcade.sortDirection`) but this change allows you to specifically control how each and every Group is sorted, so you can now combine tall and wide Groups with narrow and thin in a single system.
-* Cache.getPixiTexture will return a PIXI.Texture from the cache based on the given key. A PIXI Texture is created automatically for all images loaded and added to the cache.
-* Cache.getPixiBaseTexture will return a PIXI.BaseTexture from the cache based on the given key. A PIXI BaseTexture is created automatically for all images loaded and added to the cache.
+* Cache.getPixiTexture will return a PIXILegacy.Texture from the cache based on the given key. A PIXILegacy Texture is created automatically for all images loaded and added to the cache.
+* Cache.getPixiBaseTexture will return a PIXILegacy.BaseTexture from the cache based on the given key. A PIXILegacy BaseTexture is created automatically for all images loaded and added to the cache.
 * Phaser.Matrix.clone allows you to clone the Matrix to a new object, or copy its values into the given Matrix.
 * Phaser.Matrix.copyFrom and copyTo allow you to copy Matrix values from and to other Matrix  objects.
 * Phaser.Matrix.setTo allows you to set all properties of a Matrix in a single call.
@@ -1748,9 +1748,9 @@ For the full list of p2 additions please read [their change log](https://github.
 * Device.webmVideo indicates if the browser can play back webm video files with the vp8 codec.
 * Device.vp9Video indicates if the browser can play back webm video files with the vp9 codec.
 * Device.hlsVideo indicates if the browser can play back mpeg video files.
-* PIXI.DisplayObject.worldPosition contains the position of the DisplayObject (and therefore any object that inherits from it, such as Phaser.Sprite) taking into account all transforms in the display list. It is updated at the end of `DisplayObject.updateTransform`. DisplayObject.position reflects only the position applied to the object directly, whereas worldPosition includes the positions that may have been applied to its ancestors.
-* PIXI.DisplayObject.worldScale contains the scale of the DisplayObject (and therefore any object that inherits from it, such as Phaser.Sprite) taking into account all transforms in the display list. It is updated at the end of `DisplayObject.updateTransform`. DisplayObject.scale reflects only the scale applied to the object directly, whereas worldScale includes any scales that may have been applied to its ancestors.
-* PIXI.DisplayObject.worldRotation contains the rotation of the DisplayObject (and therefore any object that inherits from it, such as Phaser.Sprite) taking into account all transforms in the display list. It is updated at the end of `DisplayObject.updateTransform`. DisplayObject.rotation reflects only the rotation applied to the object directly, whereas worldRotation includes any rotations that may have been applied to its ancestors.
+* PIXILegacy.DisplayObject.worldPosition contains the position of the DisplayObject (and therefore any object that inherits from it, such as Phaser.Sprite) taking into account all transforms in the display list. It is updated at the end of `DisplayObject.updateTransform`. DisplayObject.position reflects only the position applied to the object directly, whereas worldPosition includes the positions that may have been applied to its ancestors.
+* PIXILegacy.DisplayObject.worldScale contains the scale of the DisplayObject (and therefore any object that inherits from it, such as Phaser.Sprite) taking into account all transforms in the display list. It is updated at the end of `DisplayObject.updateTransform`. DisplayObject.scale reflects only the scale applied to the object directly, whereas worldScale includes any scales that may have been applied to its ancestors.
+* PIXILegacy.DisplayObject.worldRotation contains the rotation of the DisplayObject (and therefore any object that inherits from it, such as Phaser.Sprite) taking into account all transforms in the display list. It is updated at the end of `DisplayObject.updateTransform`. DisplayObject.rotation reflects only the rotation applied to the object directly, whereas worldRotation includes any rotations that may have been applied to its ancestors.
 * Loader.video allows you to load a video file into Phaser. It works in the same way as Loader.audio, allowing you to pass an array of video files - and it will load the first one the device is capable of playing back. You can optionally load the video via xhr where the video data is converted to a Blob upon successful load.
 * Cache.addVideo allows you to add a loaded video into the Phaser Cache. This is called automatically by the Phaser Loader, but may be invoked directly as well.
 * Cache.checkVideoKey allows you to check if a video is stored in the cache based on the given key.
@@ -1799,7 +1799,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * Loader.shader allows you to load a fragment shader from an external file.
 * Cache.addShader adds a fragment shader into the cache.
 * Cache.getShader gets a fragment shader from the cache.
-* The Cache has been internally refactored considerably. Image data is now all stored in the same object, rather than being split across the PIXI global caches (such as PIXI.TextureCache and PIXI.BaseTextureCache), which are no longer used by Phaser.
+* The Cache has been internally refactored considerably. Image data is now all stored in the same object, rather than being split across the PIXILegacy global caches (such as PIXILegacy.TextureCache and PIXILegacy.BaseTextureCache), which are no longer used by Phaser.
 * Internally the Cache now uses a single _cache object, which is partitioned to store the various different object types. Before the cache used lots of private objects, one per data type, but it's now a lot cleaner and we've managed to cut out hundreds of lines of duplicate code in the process.
 * Cache.getImage has a new argument which lets you return either just the HTML Image element or the entire image cache object, which includes the baseTexture and frame data.
 * Cache.getImage will return a __default image if the key isn't given, or a __missing image if the key is given but not found in the cache. This means it will always return a valid image and no longer cause Phaser to throw runtime errors deeper down with invalid image objects.
@@ -1813,7 +1813,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * Added missing `resumed` method to Phaser.State class template.
 * Color.webToColor and Color.updateColor now updates the `out.color` and `out.color32` properties (thanks @cuixiping #1728)
 * Tilemap.createFromObjects has been updated for Tiled 0.11 and can now look-up object layers based on id, uid or name. It will also now copy over Sprite scaling properties if set (thanks @mandarinx #1738)
-* Graphics.drawPolygon can now accept a Phaser.Polygon or PIXI.Polygon object, as well as a points array (#1712)
+* Graphics.drawPolygon can now accept a Phaser.Polygon or PIXILegacy.Polygon object, as well as a points array (#1712)
 * Phaser.Physics hooks added in for MatterJS support (coming soon)
 * Body.destroy now automatically calls `Group.removeFromHash`.
 * Physics.Arcade.sort has a new property 'sortDirection'. If not specified it will use World.sortDirection. If the Group given as the first parameter has its `physicsSortDirection` property set that will override any other setting.
@@ -1821,7 +1821,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * Physics.Arcade.sort now doesn't bail out if the Group contains a mixture of physics and non-physics enabled objects, as the Group hash is now only ever populated with physics enabled objects. Also the sort comparison functions no longer return -1 if the bodies are invalid, but zero instead (#1721)
 * Phaser.Group would automatically add a child into the _hash array as soon as the child was created (or moved into the Group). This no longer happens. Instead the child is only added to `Group.hash` if it is enabled for Arcade Physics. However `Group.addToHash` and the hash array have been exposed as public in case you were taking advantage of the _hash even though it was a previously marked as private.
 * Cache.getTexture has now been removed (it was deprecated several versions ago). Use Cache.getRenderTexture instead.
-* Removed duplicate methods from PIXI.Text such as wordWrap and updateText as Phaser overrides them, so it was wasting bytes.
+* Removed duplicate methods from PIXILegacy.Text such as wordWrap and updateText as Phaser overrides them, so it was wasting bytes.
 * Phaser.StateManager no longer calls `preRender` unless the State `create` method has finished. If the State doesn't have a `create` method then `preRender` runs immediately.
 * Phaser.StateManager.created is a new read-only boolean that tells you if the State has finished running its `create` method. If it doesn't have one it's always true.
 * RenderTexture.render and `renderXY` would ignore the Sprites rotation or scale. The full Sprite transform is now used correctly when the Sprite is drawn to the texture. If you wish to replicate the old behavior please use `RenderTexture.renderRawXY` instead.
@@ -1831,7 +1831,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * SoundManager.usingWebAudio is set to `false` by default (used to be `true`) and is only explicitly set if Web Audio is available and hasn't been disabled in the PhaserGlobal object.
 * SoundManager.touchLocked is now set to `false` should the device be using legacy Audio, avoiding the unlock call running without need.
 * Added `type` parameter to `VideoTexture.fromUrl` allowing you to define the mime-type of the video file, which is required for Firefox and Safari in most cases.
-* PIXI.BaseTexture.forceLoaded allows you to set a BaseTexture as loaded, with the given width and height. It then calls `BaseTexture.dirty`. This is important for when you don't want to modify the shape of the source object by forcing in `complete` or dimension properties it may not naturally have, but still wish to use it as a base texture.
+* PIXILegacy.BaseTexture.forceLoaded allows you to set a BaseTexture as loaded, with the given width and height. It then calls `BaseTexture.dirty`. This is important for when you don't want to modify the shape of the source object by forcing in `complete` or dimension properties it may not naturally have, but still wish to use it as a base texture.
 * SoundManager.volume now has its input value clamped to ensure it's between 0 and 1 (inclusive)
 * Removed `Input.moveCallback` and `Input.moveCallbackContext` as neither are used any longer. Use `Input.addMoveCallback`.
 * SoundManager now uses the new `Touch.addTouchLockCallback` methods to handle mobile device audio unlocking.
@@ -1840,7 +1840,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * RetroFont no longer puts any entries into the TextureCache or generates any UUIDs on instantiation, speeding up creation and lowering memory use.
 * BitmapData.update now validates the `width` and `height` values to ensure they aren't lower than 1, which would previously cause a context error.
 * Texture.requiresReTint is a new property that controls if a texture requires the display object to be re-tinted having been updated internally. The LoadTexture component now sets this.
-* PIXI.Sprite.tintedTexture contains a canvas object that holds the tinted version of the Sprite. This is only populated in Canvas, not in WebGL.
+* PIXILegacy.Sprite.tintedTexture contains a canvas object that holds the tinted version of the Sprite. This is only populated in Canvas, not in WebGL.
 * ScaleManager.scaleSprite will no longer try and scale a display object that doesn't have a scale property.
 * The LoadTexture component has a new property `customRender` which is checked for in the Core postUpdate to know when to render custom elements like Videos.
 * BitmapText line spacing and word wrapping has been vastly improved and bought in-line with how Pixi 3 handles it, but with additional anchor support.
@@ -1857,11 +1857,11 @@ For the full list of p2 additions please read [their change log](https://github.
 * BitmapData.clear has 4 new optional parameters: x, y, width and height, that define the area to be cleared. If left undefined it works exactly the same as before and clears the entire canvas.
 * Added Phaser.Keyboard.COMMA and Phaser.Keyboard.PERIOD to the consts list.
 * Canvas.setSmoothingEnabled only applies the value of the property exists, which avoids the Chrome webkit prefix deprecation warnings.
-* PIXI._CompileShader can now take an array or a string for the fragment src.
+* PIXILegacy._CompileShader can now take an array or a string for the fragment src.
 * AnimationParser.spriteSheet can now accept either a string-based key or an HTML Image object as the key argument.
-* LoaderParser.bitmapFont, xmlBitmapFont and jsonBitmapFont all now return the font data rather than write it to the now deprecated PIXI.BitmapText.fonts global array.
-* PIXI.BitmapText has been removed as a global array, as it is no longer used.
-* PIXI has been made available for Phaser when using requireJS (thanks @mkristo #1923)
+* LoaderParser.bitmapFont, xmlBitmapFont and jsonBitmapFont all now return the font data rather than write it to the now deprecated PIXILegacy.BitmapText.fonts global array.
+* PIXILegacy.BitmapText has been removed as a global array, as it is no longer used.
+* PIXILegacy has been made available for Phaser when using requireJS (thanks @mkristo #1923)
 * Internally the Time class has been updated to split out the RAF and SetTimeout implementations. This cuts down the update loop workload significantly, which was causing a performance optimization bottleneck in V8.
 * TweenData.update now uses the `Time.elapsedMS` value for its delta calculation, instead of the physicsStep - this is because tweens are inherently time duration based and on a lagging system they were not properly completing when they should do (also addresses #1819)
 * World.stateChange is a new method that is called whenever the state changes or restarts. It resets the world x/y coordinates back to zero and then resets the Camera.
@@ -1883,7 +1883,7 @@ For the full list of p2 additions please read [their change log](https://github.
 * P2.getConstraints would return an array of null objects. It now returns the raw p2 constraint objects (thanks @valueerrorx #1726)
 * TilemapLayer docs incorrectly reported it as extending Phaser.Image, but it doesn't share the same components so has been updated.
 * TilemapLayer was missing the Input component (thanks @uhe1231 #1700)
-* PIXI.Graphics in Canvas mode wouldn't respect the objects visible or alpha zero properties, rendering it regardless (thanks @TimvdEijnden #1720)
+* PIXILegacy.Graphics in Canvas mode wouldn't respect the objects visible or alpha zero properties, rendering it regardless (thanks @TimvdEijnden #1720)
 * Enabling Arcade Physics would add the deltaCap property onto Phaser.Time, even though the property doesn't exist any more, changing the class shape in the process.
 * Phaser.StateManager would incorrectly call `loadUpdate` while the game was paused or if the State didn't have an `update` method defined even after the loader was completed.
 * Phaser.StateManager would incorrectly call `loadRender` while the game was paused or if the State didn't have an `render` method defined even after the loader was completed.
@@ -1898,12 +1898,12 @@ For the full list of p2 additions please read [their change log](https://github.
 * Rope constructor was fixed enabling it again (thanks @gionatan7 #1799)
 * FrameData.getFrameIndexes when called with a partial array (such as creating an animation out of a set of frames) would return the indexes array padded out with 'undefined' entries, causing short animations to never fully play through.
 * AnimationManager.add no longer sets the `currentFrame` property when just adding an Animation to a Sprite. The `currentFrame` property is now only set when the animation begins playing. This avoids the Sprite.frame and Sprite.frameName properties from returning incorrect results after adding (but not playing) an Animation. It also allows very short animations (2 frames) to play correctly without needing to loop.
-* PIXI.Graphics was calling Polygon.flatten in its drawShape call, causing the original Polygon object to internally change. It now takes a clone of the polygon and only flattens that (#1779)
+* PIXILegacy.Graphics was calling Polygon.flatten in its drawShape call, causing the original Polygon object to internally change. It now takes a clone of the polygon and only flattens that (#1779)
 * Tween.generateData didn't set a default value for the `frameRate` parameter if undefined, causing an infinite loop (thanks @rblopes #1782 #1785)
 * Fixed the Pixelate filter, changing the `dimensions` uniform to a 2f and removing un-needed vecs from the fragment src. Also fixed the size getter and added sizeX and sizeY getters/setters (#1780)
 * Tween.to and Tween.from can now accept `null` as the ease parameter value. If `null` it will use the default tween, as per the documentation (thanks @nkovacs #1817)
 * TilemapParser.parseTiledJSON would ignore 'falsy' properties set on Objects in Tiled JSON tilemaps, such as `x: 0` or `visible: false`. These properties are now accurately copied over to the destination map data (thanks @MaksJS #1818)
-* Removed un-necessary PIXI.TextureCache pollution in Phaser.LoaderParser.bitmapFont.
+* Removed un-necessary PIXILegacy.TextureCache pollution in Phaser.LoaderParser.bitmapFont.
 * Sound.resume wouldn't properly restart looped sounds in Chrome after being paused. Phaser now specifically handles the Chrome 42 bug and later fix (thanks @nkovacs #1820)
 * Setting the BitmapText.maxWidth property would throw an error (thanks @drhayes #1807)
 * If running under Cordova and iOS the Game.lockRender boolean will be set to `true` when the game pauses and `false` when it resumes. This avoids the `gpus_ReturnNotPermittedKillClient` app crash on iOS (thanks @cncolder #1800)
@@ -1922,12 +1922,12 @@ For the full list of p2 additions please read [their change log](https://github.
 * Debug.ropeSegments didn't take the scale of the Rope object into consideration, causing incorrect debug rendering.
 * If a Sound was muted, or had its volume changed while it was still decoding (i.e. before it started playback) then the mute and/or volume were ignored and the sound would play anyway (thanks @brianbunch #1872)
 * Group.addMultiple if given a Group.children array as the first parameter would fail as the original group length was decreased out of line with the children being added. Group.addMultiple now checks if the children argument is a Phaser.Group instance, and if so it uses Group.moveAll instead on it (thanks @AnderbergE #1898)
-* PIXI.DisplayObject.updateTransform now nulls the _currentBounds property (thanks @gaufqwi #1906)
+* PIXILegacy.DisplayObject.updateTransform now nulls the _currentBounds property (thanks @gaufqwi #1906)
 * Improved the JSON BitmapText implementation (thanks @Feenposhleen #1912 #1837)
 * game.make.group did not setup parent correctly (thanks @mthurlin #1911)
 * Fix reference error for process in the Device class (thanks @mkristo #1922)
 * Sprites with Arcade Physics bodies that had `collideWorldBounds` enabled would be moved to the wrong position if you restarted a State (or swapped to a new State) that reset the world bounds (thanks @vulvulune #1775)
-* PIXI.BaseTexture.fromCanvas now checks the canvas dimensions and if either face is zero it sets them to 1px to avoid WebGL texture binding errors.
+* PIXILegacy.BaseTexture.fromCanvas now checks the canvas dimensions and if either face is zero it sets them to 1px to avoid WebGL texture binding errors.
 
 ### Deprecated
 
@@ -2109,7 +2109,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * Loader.audiosprite has a new `jsonData` parameter. It allows you to pass a pre-existing JSON object (or a string which will be parsed as JSON) to use as the audiosprite data, instead of specifying a URL to a JSON file on the server (thanks @jounii #1447)
 * Loader.audiosprite has a new `autoDecode` parameter. If `true` the audio file will be decoded immediately upon load.
 * Tile.properties is now unique to that specific Tile, and not a reference to the Tileset index bound properties object. Tile.properties can now be modified freely without impacting other tiles sharing the same id (#1254)
-* PIXI.TextureSilentFail is a boolean that defaults to `false`. If `true` then `PIXI.Texture.setFrame` will no longer throw an error if the texture dimensions are incorrect. Instead `Texture.valid` will be set to `false` (#1556)
+* PIXILegacy.TextureSilentFail is a boolean that defaults to `false`. If `true` then `PIXILegacy.Texture.setFrame` will no longer throw an error if the texture dimensions are incorrect. Instead `Texture.valid` will be set to `false` (#1556)
 * InputHandler.enableDrag with a boundsRect set now takes into account the Sprites anchor when limiting the drag (thanks @unindented #1593)
 * InputHandler.enableDrag with a boundsSprite set now takes into account both the Sprites anchor and the boundsSprite anchor when limiting the drag.
 * Sound in Web Audio now uses AudioContext.onended to trigger when it will stop playing instead of using a time based value. This is only used if the sound doesn't loop and isn't an audio sprite, but will give a much more accurate `Sound.onStop` event. It also prevents short audio files from being cut off during playback (#1471) and accounts for time spent decoding.
@@ -2135,7 +2135,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * SoundManager.unlock checks for audio `start` support and falls back to `noteOn` if not found.
 * Sprite.frame and AnimationManager.frame wouldn't return the correct index if a sprite sheet was being used unless it had first been set via the setter.
 * Error in diffX and diffY calculation in Tilemap.paste (thanks @amelia410 #1446)
-* Fixed issue in PIXI.canUseNewCanvasBlendModes which would create false positives in browsers that supported `multiply` in Canvas path/fill ops, but not for `drawImage` (Samsung S5 for example). Now uses more accurate magenta / yellow mix test.
+* Fixed issue in PIXILegacy.canUseNewCanvasBlendModes which would create false positives in browsers that supported `multiply` in Canvas path/fill ops, but not for `drawImage` (Samsung S5 for example). Now uses more accurate magenta / yellow mix test.
 * Fixed FrameData.getFrame index out of bound error (thanks @jromer94 #1581 #1547)
 * In P2.Body calling adjust mass would desync the debug graphics from the real position of the body (thanks @tomlarkworthy #1549)
 * Fix CORS loading of BitmapFonts with IE9 (thanks @jeppester #1565)
@@ -2143,7 +2143,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * TileSprites weren't destroying WebGL textures, leading to eventual out of memory errors (thanks @chacal #1563)
 * P2.Body.clearCollision default values were incorrectly set to `false` if no parameters were provided, even though the docs said they were `true` (thanks @brianbunch #1597)
 * BitmapText.font wouldn't update an internal Pixi property (fontName) causing the text to fail to change font (thanks @starnut #1602)
-* Fixed issue in PIXI.Text where it was using the wrong string for descender text measurements.
+* Fixed issue in PIXILegacy.Text where it was using the wrong string for descender text measurements.
 * Sprite.loadTexture and Image.loadTexture now no longer call `updateTexture` if the texture given is a RenderTexture. This fixes issues with RetroFonts in IE11 WebGL as well as other RenderTexture related IE11 problems (#1310 #1381 #1523)
 * You can now tint animated Sprites in Canvas mode. Or change the texture atlas frame of a tinted Sprite or Image. Please note that this is pretty expensive (depending in the browser), as the tint is re-applied every time the *frame changes*. The Pixi tint cache has also been removed to allow for subtle tint color shifts and to avoid blowing up memory. So use this feature sparingly! But at least it does now work (#1070)
 * ArcadePhysics.moveToPointer no longer goes crazy if the maxTime parameter is given and the Sprite is positioned in a larger game world (thanks @AnderbergE #1472)
@@ -2152,7 +2152,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * Pointer.stop would call `event.preventDefault` if `Pointer._stateReset` was `true`, which is always `true` after a State has changed and before Pointer.start has been called. However this broken interacting with DOM elements in the case where the State changes and you immediately try to use the DOM element without first having clicked on the Phaser game. An additional guard was added so `preventDefault` will now only be called if both `_stateReste` and `Pointer.withinGame` are true (thanks @satan6 #1509)
 * Group.forEach (and many other Group methods) now uses the `children.length` value directly instead of caching it, which both helps performance and stops the loop from breaking should you remove a Group child in the invoked callback.
 * Phaser.Ellipse.contains is now working again (thanks @spayton #1524)
-* PIXI.WebGLRenderer.destroy has been fixed to decrement the `glContextId` and remove it from the PIXI.instances global. `Game.destroy` now hooks into this. This now means that you can now delete and create your Phaser game over and over without it crashing WebGL after the 4th attempt (#1260)
+* PIXILegacy.WebGLRenderer.destroy has been fixed to decrement the `glContextId` and remove it from the PIXILegacy.instances global. `Game.destroy` now hooks into this. This now means that you can now delete and create your Phaser game over and over without it crashing WebGL after the 4th attempt (#1260)
 * World.setBounds if called after you had already started P2 Physics would incorrectly create a new collision group for the wall objects. P2.World now remembers the settings you provide for each wall and the collision group, and re-applies these settings should the world dimensions ever change (thanks @nextht #1455)
 * InputHandler was using the wrong property in `checkBoundsSprite` when fixedToCamera (thanks @yig #1613)
 * Tween.to now correctly accepts arrays are destination values, which makes the Tween interpolate through each value specified in the array using the defined Tween.interpolation method (see new example, thanks @FridayMarch26th #1619)
@@ -2202,7 +2202,7 @@ We've rolled our own fixes into our version of Pixi, ensuring we keep it as bug-
 * The new fixed time-step code has been more carefully linked to Pixi transform updates. This should finally put a stop to the tunneling issues that were being reported.
 * Tween.stop fired a different set of onComplete parameters to Tween.update. Both now dispatch `onComplete(target, tween)`` as the parameters in that order (thanks @P0rnflake #1450)
 * Removed redundant `tolerance` parameter from Rectangle.intersects (thanks @toolness #1463)
-* Phaser.Graphics.drawCircle now overrides PIXI.drawCircle which means the docs are now correct re: diameter not radius (thanks @ethankaminski #1454)
+* Phaser.Graphics.drawCircle now overrides PIXILegacy.drawCircle which means the docs are now correct re: diameter not radius (thanks @ethankaminski #1454)
 * Device.webAudio check inversed to avoid throwing a warning in Chrome.
 * Mouse.mouseMoveCallback is flagged as deprecated.
 * Remove `tw` and `th` init from TilemapLayer (thanks @nextht #1474)
@@ -2438,7 +2438,7 @@ removal of the automatic closure, results in a very lightweight
 * Phaser games should now work again from the CocoonJS Launcher.
 * Only one of the mouse wheel events is listened to, newest standard first.
 This fixes a bug in FF where it would use the default DOMMouseWheel (thanks @pnstickne #1313)
-* Stage.smoothed needed to modify the value of PIXI.scaleMode.DEFAULT instead of PIXI.scaleMode.LINEAR (thanks @pixelpicosean #1322)
+* Stage.smoothed needed to modify the value of PIXILegacy.scaleMode.DEFAULT instead of PIXILegacy.scaleMode.LINEAR (thanks @pixelpicosean #1322)
 * Newly created Groups always had zero z index (thanks @spayton #1291)
 * Sprite.autoCull now properly works if the camera moves around the world.
 * Sprite.inCamera uses a much faster check if auto culling or world bounds checks are enabled and properly adjusts for camera position.
@@ -2452,27 +2452,27 @@ This fixes a bug in FF where it would use the default DOMMouseWheel (thanks @pns
 
 ### Pixi 2.1.0 New Features
 
-* unloadFromGPU added to PIXI.BaseTexture
-* PIXI.VideoTexture added
-* PIXI.RoundedRectangle added
-* Ensured all float32arrays use PIXI.Float32Array
+* unloadFromGPU added to PIXILegacy.BaseTexture
+* PIXILegacy.VideoTexture added
+* PIXILegacy.RoundedRectangle added
+* Ensured all float32arrays use PIXILegacy.Float32Array
 * Removed the use of call in updateTransform (as its 10x faster to run the function directly)
 * autoResize option added to renderer options (default is false). Pixi no longer automatically changes the style of the canvas.
-* PIXI.RenderTexture.getCanvas optimized
+* PIXILegacy.RenderTexture.getCanvas optimized
 
 ### Pixi 2.1.0 Bug Fixes
 
-* Fix destroy method of PIXI.WebGLRenderer
+* Fix destroy method of PIXILegacy.WebGLRenderer
 * Fixed Graphics.drawRoundedRectangle
 * Fixed Graphics.arcTo issue
 * Fixed Graphics.arc issue
 * Fixed Graphics.cacheAsBitmap alpha issue
-* Fixed PIXI.Strip alpha issue
-* Fixed PIXI.DisplayObject.cacheAsBitmap alpha issue
-* Fixed PIXI.RenderTexture Canvas Clear bug
-* Fixed PIXI.DisplayObject.updateTransform issue
+* Fixed PIXILegacy.Strip alpha issue
+* Fixed PIXILegacy.DisplayObject.cacheAsBitmap alpha issue
+* Fixed PIXILegacy.RenderTexture Canvas Clear bug
+* Fixed PIXILegacy.DisplayObject.updateTransform issue
 * Fixed webGL Shader textures issue
-* Fixed PIXI.DisplayObject.getLocalPosition()
+* Fixed PIXILegacy.DisplayObject.getLocalPosition()
 * Fixed CocoonJS crashing, when loading destroyed texture
 * Fix eventTarget emit bug
 
@@ -2496,7 +2496,7 @@ This fixes a bug in FF where it would use the default DOMMouseWheel (thanks @pns
 * Circle.getBounds added.
 * Ellipse.getBounds added.
 * Device.canPlayAudio now supports `opus` files directly, as well as `opus` encoded audio stored in ogg containers (#1232)
-* PIXI.AbstractFilter is now bundled by default to support the new `sprite.shader` feature in Pixi v2.
+* PIXILegacy.AbstractFilter is now bundled by default to support the new `sprite.shader` feature in Pixi v2.
 * Changed all typeof comparisons from == to === (thanks @bobbywilson0 #1230)
 * JSDoc fixes in the Rope class (thanks @Rovanion)
 * Filter.update now caches the previous pointer position to avoid flooding the uniform. Also the mouse uniform is now a value between 0 and 1 depending on the position within the game view.
@@ -2531,7 +2531,7 @@ This fixes a bug in FF where it would use the default DOMMouseWheel (thanks @pns
 
 * iOS8 alpha bug fixed.
 * set default padding to 0 for graphics objects.
-* PIXI.Graphics initial width and height is 0.
+* PIXILegacy.Graphics initial width and height is 0.
 * Fixed Graphics getBounds.
 * fix cacheAsBitmap alpha issue for canvas.
 * Fixed minY calculation in updateBounds.
@@ -2809,13 +2809,13 @@ Version 2.1.1. of Phaser is an emergency point release. It addresses a potential
 * Animation now guards against _frameData being null (thanks @lucbloom #1033)
 * Tilemap.swap now accurately swaps from A to B and from B to A (thanks @noidexe #1034)
 * BitmapData.resize fixed to update the crop property too, resolves issues with images getting cut off with BitmapData.load.
-* OrientationSprite fix as it's not using PIXI.TextureCache anymore (thanks @DarkDev- #1036)
+* OrientationSprite fix as it's not using PIXILegacy.TextureCache anymore (thanks @DarkDev- #1036)
 
 ## Version 2.0.6 - "Jornhill" - 10th July 2014
 
 ### Significant Internal Changes
 
-* The PIXI.TextureCache global array is no longer used internally for storing Pixi Texture files. It's not actually a requirement of Pixi to use this and we were running into various issues with texture conflicts in DragonBones tests and issues with shared texture frames between Sprites. It meant we couldn't crop a sprite without cropping all instances unless we created a new texture frame at run-time, which as you can imagine is a huge overhead if you then want to crop an animated Sprite.
+* The PIXILegacy.TextureCache global array is no longer used internally for storing Pixi Texture files. It's not actually a requirement of Pixi to use this and we were running into various issues with texture conflicts in DragonBones tests and issues with shared texture frames between Sprites. It meant we couldn't crop a sprite without cropping all instances unless we created a new texture frame at run-time, which as you can imagine is a huge overhead if you then want to crop an animated Sprite.
 
 After talking with Mat at GoodBoyDigital about the issue it was his idea to just not use the TextureCache at all, and let each Sprite have its own frame. So this is the direction we've taken. We didn't save this for the 2.1 release as it doesn't actually alter the Phaser API at all, but it does change how things are working internally. So if you've got game code hooked directly into the `TextureCache` you need to be aware of this change before updating to 2.0.6.
 
@@ -2958,42 +2958,42 @@ The following changes were part of the Pixi 1.6.0 release:
 * Big graphics update!
 * Complex polys now supported in Pixi in webGL.
 * Nested masking and complex poly masking supported in webGL.
-* quadraticCurveTo added to PIXI.Graphics.
-* bezierCurveTo added to PIXI.Graphics.
-* arcTo added to PIXI.Graphics.
-* arc added to PIXI.Graphics.
-* drawPath added to PIXI.Graphics.
-* roundedRectangle added to PIXI.Graphics.
-* PIXI.Strip and PIXI.Rope added to library along with a new example.
+* quadraticCurveTo added to PIXILegacy.Graphics.
+* bezierCurveTo added to PIXILegacy.Graphics.
+* arcTo added to PIXILegacy.Graphics.
+* arc added to PIXILegacy.Graphics.
+* drawPath added to PIXILegacy.Graphics.
+* roundedRectangle added to PIXILegacy.Graphics.
+* PIXILegacy.Strip and PIXILegacy.Rope added to library along with a new example.
 * addChild / addChildAt functions now return the child.
-* Add scaleMode params to PIXI.FilterTexture and PIXI.RenderTexture.
-* fromFrames and fromImages static helper methods added to PIXI.MovieClip.
-* updateSourceImage added to PIXI.BaseTexture.
+* Add scaleMode params to PIXILegacy.FilterTexture and PIXILegacy.RenderTexture.
+* fromFrames and fromImages static helper methods added to PIXILegacy.MovieClip.
+* updateSourceImage added to PIXILegacy.BaseTexture.
 * Added multitouch support.
-* new valid property added to PIXI.Texture.
+* new valid property added to PIXILegacy.Texture.
 * Option to control premultiplied alpha on textures.
 * Pixi logs current version in the console.
 * webp image support.
-* clear function added to PIXI.RenderTexture
+* clear function added to PIXILegacy.RenderTexture
 
 ### Bug Fixes
 
-* Fix to roundPixels property in PIXI.CanvasRenderer.
+* Fix to roundPixels property in PIXILegacy.CanvasRenderer.
 * Fixed interactive bug when mousemove being called on removed objects.
 * Fix bug touch move event handling.
 * Various CocoonJS fixes.
-* Masks now work when used in PIXI.RenderTextures / cacheAsBitmap and PIXI.Filters.
-* Fixed bug where stroked PIXI.Text sometimes got clipped.
-* Removed the trailing whitespace when wordwrapping a PIXI.Text.
+* Masks now work when used in PIXILegacy.RenderTextures / cacheAsBitmap and PIXILegacy.Filters.
+* Fixed bug where stroked PIXILegacy.Text sometimes got clipped.
+* Removed the trailing whitespace when wordwrapping a PIXILegacy.Text.
 * Fixed texture loading on IE11.
 * Fixed Data URI loading.
 * Fixed issue so now loader only uses XDomainRequest in IE, if a crossorigin request is needed.
 * Fixed issue where alpha not being respected if cacheAsBitmap is true
-* Fixed PIXI.RenderTexture resize bug.
-* Fixed PIXI.TilingSprite not render children on canvas.
+* Fixed PIXILegacy.RenderTexture resize bug.
+* Fixed PIXILegacy.TilingSprite not render children on canvas.
 * Fixes issue where if both mask and filter are applied to one object the object did not render.
-* If the texture is destroyed, it should be removed from PIXI.TextureCache too.
-* PIXI.Graphics blendMode property now works in webGL.
+* If the texture is destroyed, it should be removed from PIXILegacy.TextureCache too.
+* PIXILegacy.Graphics blendMode property now works in webGL.
 * Trimmed sprites now behave the same as non trimmed sprites.
 
 ### Misc
@@ -3017,7 +3017,7 @@ The following changes were part of the Pixi 1.6.0 release:
 * PluginManager.add now accepts additional parameters and if given a function it will pass them all to the Plugin constructor.
 * Tilemap.getTile has a new nonNull parameter. If true it won't return `null` for empty tiles, but will return the actual Tile in that location.
 * Math.interpolateAngles and Math.nearestAngleBetween have been removed for the time being. They threw run-time errors previously.
-* PIXI.InteractionManager is no longer over-written if the object already exists (thanks @georgiee, #818)
+* PIXILegacy.InteractionManager is no longer over-written if the object already exists (thanks @georgiee, #818)
 * Key.justPressed and justReleased incorrectly set the delay value to 2500ms. Now defaults to 50ms (thanks @draklaw, fix #797)
 * Stage.backgroundColor can now accept short-code hex values: `#222`, `#334`, etc.
 * Pointer.withinGame is now accurate based on game scale and updated as the Pointer moves.
@@ -3111,7 +3111,7 @@ The Plugins have now all moved to [their own repository](https://github.com/phot
 * ArcadePhysics.collideSpriteVsGroup checks if Sprite has a body before carrying on, now safely skips sub-groups or other non-Sprite group children.
 * Group.remove now checks the child to see if it's a member of the root Group before removing it, otherwise Pixi throws an Error.
 * The Emitter no longer checks if minParticleScale = maxParticleScale for the scale check, allowing for fixed scale particles again.
-* The PIXI.AbstractFilter is now included in the Phaser Pixi build by default, allowing for easier use of external Pixi Filters.
+* The PIXILegacy.AbstractFilter is now included in the Phaser Pixi build by default, allowing for easier use of external Pixi Filters.
 * All Game Objects have a new property: destroyPhase (boolean) which is true if the object is in the process of being destroyed, otherwise false.
 * If Tween.yoyo was true but repeat was 0 then it wouldn't yoyo. Now if yoyo is set, but not repeat, the repeat count gets set to 1 (thanks @hilts-vaughan, fix #744)
 * RandomDataGenerator.integerInRange uses a new method of rounding the value to an integer to avoid distribution probability issues (thanks PhaserFan)
@@ -3487,8 +3487,8 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Text.setShadow applies a drop shadow to the Text being rendered. Control the x, y, color and blur.
 * Text.lineSpacing allows you to set additional spacing between each line that is rendered.
 * Text.inputEnabled allows you to enable all input events over Text objects: dragging, clicking, etc - anything that works on a Sprite works on Text now too.
-* Phaser.Ellipse added. A fully compatible port of the PIXI.Ellipse class, can be used in Sprite/Image hitArea tests.
-* Phaser.Polygon added. A fully compatible port of the PIXI.Polygon class, can be used in Sprite/Image hitArea tests.
+* Phaser.Ellipse added. A fully compatible port of the PIXILegacy.Ellipse class, can be used in Sprite/Image hitArea tests.
+* Phaser.Polygon added. A fully compatible port of the PIXILegacy.Polygon class, can be used in Sprite/Image hitArea tests.
 * InputHandler.pixelPerfectOver - performs a pixel perfect check to see if any pointer is over the current object (warning: very expensive!)
 * InputHandler.pixelPerfectClick - performs a pixel perfect check but only when the pointer touches/clicks on the current object.
 * TileSprite can now use a frame from a texture atlas or a sprite sheet.
@@ -3876,7 +3876,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * If running in Canvas mode and you have a render function it will save the context and reset the transform before running your render function.
 * Sprite will now check the exists property of the Group it is in, if the Group.exists = false the Sprite won't update.
 * If you specify 'null' as a Group parent it will now revert to using the World as the parent (before only 'undefined' worked)
-* Skip preupdate/update for PIXI hierarchies in which an ancestor doesn't exist (thanks cocoademon)
+* Skip preupdate/update for PIXILegacy hierarchies in which an ancestor doesn't exist (thanks cocoademon)
 * Loader.audio can now accept either an array of URL strings or a single URL string (thanks crazysam + kevinthompson)
 * MSPointer updated to support IE11 by dropping the prefix from the event listeners.
 * Device.cocoonJS added to detect if the game is running under Cocoon or a native browser.
@@ -4025,7 +4025,7 @@ There is an extensive [Migration Guide](https://github.com/photonstorm/phaser/bl
 * Group.create now sets the visible and alive properties of the Sprite to the same value as the 'exists' parameter.
 * World.randomX/Y now works with negative World.bounds values.
 * Tweens .to will now always return the parent (thanks powerfear)
-* You can now pass a PIXI.Texture to Sprite (you also need to pass a Phaser.Frame as the frame parameter) but this is useful for Sprites sharing joint canvases.
+* You can now pass a PIXILegacy.Texture to Sprite (you also need to pass a Phaser.Frame as the frame parameter) but this is useful for Sprites sharing joint canvases.
 * Group.alpha is now exposed publically and changes the Group container object (not the children directly, who can still have their own alpha values)
 * Device.webGL uses new inspection code to accurately catch more webGL capable devices.
 * Debug.renderSpriteBody updated to use a the new Sprite.Body.screenX/Y properties.

@@ -4,14 +4,14 @@
 
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
-            exports = module.exports = PIXI;
+            exports = module.exports = PIXILegacy;
         }
-        exports.PIXI = PIXI;
+        exports.PIXILegacy = PIXILegacy;
     } else if (typeof define !== 'undefined' && define.amd) {
-        define('PIXI', (function() { return root.PIXI = PIXI; })() );
+        define('PIXILegacy', (function() { return root.PIXILegacy = PIXILegacy; })() );
     } else {
-        root.PIXI = PIXI;
+        root.PIXILegacy = PIXILegacy;
     }
 
-    return PIXI;
+    return PIXILegacy;
 }).call(this);

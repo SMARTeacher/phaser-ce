@@ -11,11 +11,11 @@
 
 /**
  *
- * @class PIXI.WebGLSpriteBatch
+ * @class PIXILegacy.WebGLSpriteBatch
  * @private
  * @constructor
  */
-PIXI.WebGLSpriteBatch = function (game)
+PIXILegacy.WebGLSpriteBatch = function (game)
 {
 
     /**
@@ -151,14 +151,14 @@ PIXI.WebGLSpriteBatch = function (game)
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#setContext
+ * @method PIXILegacy.WebGLSpriteBatch#setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.WebGLSpriteBatch.prototype.setContext = function (gl)
+PIXILegacy.WebGLSpriteBatch.prototype.setContext = function (gl)
 {
     this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
     this.gl = gl;
-    if (PIXI._enableMultiTextureToggle)
+    if (PIXILegacy._enableMultiTextureToggle)
     {
         var dynamicIfs = '\tif (vTextureIndex == 0.0) {gl_FragColor = texture2D(uSamplerArray[0], vTextureCoord) * vColor;return;}\n';
         for (var index = 1; index < this.MAX_TEXTURES; ++index)
@@ -216,7 +216,7 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl)
 
     this.currentBlendMode = 99999;
 
-    var shader = new PIXI.PixiShader(gl, this.game);
+    var shader = new PIXILegacy.PixiShader(gl, this.game);
 
     shader.fragmentSrc = this.defaultShader.fragmentSrc;
     shader.uniforms = {};
@@ -226,10 +226,10 @@ PIXI.WebGLSpriteBatch.prototype.setContext = function (gl)
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#begin
+ * @method PIXILegacy.WebGLSpriteBatch#begin
  * @param renderSession {Object} The RenderSession object
  */
-PIXI.WebGLSpriteBatch.prototype.begin = function (renderSession)
+PIXILegacy.WebGLSpriteBatch.prototype.begin = function (renderSession)
 {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
@@ -238,29 +238,29 @@ PIXI.WebGLSpriteBatch.prototype.begin = function (renderSession)
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#end
+ * @method PIXILegacy.WebGLSpriteBatch#end
  */
-PIXI.WebGLSpriteBatch.prototype.end = function ()
+PIXILegacy.WebGLSpriteBatch.prototype.end = function ()
 {
     this.flush();
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#render
+ * @method PIXILegacy.WebGLSpriteBatch#render
  * @param sprite {Sprite} the sprite to render when using this spritebatch
  * @param {Matrix} [matrix] - Optional matrix. If provided the Display Object will be rendered using this matrix, otherwise it will use its worldTransform.
  */
-PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
+PIXILegacy.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
-    if (!this.game.config.batchRender && PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    if (!this.game.config.batchRender && PIXILegacy.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
     {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+        PIXILegacy.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
     }
 
     //  They provided an alternative rendering matrix, so use it
@@ -428,21 +428,21 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 /**
  * Renders a TilingSprite using the spriteBatch.
  *
- * @method PIXI.WebGLSpriteBatch#renderTilingSprite
+ * @method PIXILegacy.WebGLSpriteBatch#renderTilingSprite
  * @param sprite {TilingSprite} the sprite to render
  */
-PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
+PIXILegacy.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
     var baseTexture = texture.baseTexture;
     var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
-    if (!this.game.config.batchRender && PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    if (!this.game.config.batchRender && PIXILegacy.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
     {
         this.flush();
         gl.activeTexture(gl.TEXTURE0 + textureIndex);
         gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
-        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+        PIXILegacy.WebGLRenderer.textureArray[textureIndex] = baseTexture;
     }
 
     // check texture..
@@ -455,7 +455,7 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
     // set the textures uvs temporarily
     if (!sprite._uvs)
     {
-        sprite._uvs = new PIXI.TextureUvs();
+        sprite._uvs = new PIXILegacy.TextureUvs();
     }
 
     var uvs = sprite._uvs;
@@ -585,9 +585,9 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 /**
  * Renders the content and empties the current batch.
  *
- * @method PIXI.WebGLSpriteBatch#flush
+ * @method PIXILegacy.WebGLSpriteBatch#flush
  */
-PIXI.WebGLSpriteBatch.prototype.flush = function ()
+PIXILegacy.WebGLSpriteBatch.prototype.flush = function ()
 {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0)
@@ -721,7 +721,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
 
                 if (!shader)
                 {
-                    shader = new PIXI.PixiShader(gl, this.game);
+                    shader = new PIXILegacy.PixiShader(gl, this.game);
 
                     shader.fragmentSrc = currentShader.fragmentSrc;
                     shader.uniforms = currentShader.uniforms;
@@ -761,12 +761,12 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#renderBatch
+ * @method PIXILegacy.WebGLSpriteBatch#renderBatch
  * @param texture {Texture}
  * @param size {Number}
  * @param startIndex {Number}
  */
-PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startIndex)
+PIXILegacy.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startIndex)
 {
     if (size === 0)
     {
@@ -796,18 +796,18 @@ PIXI.WebGLSpriteBatch.prototype.renderBatch = function (texture, size, startInde
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#stop
+ * @method PIXILegacy.WebGLSpriteBatch#stop
  */
-PIXI.WebGLSpriteBatch.prototype.stop = function ()
+PIXILegacy.WebGLSpriteBatch.prototype.stop = function ()
 {
     this.flush();
     this.dirty = true;
 };
 
 /**
- * @method PIXI.WebGLSpriteBatch#start
+ * @method PIXILegacy.WebGLSpriteBatch#start
  */
-PIXI.WebGLSpriteBatch.prototype.start = function ()
+PIXILegacy.WebGLSpriteBatch.prototype.start = function ()
 {
     this.dirty = true;
 };
@@ -815,9 +815,9 @@ PIXI.WebGLSpriteBatch.prototype.start = function ()
 /**
  * Destroys the SpriteBatch.
  *
- * @method PIXI.WebGLSpriteBatch#destroy
+ * @method PIXILegacy.WebGLSpriteBatch#destroy
  */
-PIXI.WebGLSpriteBatch.prototype.destroy = function ()
+PIXILegacy.WebGLSpriteBatch.prototype.destroy = function ()
 {
     this.vertices = null;
     this.indices = null;

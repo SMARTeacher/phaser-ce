@@ -19,7 +19,7 @@ module.exports = {
         options: {
             sourceMap: '<%= sourcemap %>',
             sourceMapName: '<%= compile_dir %>/pixi.map',
-            banner: '/* Phaser v<%= package.version %> PIXI Build - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd. */\n'
+            banner: '/* Phaser v<%= package.version %> PIXILegacy Build - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd. */\n'
         },
 
         src: [ '<%= concat.pixi.dest %>' ],

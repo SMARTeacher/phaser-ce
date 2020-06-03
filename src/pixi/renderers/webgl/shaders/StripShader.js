@@ -3,11 +3,11 @@
  */
 
 /**
-* @class PIXI.StripShader
+* @class PIXILegacy.StripShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.StripShader = function (gl)
+PIXILegacy.StripShader = function (gl)
 {
     /**
      * @property _UID
@@ -29,7 +29,7 @@ PIXI.StripShader = function (gl)
      */
     this.program = null;
 
-    if (PIXI._enableMultiTextureToggle)
+    if (PIXILegacy._enableMultiTextureToggle)
     {
         var gl = this.gl;
         this.MAX_TEXTURES = gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS);
@@ -129,26 +129,26 @@ PIXI.StripShader = function (gl)
     this.init();
 };
 
-PIXI.StripShader.prototype.constructor = PIXI.StripShader;
+PIXILegacy.StripShader.prototype.constructor = PIXILegacy.StripShader;
 
 /**
 * Initialises the shader.
 *
-* @method PIXI.StripShader#init
+* @method PIXILegacy.StripShader#init
 */
-PIXI.StripShader.prototype.init = function ()
+PIXILegacy.StripShader.prototype.init = function ()
 {
     var gl = this.gl;
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = PIXILegacy.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
-    this.uSampler = PIXI._enableMultiTextureToggle ?
+    this.uSampler = PIXILegacy._enableMultiTextureToggle ?
         gl.getUniformLocation(program, 'uSamplerArray[0]') :
         gl.getUniformLocation(program, 'uSampler');
 
 
-    if (PIXI._enableMultiTextureToggle)
+    if (PIXILegacy._enableMultiTextureToggle)
     {
         var indices = [];
 
@@ -189,9 +189,9 @@ PIXI.StripShader.prototype.init = function ()
 /**
 * Destroys the shader.
 *
-* @method PIXI.StripShader#destroy
+* @method PIXILegacy.StripShader#destroy
 */
-PIXI.StripShader.prototype.destroy = function ()
+PIXILegacy.StripShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

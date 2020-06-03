@@ -800,7 +800,7 @@ Phaser.Device._initialize = function ()
 
         Phaser.CanvasPoolStatic.removeByCanvas(canvas);
 
-        PIXI.CanvasTinter.tintMethod = (device.canUseMultiply) ? PIXI.CanvasTinter.tintWithMultiply : PIXI.CanvasTinter.tintWithPerPixel;
+        PIXILegacy.CanvasTinter.tintMethod = (device.canUseMultiply) ? PIXILegacy.CanvasTinter.tintWithMultiply : PIXILegacy.CanvasTinter.tintWithPerPixel;
 
     }
 

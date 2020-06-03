@@ -29,7 +29,7 @@
 *
 * @class Phaser.TileSprite
 * @constructor
-* @extends PIXI.Sprite
+* @extends PIXILegacy.Sprite
 * @extends Phaser.Component.Core
 * @extends Phaser.Component.Angle
 * @extends Phaser.Component.Animation
@@ -53,7 +53,7 @@
 * @param {number} [y=0] - The y coordinate (in world space) to position the TileSprite at.
 * @param {number} [width=256] - The width of the TileSprite.
 * @param {number} [height=256] - The height of the TileSprite.
-* @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+* @param {string|Phaser.BitmapData|PIXILegacy.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXILegacy.Texture or BitmapData.
 * @param {string|number} frame - If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 */
 Phaser.TileSprite = function (game, x, y, width, height, key, frame)
@@ -66,7 +66,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
     key = key || null;
     frame = frame || null;
 
-    PIXI.Sprite.call(this, new PIXI.Texture(Phaser.Cache.DEFAULT.baseTexture), width, height);
+    PIXILegacy.Sprite.call(this, new PIXILegacy.Texture(Phaser.Cache.DEFAULT.baseTexture), width, height);
 
     /**
     * @property {number} type - The const type of this object.
@@ -112,14 +112,14 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
     /**
     * The CanvasBuffer object that the tiled texture is drawn to.
     *
-    * @property {PIXI.CanvasBuffer} canvasBuffer
+    * @property {PIXILegacy.CanvasBuffer} canvasBuffer
     */
     this.canvasBuffer = null;
 
     /**
     * An internal Texture object that holds the tiling texture that was generated from TilingSprite.texture.
     *
-    * @property {PIXI.Texture} tilingTexture
+    * @property {PIXILegacy.Texture} tilingTexture
     */
     this.tilingTexture = null;
 
@@ -148,7 +148,7 @@ Phaser.TileSprite = function (game, x, y, width, height, key, frame)
 
 };
 
-Phaser.TileSprite.prototype = Object.create(PIXI.Sprite.prototype);
+Phaser.TileSprite.prototype = Object.create(PIXILegacy.Sprite.prototype);
 Phaser.TileSprite.prototype.constructor = Phaser.TileSprite;
 
 Phaser.Component.Core.install.call(Phaser.TileSprite.prototype, [
@@ -257,7 +257,7 @@ Phaser.TileSprite.prototype.destroy = function (destroyChildren)
 
     Phaser.Component.Destroy.prototype.destroy.call(this, destroyChildren);
 
-    PIXI.Sprite.prototype.destroy.call(this);
+    PIXILegacy.Sprite.prototype.destroy.call(this);
 
     if (this.canvasBuffer)
     {
@@ -306,7 +306,7 @@ Phaser.TileSprite.prototype.reset = function (x, y)
 *
 * @method Phaser.TileSprite#setTexture
 * @memberof Phaser.TileSprite
-* @param {PIXI.Texture} texture - The texture to apply to this TileSprite.
+* @param {PIXILegacy.Texture} texture - The texture to apply to this TileSprite.
 * @return {Phaser.TileSprite} This instance.
 */
 Phaser.TileSprite.prototype.setTexture = function (texture)
@@ -442,7 +442,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
 
     if (this.tint !== 0xFFFFFF && (this.texture.requiresReTint || this.cachedTint !== this.tint))
     {
-        this.tintedTexture = PIXI.CanvasTinter.getTintedTexture(this, this.tint);
+        this.tintedTexture = PIXILegacy.CanvasTinter.getTintedTexture(this, this.tint);
 
         this.cachedTint = this.tint;
         this.texture.requiresReTint = false;
@@ -469,7 +469,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     if (this.blendMode !== renderSession.currentBlendMode)
     {
         renderSession.currentBlendMode = this.blendMode;
-        context.globalCompositeOperation = PIXI.blendModesCanvas[renderSession.currentBlendMode];
+        context.globalCompositeOperation = PIXILegacy.blendModesCanvas[renderSession.currentBlendMode];
     }
 
     var tilePosition = this.tilePosition;
@@ -523,7 +523,7 @@ Phaser.TileSprite.prototype._renderCanvas = function (renderSession)
     if (sessionBlendMode !== this.blendMode)
     {
         renderSession.currentBlendMode = sessionBlendMode;
-        context.globalCompositeOperation = PIXI.blendModesCanvas[sessionBlendMode];
+        context.globalCompositeOperation = PIXILegacy.blendModesCanvas[sessionBlendMode];
     }
 
 };
@@ -587,8 +587,8 @@ Phaser.TileSprite.prototype.generateTilingTexture = function (forcePowerOfTwo)
     }
     else
     {
-        this.canvasBuffer = new PIXI.CanvasBuffer(targetWidth, targetHeight);
-        this.tilingTexture = PIXI.Texture.fromCanvas(this.canvasBuffer.canvas);
+        this.canvasBuffer = new PIXILegacy.CanvasBuffer(targetWidth, targetHeight);
+        this.tilingTexture = PIXILegacy.Texture.fromCanvas(this.canvasBuffer.canvas);
         this.tilingTexture.isTiling = true;
         this.tilingTexture.needsUpdate = true;
     }

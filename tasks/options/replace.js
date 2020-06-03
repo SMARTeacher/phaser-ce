@@ -4,8 +4,8 @@ module.exports = {
         src: [ 'src/pixi/Outro.js' ],
         dest: 'src/pixi/Outro.js',
         replacements: [ {
-            from: 'define(PIXI);',
-            to: 'define(\'PIXI\', (function() { return root.PIXI = PIXI; })() );'
+            from: 'define(PIXILegacy);',
+            to: 'define(\'PIXILegacy\', (function() { return root.PIXILegacy = PIXILegacy; })() );'
         } ]
     },
 

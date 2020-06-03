@@ -3,11 +3,11 @@
  */
 
 /**
-* @class PIXI.PrimitiveShader
+* @class PIXILegacy.PrimitiveShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.PrimitiveShader = function (gl)
+PIXILegacy.PrimitiveShader = function (gl)
 {
     /**
      * @property _UID
@@ -70,18 +70,18 @@ PIXI.PrimitiveShader = function (gl)
     this.init();
 };
 
-PIXI.PrimitiveShader.prototype.constructor = PIXI.PrimitiveShader;
+PIXILegacy.PrimitiveShader.prototype.constructor = PIXILegacy.PrimitiveShader;
 
 /**
 * Initialises the shader.
 *
-* @method PIXI.PrimitiveShader#init
+* @method PIXILegacy.PrimitiveShader#init
 */
-PIXI.PrimitiveShader.prototype.init = function ()
+PIXILegacy.PrimitiveShader.prototype.init = function ()
 {
     var gl = this.gl;
 
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = PIXILegacy.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
@@ -105,9 +105,9 @@ PIXI.PrimitiveShader.prototype.init = function ()
 /**
 * Destroys the shader.
 *
-* @method PIXI.PrimitiveShader#destroy
+* @method PIXILegacy.PrimitiveShader#destroy
 */
-PIXI.PrimitiveShader.prototype.destroy = function ()
+PIXILegacy.PrimitiveShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

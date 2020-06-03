@@ -5,23 +5,23 @@
 /**
  * A set of functions used to handle masking.
  *
- * @class PIXI.CanvasMaskManager
+ * @class PIXILegacy.CanvasMaskManager
  * @constructor
  */
-PIXI.CanvasMaskManager = function ()
+PIXILegacy.CanvasMaskManager = function ()
 {
 };
 
-PIXI.CanvasMaskManager.prototype.constructor = PIXI.CanvasMaskManager;
+PIXILegacy.CanvasMaskManager.prototype.constructor = PIXILegacy.CanvasMaskManager;
 
 /**
  * This method adds it to the current stack of masks.
  *
- * @method PIXI.CanvasMaskManager#pushMask
+ * @method PIXILegacy.CanvasMaskManager#pushMask
  * @param maskData {Object} the maskData that will be pushed
  * @param renderSession {Object} The renderSession whose context will be used for this mask manager.
  */
-PIXI.CanvasMaskManager.prototype.pushMask = function (maskData, renderSession)
+PIXILegacy.CanvasMaskManager.prototype.pushMask = function (maskData, renderSession)
 {
 
     var context = renderSession.context;
@@ -40,7 +40,7 @@ PIXI.CanvasMaskManager.prototype.pushMask = function (maskData, renderSession)
         transform.tx * resolution,
         transform.ty * resolution);
 
-    PIXI.CanvasGraphics.renderGraphicsMask(maskData, context);
+    PIXILegacy.CanvasGraphics.renderGraphicsMask(maskData, context);
 
     context.clip();
 
@@ -50,10 +50,10 @@ PIXI.CanvasMaskManager.prototype.pushMask = function (maskData, renderSession)
 /**
  * Restores the current drawing context to the state it was before the mask was applied.
  *
- * @method PIXI.CanvasMaskManager#popMask
+ * @method PIXILegacy.CanvasMaskManager#popMask
  * @param renderSession {Object} The renderSession whose context will be used for this mask manager.
  */
-PIXI.CanvasMaskManager.prototype.popMask = function (renderSession)
+PIXILegacy.CanvasMaskManager.prototype.popMask = function (renderSession)
 {
     renderSession.context.restore();
 };

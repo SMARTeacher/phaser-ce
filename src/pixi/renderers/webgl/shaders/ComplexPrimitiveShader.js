@@ -3,11 +3,11 @@
  */
 
 /**
-* @class PIXI.ComplexPrimitiveShader
+* @class PIXILegacy.ComplexPrimitiveShader
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.ComplexPrimitiveShader = function (gl)
+PIXILegacy.ComplexPrimitiveShader = function (gl)
 {
     /**
      * @property _UID
@@ -75,18 +75,18 @@ PIXI.ComplexPrimitiveShader = function (gl)
     this.init();
 };
 
-PIXI.ComplexPrimitiveShader.prototype.constructor = PIXI.ComplexPrimitiveShader;
+PIXILegacy.ComplexPrimitiveShader.prototype.constructor = PIXILegacy.ComplexPrimitiveShader;
 
 /**
 * Initialises the shader.
 *
-* @method PIXI.ComplexPrimitiveShader#init
+* @method PIXILegacy.ComplexPrimitiveShader#init
 */
-PIXI.ComplexPrimitiveShader.prototype.init = function ()
+PIXILegacy.ComplexPrimitiveShader.prototype.init = function ()
 {
     var gl = this.gl;
 
-    var program = PIXI.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    var program = PIXILegacy.compileProgram(gl, this.vertexSrc, this.fragmentSrc);
     gl.useProgram(program);
 
     // get and store the uniforms for the shader
@@ -112,9 +112,9 @@ PIXI.ComplexPrimitiveShader.prototype.init = function ()
 /**
 * Destroys the shader.
 *
-* @method PIXI.ComplexPrimitiveShader#destroy
+* @method PIXILegacy.ComplexPrimitiveShader#destroy
 */
-PIXI.ComplexPrimitiveShader.prototype.destroy = function ()
+PIXILegacy.ComplexPrimitiveShader.prototype.destroy = function ()
 {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

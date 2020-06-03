@@ -4,25 +4,25 @@
 
 /**
  * TextureSilentFail is a boolean that defaults to `false`.
- * If `true` then {@link PIXI.Texture#setFrame} will no longer throw an error if the texture dimensions are incorrect.
- * Instead {@link PIXI.Texture#valid} will be set to `false` (#1556)
+ * If `true` then {@link PIXILegacy.Texture#setFrame} will no longer throw an error if the texture dimensions are incorrect.
+ * Instead {@link PIXILegacy.Texture#valid} will be set to `false` (#1556)
  *
  * @type {boolean}
  */
-PIXI.TextureSilentFail = false;
+PIXILegacy.TextureSilentFail = false;
 
 /**
  * A texture stores the information that represents an image or part of an image. It cannot be added
- * to the display list directly. Instead use it as the texture for a PIXI.Sprite. If no frame is provided then the whole image is used.
+ * to the display list directly. Instead use it as the texture for a PIXILegacy.Sprite. If no frame is provided then the whole image is used.
  *
- * @class PIXI.Texture
+ * @class PIXILegacy.Texture
  * @constructor
  * @param baseTexture {BaseTexture} The base texture source to create the texture from
  * @param frame {Rectangle} The rectangle frame of the texture to show
  * @param [crop] {Rectangle} The area of original texture
  * @param [trim] {Rectangle} Trimmed texture rectangle
  */
-PIXI.Texture = function (baseTexture, frame, crop, trim)
+PIXILegacy.Texture = function (baseTexture, frame, crop, trim)
 {
     /**
      * Does this Texture have any frame data assigned to it?
@@ -35,10 +35,10 @@ PIXI.Texture = function (baseTexture, frame, crop, trim)
     if (!frame)
     {
         this.noFrame = true;
-        frame = new PIXI.Rectangle(0,0,1,1);
+        frame = new PIXILegacy.Rectangle(0,0,1,1);
     }
 
-    if (baseTexture instanceof PIXI.Texture)
+    if (baseTexture instanceof PIXILegacy.Texture)
     {
         baseTexture = baseTexture.baseTexture;
     }
@@ -131,7 +131,7 @@ PIXI.Texture = function (baseTexture, frame, crop, trim)
      * @property crop
      * @type Rectangle
      */
-    this.crop = crop || new PIXI.Rectangle(0, 0, 1, 1);
+    this.crop = crop || new PIXILegacy.Rectangle(0, 0, 1, 1);
 
     /**
      * A flag that controls if this frame is rotated or not.
@@ -145,27 +145,27 @@ PIXI.Texture = function (baseTexture, frame, crop, trim)
 
     if (baseTexture.hasLoaded)
     {
-        if (this.noFrame) { frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height); }
+        if (this.noFrame) { frame = new PIXILegacy.Rectangle(0, 0, baseTexture.width, baseTexture.height); }
         this.setFrame(frame);
     }
 
 };
 
-PIXI.Texture.prototype.constructor = PIXI.Texture;
+PIXILegacy.Texture.prototype.constructor = PIXILegacy.Texture;
 
 /**
  * Called when the base texture is loaded
  *
- * @method PIXI.Texture#onBaseTextureLoaded
+ * @method PIXILegacy.Texture#onBaseTextureLoaded
  * @private
  */
-PIXI.Texture.prototype.onBaseTextureLoaded = function ()
+PIXILegacy.Texture.prototype.onBaseTextureLoaded = function ()
 {
     var baseTexture = this.baseTexture;
 
     if (this.noFrame)
     {
-        this.frame = new PIXI.Rectangle(0, 0, baseTexture.width, baseTexture.height);
+        this.frame = new PIXILegacy.Rectangle(0, 0, baseTexture.width, baseTexture.height);
     }
 
     this.setFrame(this.frame);
@@ -174,10 +174,10 @@ PIXI.Texture.prototype.onBaseTextureLoaded = function ()
 /**
  * Destroys this texture
  *
- * @method PIXI.Texture#destroy
+ * @method PIXILegacy.Texture#destroy
  * @param destroyBase {Boolean} Whether to destroy the base texture as well
  */
-PIXI.Texture.prototype.destroy = function (destroyBase)
+PIXILegacy.Texture.prototype.destroy = function (destroyBase)
 {
     if (destroyBase) { this.baseTexture.destroy(); }
 
@@ -187,10 +187,10 @@ PIXI.Texture.prototype.destroy = function (destroyBase)
 /**
  * Specifies the region of the baseTexture that this texture will use.
  *
- * @method PIXI.Texture#setFrame
+ * @method PIXILegacy.Texture#setFrame
  * @param frame {Rectangle} The frame of the texture to set it to
  */
-PIXI.Texture.prototype.setFrame = function (frame)
+PIXILegacy.Texture.prototype.setFrame = function (frame)
 {
     this.noFrame = false;
 
@@ -205,7 +205,7 @@ PIXI.Texture.prototype.setFrame = function (frame)
 
     if (!this.trim && (frame.x + frame.width > this.baseTexture.width || frame.y + frame.height > this.baseTexture.height))
     {
-        if (!PIXI.TextureSilentFail)
+        if (!PIXILegacy.TextureSilentFail)
         {
             throw new Error('Texture Error: frame does not fit inside the base Texture dimensions ' + this);
         }
@@ -231,12 +231,12 @@ PIXI.Texture.prototype.setFrame = function (frame)
 /**
  * Updates the internal WebGL UV cache.
  *
- * @method PIXI.Texture#_updateUvs
+ * @method PIXILegacy.Texture#_updateUvs
  * @private
  */
-PIXI.Texture.prototype._updateUvs = function ()
+PIXILegacy.Texture.prototype._updateUvs = function ()
 {
-    if(!this._uvs) { this._uvs = new PIXI.TextureUvs(); }
+    if(!this._uvs) { this._uvs = new PIXILegacy.TextureUvs(); }
 
     var frame = this.crop;
     var tw = this.baseTexture.width;
@@ -258,13 +258,13 @@ PIXI.Texture.prototype._updateUvs = function ()
 /**
  * Updates the internal WebGL UV cache.
  *
- * @method PIXI.Texture#_updateUvsInverted
+ * @method PIXILegacy.Texture#_updateUvsInverted
  * @private
  */
-PIXI.Texture.prototype._updateUvsInverted = function ()
+PIXILegacy.Texture.prototype._updateUvsInverted = function ()
 {
 
-    if (!this._uvs) { this._uvs = new PIXI.TextureUvs(); }
+    if (!this._uvs) { this._uvs = new PIXILegacy.TextureUvs(); }
 
     var frame = this.crop;
     var tw = this.baseTexture.width;
@@ -288,19 +288,19 @@ PIXI.Texture.prototype._updateUvsInverted = function ()
  * Helper function that creates a new a Texture based on the given canvas element.
  *
  * @static
- * @method PIXI.Texture#fromCanvas
+ * @method PIXILegacy.Texture#fromCanvas
  * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param scaleMode {Number} See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
  * @return {Texture}
  */
-PIXI.Texture.fromCanvas = function (canvas, scaleMode)
+PIXILegacy.Texture.fromCanvas = function (canvas, scaleMode)
 {
-    var baseTexture = PIXI.BaseTexture.fromCanvas(canvas, scaleMode);
+    var baseTexture = PIXILegacy.BaseTexture.fromCanvas(canvas, scaleMode);
 
-    return new PIXI.Texture(baseTexture);
+    return new PIXILegacy.Texture(baseTexture);
 };
 
-PIXI.TextureUvs = function ()
+PIXILegacy.TextureUvs = function ()
 {
     this.x0 = 0;
     this.y0 = 0;

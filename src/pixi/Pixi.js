@@ -3,7 +3,7 @@
  *
  * Contains assorted static properties and enumerations.
  *
- * @namespace PIXI
+ * @namespace PIXILegacy
  * @author Mat Groves http://matgroves.com/ @Doormat23
  */
-var PIXI = PIXI || {};
+var PIXILegacy = PIXILegacy || {};

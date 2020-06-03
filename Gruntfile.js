@@ -43,7 +43,7 @@ module.exports = function (grunt) {
             'components':       { 'description': 'Game Object Components',                      'optional': false, 'stub': false },
             'gameobjects':      { 'description': 'Core Game Objects',                           'optional': false, 'stub': false },
             'bitmapdata':       { 'description': 'BitmapData Game Object',                      'optional': true, 'stub': false },
-            'graphics':         { 'description': 'Graphics and PIXI Mask Support',              'optional': true, 'stub': false },
+            'graphics':         { 'description': 'Graphics and PIXILegacy Mask Support',              'optional': true, 'stub': false },
             'rendertexture':    { 'description': 'RenderTexture Game Object',                   'optional': true, 'stub': false },
             'text':             { 'description': 'Text Game Object (inc. Web Font Support)',    'optional': true, 'stub': false },
             'bitmaptext':       { 'description': 'BitmapText Game Object',                      'optional': true, 'stub': false },
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
             grunt.log.writeln("Optional flags:\n");
             grunt.log.writeln("--filename yourfilename (builds to your own custom file name)");
             grunt.log.writeln("--sourcemap true (creates a source map)");
-            grunt.log.writeln("--split true (splits Phaser, PIXI, p2 and Creature into separate files)");
+            grunt.log.writeln("--split true (splits Phaser, PIXILegacy, p2 and Creature into separate files)");
             grunt.log.writeln("--uglify true (runs Uglify on the output files)");
             grunt.log.writeln("--verbose true (print some extra information)");
             grunt.log.writeln("\nNote that some modules have dependencies on others.\n");
@@ -225,9 +225,9 @@ module.exports = function (grunt) {
                     }
                 }
 
-                //  3) PIXI
+                //  3) PIXILegacy
 
-                grunt.log.writeln("-> PIXI");
+                grunt.log.writeln("-> PIXILegacy");
 
                 if (!excludedKeys['intro'])
                 {
@@ -242,7 +242,7 @@ module.exports = function (grunt) {
                 //  Optional Rope
                 if (!excludedKeys['rope'])
                 {
-                    grunt.log.writeln("-> PIXI.Rope");
+                    grunt.log.writeln("-> PIXILegacy.Rope");
                     tasks.push('concat:pixiRope');
                     pixiFilelist.push('<%= modules_dir %>/pixi-rope.js');
                 }
@@ -250,13 +250,13 @@ module.exports = function (grunt) {
                 //  Optional Tilesprite
                 if (!excludedKeys['tilesprite'])
                 {
-                    grunt.log.writeln("-> PIXI.TileSprite");
+                    grunt.log.writeln("-> PIXILegacy.TileSprite");
                     tasks.push('concat:pixiTileSprite');
                     pixiFilelist.push('<%= modules_dir %>/pixi-tilesprite.js');
                 }
                 */
 
-                //  PIXI Outro
+                //  PIXILegacy Outro
                 if (!excludedKeys['outro'])
                 {
                     tasks.push('concat:pixiOutro');
@@ -300,9 +300,9 @@ module.exports = function (grunt) {
                     filelist.push('<%= modules_dir %>/p2-global.js');
                 }
 
-                //  3) PIXI
+                //  3) PIXILegacy
 
-                grunt.log.writeln("-> PIXI");
+                grunt.log.writeln("-> PIXILegacy");
 
                 if (!excludedKeys['intro'])
                 {
@@ -317,7 +317,7 @@ module.exports = function (grunt) {
                 //  Optional Rope
                 if (!excludedKeys['rope'])
                 {
-                    grunt.log.writeln("-> PIXI.Rope");
+                    grunt.log.writeln("-> PIXILegacy.Rope");
                     tasks.push('concat:pixiRope');
                     filelist.push('<%= modules_dir %>/pixi-rope.js');
                 }
@@ -325,13 +325,13 @@ module.exports = function (grunt) {
                 //  Optional Tilesprite
                 if (!excludedKeys['tilesprite'])
                 {
-                    grunt.log.writeln("-> PIXI.TileSprite");
+                    grunt.log.writeln("-> PIXILegacy.TileSprite");
                     tasks.push('concat:pixiTileSprite');
                     filelist.push('<%= modules_dir %>/pixi-tilesprite.js');
                 }
                 */
 
-                //  PIXI Outro
+                //  PIXILegacy Outro
                 if (!excludedKeys['outro'])
                 {
                     tasks.push('concat:pixiOutro');

@@ -228,16 +228,16 @@ Phaser.Polygon.prototype = {
             {
                 if (typeof points[i] === 'number')
                 {
-                    var p = new PIXI.Point(points[i], points[i + 1]);
+                    var p = new PIXILegacy.Point(points[i], points[i + 1]);
                     i++;
                 }
                 else if (Array.isArray(points[i]))
                 {
-                    var p = new PIXI.Point(points[i][0], points[i][1]);
+                    var p = new PIXILegacy.Point(points[i][0], points[i][1]);
                 }
                 else
                 {
-                    var p = new PIXI.Point(points[i].x, points[i].y);
+                    var p = new PIXILegacy.Point(points[i].x, points[i].y);
                 }
 
                 this._points.push(p);
@@ -316,5 +316,5 @@ Object.defineProperty(Phaser.Polygon.prototype, 'points', {
 
 });
 
-//  Because PIXI uses its own type, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.Polygon = Phaser.Polygon;
+//  Because PIXILegacy uses its own type, we'll replace it with ours to avoid duplicating code or confusion.
+PIXILegacy.Polygon = Phaser.Polygon;

@@ -16,7 +16,7 @@ Phaser.LoaderParser = {
     *
     * @method Phaser.LoaderParser.bitmapFont
     * @param {object} xml - XML data you want to parse.
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+    * @param {PIXILegacy.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
@@ -35,7 +35,7 @@ Phaser.LoaderParser = {
     *
     * @method Phaser.LoaderParser.xmlBitmapFont
     * @param {object} xml - XML data you want to parse.
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+    * @param {PIXILegacy.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
@@ -130,7 +130,7 @@ Phaser.LoaderParser = {
     *
     * @method Phaser.LoaderParser.jsonBitmapFont
     * @param {object} json - JSON data you want to parse.
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+    * @param {PIXILegacy.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {number} [xSpacing=0] - Additional horizontal spacing between the characters.
     * @param {number} [ySpacing=0] - Additional vertical spacing between the characters.
     * @param {Phaser.Frame} [frame] - Optional Frame, if this font is embedded in a texture atlas.
@@ -227,7 +227,7 @@ Phaser.LoaderParser = {
     *
     * @method Phaser.LoaderParser.finalizeBitmapFont
     * @private
-    * @param {PIXI.BaseTexture} baseTexture - The BaseTexture this font uses.
+    * @param {PIXILegacy.BaseTexture} baseTexture - The BaseTexture this font uses.
     * @param {object} bitmapFontData - Pre-parsed bitmap font data.
     * @return {object} The parsed Bitmap Font data.
     */
@@ -241,7 +241,7 @@ Phaser.LoaderParser = {
 
                 var letter = bitmapFontData.chars[charCode];
 
-                letter.texture = new PIXI.Texture(baseTexture, new Phaser.Rectangle(letter.x, letter.y, letter.width, letter.height));
+                letter.texture = new PIXILegacy.Texture(baseTexture, new Phaser.Rectangle(letter.x, letter.y, letter.width, letter.height));
 
             }
 

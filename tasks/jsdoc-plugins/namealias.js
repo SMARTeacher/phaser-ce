@@ -26,7 +26,7 @@ exports.handlers.jsdocCommentFound = function (e)
     var classdoc = (/@class\b/).exec(raw);
     var sourcefile = (/@sourcefile\b/).exec(raw);
 
-    // PIXI docs generated from YUIDocs have @sourcefile (but no code) and need to be excluded
+    // PIXILegacy docs generated from YUIDocs have @sourcefile (but no code) and need to be excluded
     if (classdoc && !sourcefile)
     {
         raw = raw.replace(extract, function (m, pre, doclet, extra)

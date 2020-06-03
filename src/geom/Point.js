@@ -1262,5 +1262,5 @@ Phaser.Point.sortClockwise = function (points, center)
 };
 
 
-//   Because PIXI uses its own Point, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.Point = Phaser.Point;
+//   Because PIXILegacy uses its own Point, we'll replace it with ours to avoid duplicating code or confusion.
+PIXILegacy.Point = Phaser.Point;

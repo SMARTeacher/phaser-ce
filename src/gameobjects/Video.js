@@ -263,25 +263,25 @@ Phaser.Video = function (game, key, url)
     }
 
     /**
-    * @property {PIXI.BaseTexture} baseTexture - The PIXI.BaseTexture.
+    * @property {PIXILegacy.BaseTexture} baseTexture - The PIXILegacy.BaseTexture.
     * @default
     */
     if (this.video && !url)
     {
-        this.baseTexture = new PIXI.BaseTexture(this.video, null, this.game.resolution);
+        this.baseTexture = new PIXILegacy.BaseTexture(this.video, null, this.game.resolution);
         this.baseTexture.forceLoaded(this.width, this.height);
     }
     else
     {
-        this.baseTexture = new PIXI.BaseTexture(Phaser.Cache.DEFAULT.baseTexture.source, null, this.game.resolution);
+        this.baseTexture = new PIXILegacy.BaseTexture(Phaser.Cache.DEFAULT.baseTexture.source, null, this.game.resolution);
         this.baseTexture.forceLoaded(this.width, this.height);
     }
 
     /**
-    * @property {PIXI.Texture} texture - The PIXI.Texture.
+    * @property {PIXILegacy.Texture} texture - The PIXILegacy.Texture.
     * @default
     */
-    this.texture = new PIXI.Texture(this.baseTexture);
+    this.texture = new PIXILegacy.Texture(this.baseTexture);
 
     /**
     * @property {Phaser.Frame} textureFrame - The Frame this video uses for rendering.

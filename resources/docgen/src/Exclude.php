@@ -1,7 +1,7 @@
 <?php
 
 /*
-    PIXI.DisplayObject
+    PIXILegacy.DisplayObject
 
     click
     mousedown

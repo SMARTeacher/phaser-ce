@@ -3,11 +3,11 @@
  */
 
 /**
-* @class PIXI.WebGLShaderManager
+* @class PIXILegacy.WebGLShaderManager
 * @constructor
 * @private
 */
-PIXI.WebGLShaderManager = function (game)
+PIXILegacy.WebGLShaderManager = function (game)
 {
     /**
      * @property maxAttibs
@@ -46,35 +46,35 @@ PIXI.WebGLShaderManager = function (game)
 
 };
 
-PIXI.WebGLShaderManager.prototype.constructor = PIXI.WebGLShaderManager;
+PIXILegacy.WebGLShaderManager.prototype.constructor = PIXILegacy.WebGLShaderManager;
 
 /**
 * Initialises the context and the properties.
 *
-* @method PIXI.WebGLShaderManager#setContext
+* @method PIXILegacy.WebGLShaderManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLShaderManager.prototype.setContext = function (gl)
+PIXILegacy.WebGLShaderManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 
     // the next one is used for rendering primitives
-    this.primitiveShader = new PIXI.PrimitiveShader(gl);
+    this.primitiveShader = new PIXILegacy.PrimitiveShader(gl);
 
     // the next one is used for rendering triangle strips
-    this.complexPrimitiveShader = new PIXI.ComplexPrimitiveShader(gl);
+    this.complexPrimitiveShader = new PIXILegacy.ComplexPrimitiveShader(gl);
 
     // this shader is used for the default sprite rendering
-    this.defaultShader = new PIXI.PixiShader(gl, this.game);
+    this.defaultShader = new PIXILegacy.PixiShader(gl, this.game);
 
     // this shader is used for the fast sprite rendering
-    this.fastShader = new PIXI.PixiFastShader(gl);
+    this.fastShader = new PIXILegacy.PixiFastShader(gl);
 
     // the next one is used for rendering triangle strips
-    this.stripShader = new PIXI.StripShader(gl);
+    this.stripShader = new PIXILegacy.StripShader(gl);
 
     // the next one is used for rendering creature meshes
-    this.creatureShader = PIXI.CreatureShader ? new PIXI.CreatureShader(gl) : null;
+    this.creatureShader = PIXILegacy.CreatureShader ? new PIXILegacy.CreatureShader(gl) : null;
 
     this.setShader(this.defaultShader);
 };
@@ -82,10 +82,10 @@ PIXI.WebGLShaderManager.prototype.setContext = function (gl)
 /**
 * Takes the attributes given in parameters.
 *
-* @method PIXI.WebGLShaderManager#setAttribs
+* @method PIXILegacy.WebGLShaderManager#setAttribs
 * @param attribs {Array} attribs
 */
-PIXI.WebGLShaderManager.prototype.setAttribs = function (attribs)
+PIXILegacy.WebGLShaderManager.prototype.setAttribs = function (attribs)
 {
     // reset temp state
     var i;
@@ -125,10 +125,10 @@ PIXI.WebGLShaderManager.prototype.setAttribs = function (attribs)
 /**
 * Sets the current shader.
 *
-* @method PIXI.WebGLShaderManager#setShader
+* @method PIXILegacy.WebGLShaderManager#setShader
 * @param shader {Any}
 */
-PIXI.WebGLShaderManager.prototype.setShader = function (shader)
+PIXILegacy.WebGLShaderManager.prototype.setShader = function (shader)
 {
     if(this._currentId === shader._UID) { return false; }
 
@@ -145,9 +145,9 @@ PIXI.WebGLShaderManager.prototype.setShader = function (shader)
 /**
 * Destroys this object.
 *
-* @method PIXI.WebGLShaderManager#destroy
+* @method PIXILegacy.WebGLShaderManager#destroy
 */
-PIXI.WebGLShaderManager.prototype.destroy = function ()
+PIXILegacy.WebGLShaderManager.prototype.destroy = function ()
 {
     this.attribState = null;
 

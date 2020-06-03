@@ -1,6 +1,6 @@
 /**
 * Original shader by Trisomie21 (https://www.shadertoy.com/view/MslGRH)
-* Tweaked, uniforms added and converted to Phaser/PIXI by Richard Davey
+* Tweaked, uniforms added and converted to Phaser/PIXILegacy by Richard Davey
 */
 Phaser.Filter.BinarySerpents = function (game) {
 

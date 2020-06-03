@@ -184,7 +184,7 @@ Phaser.Game = function (width, height, renderer, parent, state, transparent, ant
     this.clearBeforeRender = true;
 
     /**
-    * @property {PIXI.CanvasRenderer|PIXI.WebGLRenderer} renderer - The Pixi Renderer.
+    * @property {PIXILegacy.CanvasRenderer|PIXILegacy.WebGLRenderer} renderer - The Pixi Renderer.
     * @protected
     */
     this.renderer = null;
@@ -694,8 +694,8 @@ Phaser.Game.prototype = {
 
         this.isBooted = true;
 
-        // Remove PIXI.game from the window to help prevent cheating
-//        PIXI.game = this;
+        // Remove PIXILegacy.game from the window to help prevent cheating
+//        PIXILegacy.game = this;
 
         this.math = Phaser.Math;
 
@@ -888,13 +888,13 @@ Phaser.Game.prototype = {
         {
             if (this.multiTexture || this.renderType === Phaser.WEBGL_MULTI)
             {
-                PIXI.enableMultiTexture();
+                PIXILegacy.enableMultiTexture();
                 this.multiTexture = true;
             }
 
             try
             {
-                this.renderer = new PIXI.WebGLRenderer(this, this.config);
+                this.renderer = new PIXILegacy.WebGLRenderer(this, this.config);
                 this.renderType = Phaser.WEBGL;
                 this.context = null;
                 this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
@@ -904,7 +904,7 @@ Phaser.Game.prototype = {
             {
                 this.renderer = null;
                 this.multiTexture = false;
-                PIXI._enableMultiTextureToggle = false;
+                PIXILegacy._enableMultiTextureToggle = false;
 
                 if (this.renderType === Phaser.WEBGL)
                 {
@@ -923,7 +923,7 @@ Phaser.Game.prototype = {
                 this.canvas = Phaser.Canvas.create(this, this.width, this.height, this.config.canvasID, true);
             }
 
-            this.renderer = new PIXI.CanvasRenderer(this, this.config);
+            this.renderer = new PIXILegacy.CanvasRenderer(this, this.config);
             this.context = this.renderer.context;
         }
 
@@ -1242,7 +1242,7 @@ Phaser.Game.prototype = {
     * Calls destroy on Game.state, Game.sound, Game.scale, Game.stage, Game.input, Game.physics and Game.plugins.
     *
     * Then sets all of those local handlers to null, destroys the renderer, removes the canvas from the DOM
-    * and resets the PIXI default renderer.
+    * and resets the PIXILegacy default renderer.
     *
     * To destroy the game during an update callback, set {@link #pendingDestroy} instead.
     *
@@ -1284,10 +1284,10 @@ Phaser.Game.prototype = {
 
         Phaser.Canvas.removeFromDOM(this.canvas);
 
-        // Remove PIXI.game from the window to help prevent cheating
-//        if (PIXI.game === this)
+        // Remove PIXILegacy.game from the window to help prevent cheating
+//        if (PIXILegacy.game === this)
 //        {
-//            PIXI.game = null;
+//            PIXILegacy.game = null;
 //        }
 
         // don't expose phaser.GAMES to the window

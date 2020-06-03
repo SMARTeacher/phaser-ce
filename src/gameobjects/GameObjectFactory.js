@@ -62,7 +62,7 @@ Phaser.GameObjectFactory.prototype = {
     *
     * @method Phaser.GameObjectFactory#weapon
     * @param {integer} [quantity=1] - The quantity of bullets to seed the Weapon with. If -1 it will set the pool to automatically expand.
-    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by the bullets during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - The image used as a texture by the bullets during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used by the bullets. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Phaser.Group} [group] - Optional Group to add the Weapon to. If not specified it will be added to the World group.
     * @param {function} [bulletClass] - The Class of the bullets that are launched by this Weapon. See {@link Phaser.Weapon#bulletClass}
@@ -95,7 +95,7 @@ Phaser.GameObjectFactory.prototype = {
     * @method Phaser.GameObjectFactory#image
     * @param {number} [x=0] - The x coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
     * @param {number} [y=0] - The y coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
-    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Image} The newly created Image object.
@@ -119,7 +119,7 @@ Phaser.GameObjectFactory.prototype = {
     * @method Phaser.GameObjectFactory#sprite
     * @param {number} [x=0] - The x coordinate of the sprite. The coordinate is relative to any parent container this sprite may be in.
     * @param {number} [y=0] - The y coordinate of the sprite. The coordinate is relative to any parent container this sprite may be in.
-    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @returns {Phaser.Sprite} The newly created Sprite object.
@@ -150,7 +150,7 @@ Phaser.GameObjectFactory.prototype = {
     * @method Phaser.GameObjectFactory#creature
     * @param {number} x - The x coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
     * @param {number} y - The y coordinate of the creature. The coordinate is relative to any parent container this creature may be in.
-    * @param {string|PIXI.Texture} key - The creature's image texture. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXI.Texture.
+    * @param {string|PIXILegacy.Texture} key - The creature's image texture. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a PIXILegacy.Texture.
     * @param {string} mesh - The creature's mesh data. It should be a string which is a reference to the Cache JSON entry.
     * @param {Phaser.Group|Phaser.Stage} [group=this.world] - Optional Group to add the creature to. If omitted (or `undefined`), the creature will be added to the World group.
     * @param {string} [animation='default'] - The animation within the mesh data to play.
@@ -302,7 +302,7 @@ Phaser.GameObjectFactory.prototype = {
     * @param {number} y - The y coordinate of the TileSprite. The coordinate is relative to any parent container this TileSprite may be in.
     * @param {number} width - The width of the TileSprite.
     * @param {number} height - The height of the TileSprite.
-    * @param {string|Phaser.BitmapData|PIXI.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+    * @param {string|Phaser.BitmapData|PIXILegacy.Texture} key - This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXILegacy.Texture or BitmapData.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.
     * @return {Phaser.TileSprite} The newly created TileSprite object.
@@ -324,7 +324,7 @@ Phaser.GameObjectFactory.prototype = {
     * @method Phaser.GameObjectFactory#rope
     * @param {number} [x=0] - The x coordinate of the Rope. The coordinate is relative to any parent container this rope may be in.
     * @param {number} [y=0] - The y coordinate of the Rope. The coordinate is relative to any parent container this rope may be in.
-    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+    * @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXILegacy.Texture} [key] - The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
     * @param {string|number} [frame] - If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
     * @param {Array} points - An array of {Phaser.Point}.
     * @param {Phaser.Group|Phaser.Stage} [group] - Optional Group to add the object to. If not specified it will be added to the World group.

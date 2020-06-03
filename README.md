@@ -141,10 +141,10 @@ There are [many other options](https://gist.github.com/willurd/5720255 "List of 
 
 ### Browserify / CommonJS
 
-Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXI` and `p2`. The following is one way of doing this:
+Phaser was never written to be modular. Everything exists under one single global namespace, and you cannot `require` selected parts of it into your builds. It expects 3 global vars to exist in order to work properly: `Phaser`, `PIXILegacy` and `p2`. The following is one way of doing this:
 
 ```javascript
-window.PIXI   = require('phaser-ce/build/custom/pixi');
+window.PIXILegacy   = require('phaser-ce/build/custom/pixi');
 window.p2     = require('phaser-ce/build/custom/p2');
 window.Phaser = require('phaser-ce/build/custom/phaser-split');
 ```
@@ -157,7 +157,7 @@ Full module-based development is available in Phaser v3.
 
 ### Webpack
 
-As with browserify, use the **pixi**, **p2**, and **phaser-split** modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXI`, `p2`, and `Phaser`.
+As with browserify, use the **pixi**, **p2**, and **phaser-split** modules in [build/custom](https://github.com/photonstorm/phaser-ce/tree/master/build/custom). You can then use [expose-loader](https://webpack.js.org/loaders/expose-loader/) to expose them as `PIXILegacy`, `p2`, and `Phaser`.
 
 See [our webpack project template](https://github.com/photonstorm/phaser-ce/tree/master/resources/Project%20Templates/Webpack) or [lean/phaser-es6-webpack](https://github.com/lean/phaser-es6-webpack) for a sample configuration.
 

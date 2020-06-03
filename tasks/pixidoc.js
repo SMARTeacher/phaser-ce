@@ -1,5 +1,5 @@
 /**
-* Generates the appropriate JSDoc from some (PIXI) YUIDoc.
+* Generates the appropriate JSDoc from some (PIXILegacy) YUIDoc.
 * This could be turned into a more general pacakge.
 *
 * Requires: yuidocjs
@@ -23,7 +23,7 @@ function generateYuiDoc (sourcePaths, grunt)
 module.exports = function (grunt)
 {
 
-    grunt.registerTask('pixidoc', 'Generates JSDoc from the PIXI YUIdocs', function ()
+    grunt.registerTask('pixidoc', 'Generates JSDoc from the PIXILegacy YUIdocs', function ()
     {
 
         var sources = [ 'src/pixi' ];
@@ -44,7 +44,7 @@ module.exports = function (grunt)
 
         if (!data)
         {
-            grunt.fail.warn('PIXI YUIDoc not generated - nothing to do');
+            grunt.fail.warn('PIXILegacy YUIDoc not generated - nothing to do');
             return;
         }
 
@@ -53,7 +53,7 @@ module.exports = function (grunt)
         // also be added here.
         var header =
         '/**\n' +
-        '* @namespace PIXI\n' +
+        '* @namespace PIXILegacy\n' +
         '*/';
 
         var comments = yui2jsdoc.convert(data);

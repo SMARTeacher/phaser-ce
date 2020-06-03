@@ -967,7 +967,7 @@ declare module Phaser {
 
     interface BitmapFont {
 
-        base: PIXI.BaseTexture;
+        base: PIXILegacy.BaseTexture;
         data: HTMLImageElement;
         font: Phaser.BMFont;
         url: string;
@@ -993,7 +993,7 @@ declare module Phaser {
         yOffset: number;
         xAdvance: number;
         kerning: number[];
-        texture: PIXI.BaseTexture;
+        texture: PIXILegacy.BaseTexture;
 
     }
 
@@ -1029,9 +1029,9 @@ declare module Phaser {
 
 
         /**
-        * The PIXI.BaseTexture.
+        * The PIXILegacy.BaseTexture.
         */
-        baseTexture: PIXI.BaseTexture;
+        baseTexture: PIXILegacy.BaseTexture;
         buffer: ArrayBuffer;
 
         /**
@@ -1100,9 +1100,9 @@ declare module Phaser {
         smoothProperty: string;
 
         /**
-        * The PIXI.Texture.
+        * The PIXILegacy.Texture.
         */
-        texture: PIXI.Texture;
+        texture: PIXILegacy.Texture;
 
         /**
         * The Frame this BitmapData uses for rendering.
@@ -1532,7 +1532,7 @@ declare module Phaser {
         * 
         * The image is then stored in the {@link Phaser.Cache image Cache} using the key given.
         * 
-        * Finally a {@link PIXI.Texture} is created based on the image and returned.
+        * Finally a {@link PIXILegacy.Texture} is created based on the image and returned.
         * 
         * You can apply the texture to a sprite or any other supporting object by using either the
         * key or the texture. First call `generateTexture`:
@@ -1570,7 +1570,7 @@ declare module Phaser {
         * @param callbackContext The context in which to invoke the callback.
         * @return The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
         */
-        generateTexture(key: string, callback?: (texture: PIXI.Texture) => void, callbackContext?: any): PIXI.Texture;
+        generateTexture(key: string, callback?: (texture: PIXILegacy.Texture) => void, callbackContext?: any): PIXILegacy.Texture;
 
         /**
         * Scans the BitmapData and calculates the bounds. This is a rectangle that defines the extent of all non-transparent pixels.
@@ -1954,7 +1954,7 @@ declare module Phaser {
     * 
     * If you were using an older version of Phaser (< 2.4) and using the DOMish parser hack, please remove this. It isn't required any longer.
     */
-    class BitmapText extends PIXI.DisplayObjectContainer {
+    class BitmapText extends PIXILegacy.DisplayObjectContainer {
 
 
         /**
@@ -2209,11 +2209,11 @@ declare module Phaser {
         /**
         * The key of the image or texture used by this Game Object during rendering.
         * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
         * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
 
         /**
         * The left coordinate of the Game Object.
@@ -2605,7 +2605,7 @@ declare module Phaser {
         * @param game A reference to the currently running game.
         * @param x The x coordinate (in world space) to position the Particle at.
         * @param y The y coordinate (in world space) to position the Particle at.
-        * @param key This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+        * @param key This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture.
         * @param frame If this Particle is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         */
         constructor(game: Phaser.Game, x: number, y: number, key?: any, frame?: any);
@@ -2969,12 +2969,12 @@ declare module Phaser {
         /**
         * The default image used for a texture when no other is specified.
         */
-        static DEFAULT: PIXI.Texture;
+        static DEFAULT: PIXILegacy.Texture;
 
         /**
         * The default image used for a texture when the source image is missing.
         */
-        static MISSING: PIXI.Texture;
+        static MISSING: PIXILegacy.Texture;
 
 
         /**
@@ -3363,13 +3363,13 @@ declare module Phaser {
         destroy(): void;
 
         /**
-        * Gets a PIXI.BaseTexture by key from the given Cache.
+        * Gets a PIXILegacy.BaseTexture by key from the given Cache.
         * 
         * @param key Asset key of the image for which you want the BaseTexture for.
         * @param cache The cache to search for the item in. - Default: Phaser.Cache.IMAGE
         * @return The BaseTexture object.
         */
-        getBaseTexture(key: string, cache?: number): PIXI.BaseTexture;
+        getBaseTexture(key: string, cache?: number): PIXILegacy.BaseTexture;
 
         /**
         * Gets a binary object from the cache.
@@ -3970,7 +3970,7 @@ declare module Phaser {
         /**
         * The display object to which all game objects are added. Set by World.boot.
         */
-        displayObject: PIXI.DisplayObject;
+        displayObject: PIXILegacy.DisplayObject;
 
         /**
         * Reserved for future multiple camera set-ups.
@@ -4138,7 +4138,7 @@ declare module Phaser {
         * 
         * @param displayObject The display object to focus the camera on. Must have visible x/y properties.
         */
-        focusOn(displayObject: PIXI.DisplayObject): void;
+        focusOn(displayObject: PIXILegacy.DisplayObject): void;
 
         /**
         * Move the camera focus on a location instantly.
@@ -5538,10 +5538,10 @@ declare module Phaser {
         * @param callbackContext The context in which to invoke the callback.
         * @return The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
         */
-        grid(key: string, width: number, height: number, cellWidth: number, cellHeight: number, color: string, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXI.Texture;
+        grid(key: string, width: number, height: number, cellWidth: number, cellHeight: number, color: string, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXILegacy.Texture;
 
         /**
-        * Generates a new PIXI.Texture from the given data, which can be applied to a Sprite.
+        * Generates a new PIXILegacy.Texture from the given data, which can be applied to a Sprite.
         * 
         * This allows you to create game graphics quickly and easily, with no external files but that use actual proper images
         * rather than Phaser.Graphics objects, which are expensive to render and limited in scope.
@@ -5575,7 +5575,7 @@ declare module Phaser {
         * @param callbackContext The context in which to invoke the callback.
         * @return The newly generated texture, or a new BitmapData object if `generateTexture` is false, or `null` if a callback was passed and the texture isn't available yet.
         */
-        texture(key: string, data: any, pixelWidth?: number, pixelHeight?: number, palette?: number, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXI.Texture;
+        texture(key: string, data: any, pixelWidth?: number, pixelHeight?: number, palette?: number, generateTexture?: boolean, callback?: Function, callbackContext?: any): PIXILegacy.Texture;
 
     }
 
@@ -6923,7 +6923,7 @@ declare module Phaser {
     * The vast majority of filters (including all of those that ship with Phaser) use fragment shaders, and
     * therefore only work in WebGL and are not supported by Canvas at all.
     */
-    class Filter extends PIXI.AbstractFilter {
+    class Filter extends PIXILegacy.AbstractFilter {
 
 
         /**
@@ -6955,7 +6955,7 @@ declare module Phaser {
 
 
         /**
-        * Internal PIXI var.
+        * Internal PIXILegacy var.
         * Default: true
         */
         dirty: boolean;
@@ -6976,7 +6976,7 @@ declare module Phaser {
         fragmentSrc: string | string[];
 
         /**
-        * Internal PIXI var.
+        * Internal PIXILegacy var.
         */
         padding: number;
 
@@ -7287,7 +7287,7 @@ declare module Phaser {
         * @param children An array of children that are used to populate the FlexLayer.
         * @return The Layer object.
         */
-        createCustomLayer(width: number, height: number, children?: PIXI.DisplayObject[], addToWorld?: boolean): Phaser.FlexLayer;
+        createCustomLayer(width: number, height: number, children?: PIXILegacy.DisplayObject[], addToWorld?: boolean): Phaser.FlexLayer;
 
         /**
         * A fluid layer is centered on the game and maintains its aspect ratio as it scales up and down.
@@ -7295,7 +7295,7 @@ declare module Phaser {
         * @param children An array of children that are used to populate the FlexLayer.
         * @return The Layer object.
         */
-        createFluidLayer(children: PIXI.DisplayObject[]): Phaser.FlexLayer;
+        createFluidLayer(children: PIXILegacy.DisplayObject[]): Phaser.FlexLayer;
 
         /**
         * A full layer is placed at 0,0 and extends to the full size of the game. Children are scaled according to the fluid ratios.
@@ -7303,7 +7303,7 @@ declare module Phaser {
         * @param children An array of children that are used to populate the FlexLayer.
         * @return The Layer object.
         */
-        createFullLayer(children: PIXI.DisplayObject[]): Phaser.FlexLayer;
+        createFullLayer(children: PIXILegacy.DisplayObject[]): Phaser.FlexLayer;
 
         /**
         * A fixed layer is centered on the game and is the size of the required dimensions and is never scaled.
@@ -7311,7 +7311,7 @@ declare module Phaser {
         * @param children An array of children that are used to populate the FlexLayer.
         * @return The Layer object.
         */
-        createFixedLayer(children: PIXI.DisplayObject[]): Phaser.FlexLayer;
+        createFixedLayer(children: PIXILegacy.DisplayObject[]): Phaser.FlexLayer;
 
         /**
         * Call in the render function to output the bounds rects.
@@ -8114,7 +8114,7 @@ declare module Phaser {
         /**
         * The Pixi Renderer.
         */
-        renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
+        renderer: PIXILegacy.CanvasRenderer | PIXILegacy.WebGLRenderer;
 
         /**
         * The Renderer this game will use. Either Phaser.AUTO, Phaser.CANVAS, Phaser.WEBGL, Phaser.WEBGL_MULTI or Phaser.HEADLESS. After the game boots, renderType reflects the renderer in use: AUTO changes to CANVAS or WEBGL and WEBGL_MULTI changes to WEBGL. HEADLESS skips `preRender`, `render, and `postRender` hooks, just like {@link Phaser.Game#lockRender lockRender}.
@@ -8214,7 +8214,7 @@ declare module Phaser {
         * Calls destroy on Game.state, Game.sound, Game.scale, Game.stage, Game.input, Game.physics and Game.plugins.
         * 
         * Then sets all of those local handlers to null, destroys the renderer, removes the canvas from the DOM
-        * and resets the PIXI default renderer.
+        * and resets the PIXILegacy default renderer.
         * 
         * To destroy the game during an update callback, set {@link Phaser.Game#pendingDestroy pendingDestroy} instead.
         */
@@ -8469,7 +8469,7 @@ declare module Phaser {
         * 
         * @param x X position of the image.
         * @param y Y position of the image.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture.
         * @param frame If the sprite uses an image from a texture atlas or sprite sheet you can pass the frame here. Either a number for a frame ID or a string for a frame name.
         * @return the newly created sprite object.
         */
@@ -8516,7 +8516,7 @@ declare module Phaser {
         * @param y The y coordinate (in world space) to position the Rope at.
         * @param width The width of the Rope.
         * @param height The height of the Rope.
-        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture.
         * @param frame If this Rope is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @return The newly created rope object.
         */
@@ -8538,7 +8538,7 @@ declare module Phaser {
         * 
         * @param x X position of the new sprite.
         * @param y Y position of the new sprite.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture.
         * @param frame If the sprite uses an image from a texture atlas or sprite sheet you can pass the frame here. Either a number for a frame ID or a string for a frame name.
         * @return the newly created sprite object.
         */
@@ -8589,7 +8589,7 @@ declare module Phaser {
         * @param y The y coordinate (in world space) to position the TileSprite at.
         * @param width The width of the TileSprite.
         * @param height The height of the TileSprite.
-        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXILegacy.Texture or BitmapData.
         * @param frame If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @return The newly created tileSprite object.
         */
@@ -8780,7 +8780,7 @@ declare module Phaser {
         * 
         * @param x The x coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
         * @param y The y coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
-        * @param key The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created Image object.
@@ -8853,7 +8853,7 @@ declare module Phaser {
         * 
         * @param x The x coordinate of the Rope. The coordinate is relative to any parent container this rope may be in.
         * @param y The y coordinate of the Rope. The coordinate is relative to any parent container this rope may be in.
-        * @param key The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
         * @param points An array of {Phaser.Point}.
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
@@ -8881,7 +8881,7 @@ declare module Phaser {
         * 
         * @param x The x coordinate of the sprite. The coordinate is relative to any parent container this sprite may be in.
         * @param y The y coordinate of the sprite. The coordinate is relative to any parent container this sprite may be in.
-        * @param key The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key The image used as a texture by this display object during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created Sprite object.
@@ -8937,7 +8937,7 @@ declare module Phaser {
         * @param y The y coordinate of the TileSprite. The coordinate is relative to any parent container this TileSprite may be in.
         * @param width The width of the TileSprite.
         * @param height The height of the TileSprite.
-        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXILegacy.Texture or BitmapData.
         * @param frame If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used. Use either an integer for a Frame ID or a string for a frame name.
         * @param group Optional Group to add the object to. If not specified it will be added to the World group.
         * @return The newly created TileSprite object.
@@ -8968,7 +8968,7 @@ declare module Phaser {
         * the firing rate, the firing angle, and even set things like gravity for them.
         * 
         * @param quantity The quantity of bullets to seed the Weapon with. If -1 it will set the pool to automatically expand. - Default: 1
-        * @param key The image used as a texture by the bullets during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key The image used as a texture by the bullets during rendering. If a string Phaser will get for an entry in the Image Cache. Or it can be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If a Texture Atlas or Sprite Sheet is used this allows you to specify the frame to be used by the bullets. Use either an integer for a Frame ID or a string for a frame name.
         * @param group Optional Group to add the Weapon to. If not specified it will be added to the World group.
         * @param bulletClass The Class of the bullets that are launched by this Weapon. See {@link Phaser.Weapon#bulletClass}
@@ -9255,7 +9255,7 @@ declare module Phaser {
     * {@link Phaser.Graphics#height} to avoid an unusual race condition
     * ({@link #489 https://github.com/photonstorm/phaser-ce/issues/489}).
     */
-    class Graphics extends PIXI.DisplayObjectContainer {
+    class Graphics extends PIXILegacy.DisplayObjectContainer {
 
 
         /**
@@ -9336,8 +9336,8 @@ declare module Phaser {
         autoCull: boolean;
 
         /**
-        * The blend mode to be applied to the graphic shape. Apply a value of PIXI.blendModes.NORMAL to reset the blend mode.
-        * Default: PIXI.blendModes.NORMAL;
+        * The blend mode to be applied to the graphic shape. Apply a value of PIXILegacy.blendModes.NORMAL to reset the blend mode.
+        * Default: PIXILegacy.blendModes.NORMAL;
         */
         blendMode: Phaser.blendModes;
 
@@ -9528,11 +9528,11 @@ declare module Phaser {
         /**
         * The key of the image or texture used by this Game Object during rendering.
         * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
         * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
 
         /**
         * The left coordinate of the Game Object.
@@ -9936,7 +9936,7 @@ declare module Phaser {
         * Transparent areas adjoining the edges may be removed ({@link https://github.com/photonstorm/phaser-ce/issues/283 #283}).
         * 
         * @param resolution The resolution of the texture being generated - Default: 1
-        * @param scaleMode Should be one of the PIXI.scaleMode consts
+        * @param scaleMode Should be one of the PIXILegacy.scaleMode consts
         * @param padding Add optional extra padding to the generated texture (default 0)
         * @return a texture of the graphics object
         */
@@ -10066,7 +10066,7 @@ declare module Phaser {
     * 
     * Groups are also display objects and can be nested as children within other Groups.
     */
-    class Group extends PIXI.DisplayObjectContainer {
+    class Group extends PIXILegacy.DisplayObjectContainer {
 
 
         /**
@@ -10087,7 +10087,7 @@ declare module Phaser {
         * @param enableBody If true all Sprites created with {@link #create} or {@link #createMulitple} will have a physics body created on them. Change the body type with {@link #physicsBodyType}.
         * @param physicsBodyType The physics body type to use when physics bodies are automatically added. See {@link #physicsBodyType} for values.
         */
-        constructor(game: Phaser.Game, parent?: PIXI.DisplayObjectContainer, name?: string, addToStage?: boolean, enableBody?: boolean, physicsBodyType?: number);
+        constructor(game: Phaser.Game, parent?: PIXILegacy.DisplayObjectContainer, name?: string, addToStage?: boolean, enableBody?: boolean, physicsBodyType?: number);
 
 
         /**
@@ -10232,7 +10232,7 @@ declare module Phaser {
         * However if you don't use Arcade Physics, or this isn't a physics enabled Group, then you can use the hash to perform your own
         * sorting and filtering of Group children without touching their z-index (and therefore display draw order)
         */
-        hash: PIXI.DisplayObject[];
+        hash: PIXILegacy.DisplayObject[];
 
         /**
         * A group with `ignoreDestroy` set to `true` ignores all calls to its `destroy` method.
@@ -10481,7 +10481,7 @@ declare module Phaser {
         * @param child The display object to add to this Groups hash. Must be a member of this Group already and not present in the hash.
         * @return True if the child was successfully added to the hash, otherwise false.
         */
-        addToHash(child: PIXI.DisplayObject): boolean;
+        addToHash(child: PIXILegacy.DisplayObject): boolean;
 
         /**
         * This method iterates through all children in the Group (regardless if they are visible or exist)
@@ -10653,13 +10653,13 @@ declare module Phaser {
         * 
         * @param x The x coordinate to display the newly created Sprite at. The value is in relation to the group.x point.
         * @param y The y coordinate to display the newly created Sprite at. The value is in relation to the group.y point.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @param exists The default exists state of the Sprite. - Default: true
         * @param index The index within the group to insert the child to. Where 0 is the bottom of the Group.
         * @return The child that was created: will be a {@link Phaser.Sprite} unless {@link #classType} has been changed.
         */
-        create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, exists?: boolean, index?: number): any;
+        create(x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, exists?: boolean, index?: number): any;
 
         /**
         * Creates multiple Phaser.Sprite objects and adds them to the top of this Group.
@@ -10838,7 +10838,7 @@ declare module Phaser {
         * @param index The index to return the child from.
         * @return The child that was found at the given index, or -1 for an invalid index.
         */
-        getAt(index: number): PIXI.DisplayObject | number;
+        getAt(index: number): PIXILegacy.DisplayObject | number;
 
         /**
         * Returns the child at the bottom of this group.
@@ -10901,11 +10901,11 @@ declare module Phaser {
         * @param createIfNull If `true` and no alive children are found a new one is created.
         * @param x The x coordinate to reset the child to. The value is in relation to the group.x point.
         * @param y The y coordinate to reset the child to. The value is in relation to the group.y point.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @return The alive dead child, or `null` if none found and `createIfNull` was false.
         */
-        getFirstAlive(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
+        getFirstAlive(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
 
         /**
         * Get the first child that is dead (`child.alive === false`).
@@ -10922,11 +10922,11 @@ declare module Phaser {
         * @param createIfNull If `true` and no dead children are found a new one is created.
         * @param x The x coordinate to reset the child to. The value is in relation to the group.x point.
         * @param y The y coordinate to reset the child to. The value is in relation to the group.y point.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @return The first dead child, or `null` if none found and `createIfNull` was false.
         */
-        getFirstDead(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
+        getFirstDead(createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
 
         /**
         * Get the first display object that exists, or doesn't exist.
@@ -10942,11 +10942,11 @@ declare module Phaser {
         * @param createIfNull If `true` and no alive children are found a new one is created.
         * @param x The x coordinate to reset the child to. The value is in relation to the group.x point.
         * @param y The y coordinate to reset the child to. The value is in relation to the group.y point.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @return The first child, or `null` if none found and `createIfNull` was false.
         */
-        getFirstExists(exists: boolean, createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
+        getFirstExists(exists: boolean, createIfNull?: boolean, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
 
         /**
         * Get the child furthest away from the given Object, with optional callback to filter children.
@@ -11150,7 +11150,7 @@ declare module Phaser {
         * @param child The display object to remove from this Groups hash. Must be a member of this Group and in the hash.
         * @return True if the child was successfully removed from the hash, otherwise false.
         */
-        removeFromHash(child: PIXI.DisplayObject): boolean;
+        removeFromHash(child: PIXILegacy.DisplayObject): boolean;
 
         /**
         * Replaces a child of this Group with the given newChild. The newChild cannot be a member of this Group.
@@ -11174,7 +11174,7 @@ declare module Phaser {
         * @param frame The frame of a sprite sheet or texture atlas.
         * @param checkExists Reset only existing children.
         */
-        resetAll(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, checkExists?: boolean): void;
+        resetAll(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, checkExists?: boolean): void;
 
         /**
         * Takes a child and if the `x` and `y` arguments are given it calls `child.reset(x, y)` on it.
@@ -11186,11 +11186,11 @@ declare module Phaser {
         * @param child The child to reset and/or load the texture on.
         * @param x The x coordinate to reset the child to. The value is in relation to the group.x point.
         * @param y The y coordinate to reset the child to. The value is in relation to the group.y point.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @return The child that was reset: usually a {@link Phaser.Sprite}.
         */
-        resetChild(child: any, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): any;
+        resetChild(child: any, x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): any;
 
         /**
         * Sets the group cursor to the first child in the group.
@@ -11379,7 +11379,7 @@ declare module Phaser {
     * 
     * It can still rotate, scale, crop and receive input events. This makes it perfect for logos, backgrounds, simple buttons and other non-Sprite graphics.
     */
-    class Image extends PIXI.Sprite {
+    class Image extends PIXILegacy.Sprite {
 
 
         /**
@@ -11390,10 +11390,10 @@ declare module Phaser {
         * @param game A reference to the currently running game.
         * @param x The x coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
         * @param y The y coordinate of the Image. The coordinate is relative to any parent container this Image may be in.
-        * @param key The texture used by the Image during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture, BitmapData or PIXI.Texture. If this argument is omitted, the image will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
+        * @param key The texture used by the Image during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture, BitmapData or PIXILegacy.Texture. If this argument is omitted, the image will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
         * @param frame If this Image is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         */
-        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number);
+        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture, frame?: string | number);
 
 
         /**
@@ -11427,7 +11427,7 @@ declare module Phaser {
         * (0.5, 0.5) is the center.
         * (1, 1) is the bottom right.
         * 
-        * You can modify the default values in PIXI.Sprite.defaultAnchor.
+        * You can modify the default values in PIXILegacy.Sprite.defaultAnchor.
         */
         anchor: Phaser.Point;
 
@@ -11614,11 +11614,11 @@ declare module Phaser {
         /**
         * The key of the image or texture used by this Game Object during rendering.
         * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
         * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
 
         /**
         * The lifespan allows you to give a Game Object a lifespan in milliseconds.
@@ -11909,11 +11909,11 @@ declare module Phaser {
         * 
         * Note: You cannot use a RenderTexture as a texture for a TileSprite.
         * 
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @param stopAnimation If an animation is already playing on this Sprite you can choose to stop it or let it carry on playing. - Default: true
         */
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
 
         /**
         * Resizes the Frame dimensions that the Game Object uses for rendering.
@@ -11959,7 +11959,7 @@ declare module Phaser {
         * @param displayObject The display object to check against.
         * @return True if the bounds of this Game Object intersects at any point with the bounds of the given display object.
         */
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
 
         /**
         * Plays an Animation.
@@ -12609,7 +12609,7 @@ declare module Phaser {
         * @param pointer The pointer to use for the test.
         * @param localPoint The local translated point.
         */
-        hitTest(displayObject: PIXI.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
+        hitTest(displayObject: PIXILegacy.DisplayObject, pointer: Phaser.Pointer, localPoint: Phaser.Point): void;
 
         /**
         * Reset all of the Pointers and Input states.
@@ -15471,7 +15471,7 @@ declare module Phaser {
         * @param resolution Optional game resolution to apply to the kerning data. - Default: 1
         * @return The parsed Bitmap Font data.
         */
-        static bitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static bitmapFont(xml: any, baseTexture: PIXILegacy.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
 
         /**
         * Parse a Bitmap Font from an XML file.
@@ -15484,7 +15484,7 @@ declare module Phaser {
         * @param resolution Optional game resolution to apply to the kerning data. - Default: 1
         * @return The parsed Bitmap Font data.
         */
-        static xmlBitmapFont(xml: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static xmlBitmapFont(xml: any, baseTexture: PIXILegacy.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
 
         /**
         * Parse a Bitmap Font from a JSON file.
@@ -15497,7 +15497,7 @@ declare module Phaser {
         * @param resolution Optional game resolution to apply to the kerning data. - Default: 1
         * @return The parsed Bitmap Font data.
         */
-        static jsonBitmapFont(json: any, baseTexture: PIXI.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
+        static jsonBitmapFont(json: any, baseTexture: PIXILegacy.BaseTexture, xSpacing?: number, ySpacing?: number, frame?: Phaser.Frame, resolution?: number): any;
 
     }
 
@@ -16871,7 +16871,7 @@ declare module Phaser {
         * @param game A reference to the currently running game.
         * @param x The x coordinate (in world space) to position the Particle at.
         * @param y The y coordinate (in world space) to position the Particle at.
-        * @param key This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+        * @param key This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture.
         * @param frame If this Particle is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         */
         constructor(game: Phaser.Game, x: number, y: number, key?: any, frame?: any);
@@ -17277,11 +17277,11 @@ declare module Phaser {
                 * 
                 * @param x The x coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitX` or if the Emitter has a width > 1 a random value between `Emitter.left` and `Emitter.right`.
                 * @param y The y coordinate to emit the particle from. If `null` or `undefined` it will use `Emitter.emitY` or if the Emitter has a height > 1 a random value between `Emitter.top` and `Emitter.bottom`.
-                * @param key This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+                * @param key This is the image or texture used by the Particle during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
                 * @param frame If this Particle is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
                 * @return True if a particle was emitted, otherwise false.
                 */
-                emitParticle(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number): boolean;
+                emitParticle(x?: number, y?: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number): boolean;
 
                 /**
                 * Call this function to emit the given quantity of particles at all once (an explosion)
@@ -17647,12 +17647,12 @@ declare module Phaser {
         * The HTML Video Element that is added to the document.
         */
         video: HTMLVideoElement;
-        baseTexture: PIXI.BaseTexture;
+        baseTexture: PIXILegacy.BaseTexture;
 
         /**
-        * The PIXI.Texture.
+        * The PIXILegacy.Texture.
         */
-        texture: PIXI.Texture;
+        texture: PIXILegacy.Texture;
 
         /**
         * The Frame this video uses for rendering.
@@ -22274,7 +22274,7 @@ declare module Phaser {
         /**
         * The parent of this plugin. If added to the PluginManager the parent will be set to that, otherwise it will be null.
         */
-        parent: PIXI.DisplayObject;
+        parent: PIXILegacy.DisplayObject;
 
         /**
         * A Plugin with visible=true has its render and postRender methods called by the parent, otherwise they are skipped.
@@ -22330,9 +22330,9 @@ declare module Phaser {
             static DISTANCE_MANHATTAN: string;
             static DISTANCE_EUCLIDIAN: string;
 
-            constructor(parent: PIXI.DisplayObject);
+            constructor(parent: PIXILegacy.DisplayObject);
 
-            parent: PIXI.DisplayObject;
+            parent: PIXILegacy.DisplayObject;
             version: string;
 
             findPath(startPoint: Phaser.Point, goalPoint: Phaser.Point): Phaser.Plugin.AStar.AStarPath;
@@ -22387,7 +22387,7 @@ declare module Phaser {
 
         class CSS3Filters extends Phaser.Plugin {
 
-            constructor(parent: PIXI.DisplayObject);
+            constructor(parent: PIXILegacy.DisplayObject);
 
             blur: number;
             brightness: number;
@@ -22438,7 +22438,7 @@ declare module Phaser {
 
         class SamplePlugin extends Phaser.Plugin {
 
-            constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
+            constructor(game: Phaser.Game, parent: PIXILegacy.DisplayObject);
 
             addSprite(sprite: Phaser.Sprite): void;
             update(): void;
@@ -22481,7 +22481,7 @@ declare module Phaser {
 
         class Webcam extends Phaser.Plugin {
 
-            constructor(game: Phaser.Game, parent: PIXI.DisplayObject);
+            constructor(game: Phaser.Game, parent: PIXILegacy.DisplayObject);
 
             active: boolean;
             context: any;
@@ -22635,7 +22635,7 @@ declare module Phaser {
     * `var myPoint = new Phaser.Point();`
     * You can also use them as 2D Vectors and you'll find different vector related methods in this class.
     */
-    class Point extends PIXI.Point {
+    class Point extends PIXILegacy.Point {
 
 
         /**
@@ -24689,7 +24689,7 @@ declare module Phaser {
     * A RenderTexture is a special texture that allows any displayObject to be rendered to it. It allows you to take many complex objects and
     * render them down into a single quad (on WebGL) which can then be used to texture other display objects with. A way of generating textures at run-time.
     */
-    class RenderTexture extends PIXI.Texture {
+    class RenderTexture extends PIXILegacy.Texture {
 
 
         /**
@@ -24710,7 +24710,7 @@ declare module Phaser {
         * This is the area of the BaseTexture image to actually copy to the Canvas / WebGL when rendering,
         * irrespective of the actual frame size or placement (which can be influenced by trimmed texture atlases)
         */
-        crop: PIXI.Rectangle;
+        crop: PIXILegacy.Rectangle;
 
         /**
         * A reference to the currently running game.
@@ -24747,7 +24747,7 @@ declare module Phaser {
         * @param matrix Optional matrix to apply to the display object before rendering. If null or undefined it will use the worldTransform matrix of the given display object.
         * @param clear If true the texture will be cleared before the display object is drawn.
         */
-        render(displayObject: PIXI.DisplayObject, matrix?: Phaser.Matrix, clear?: boolean): void;
+        render(displayObject: PIXILegacy.DisplayObject, matrix?: Phaser.Matrix, clear?: boolean): void;
 
         /**
         * This function will draw the display object to the RenderTexture at the given coordinates.
@@ -24761,7 +24761,7 @@ declare module Phaser {
         * @param y The y position to render the object at.
         * @param clear If true the texture will be cleared before the display object is drawn.
         */
-        renderXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
+        renderXY(displayObject: PIXILegacy.DisplayObject, x: number, y: number, clear?: boolean): void;
 
         /**
         * This function will draw the display object to the RenderTexture at the given coordinates.
@@ -24775,7 +24775,7 @@ declare module Phaser {
         * @param y The y position to render the object at.
         * @param clear If true the texture will be cleared before the display object is drawn.
         */
-        renderRawXY(displayObject: PIXI.DisplayObject, x: number, y: number, clear?: boolean): void;
+        renderRawXY(displayObject: PIXILegacy.DisplayObject, x: number, y: number, clear?: boolean): void;
 
     }
 
@@ -25104,7 +25104,7 @@ declare module Phaser {
     * 
     * Please note that Ropes cannot have an input handler.
     */
-    class Rope extends PIXI.Rope {
+    class Rope extends PIXILegacy.Rope {
 
 
         /**
@@ -25117,11 +25117,11 @@ declare module Phaser {
         * @param game A reference to the currently running game.
         * @param x The x coordinate (in world space) to position the Rope at.
         * @param y The y coordinate (in world space) to position the Rope at.
-        * @param key This is the image or texture used by the Rope during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture.
+        * @param key This is the image or texture used by the Rope during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture.
         * @param frame If this Rope is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @param points An array of {Phaser.Point}.
         */
-        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture | Phaser.Video, frame?: string | number, points?: Phaser.Point[]);
+        constructor(game: Phaser.Game, x: number, y: number, key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture | Phaser.Video, frame?: string | number, points?: Phaser.Point[]);
 
 
         /**
@@ -25365,11 +25365,11 @@ declare module Phaser {
         /**
         * The key of the image or texture used by this Game Object during rendering.
         * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
         * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture | Phaser.Video;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture | Phaser.Video;
 
         /**
         * A user defined name given to this Game Object.
@@ -25408,7 +25408,7 @@ declare module Phaser {
         * @param displayObject The display object to check against.
         * @return True if the bounds of this Game Object intersects at any point with the bounds of the given display object.
         */
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
 
         /**
         * A Game Object is that is pendingDestroy is flagged to have its destroy method called on the next logic update.
@@ -25611,11 +25611,11 @@ declare module Phaser {
         * 
         * Note: You cannot use a RenderTexture as a texture for a TileSprite.
         * 
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @param stopAnimation If an animation is already playing on this Sprite you can choose to stop it or let it carry on playing. - Default: true
         */
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
 
         /**
         * Moves this Game Object up one place in its parent's display list.
@@ -26903,7 +26903,7 @@ declare module Phaser {
     * They also contain additional properties allowing for physics motion (via Sprite.body), input handling (via Sprite.input),
     * events (via Sprite.events), animation (via Sprite.animations), camera culling and more. Please see the Examples for use cases.
     */
-    class Sprite extends PIXI.Sprite {
+    class Sprite extends PIXILegacy.Sprite {
 
 
         /**
@@ -26916,10 +26916,10 @@ declare module Phaser {
         * @param game A reference to the currently running game.
         * @param x The x coordinate (in world space) to position the Sprite at.
         * @param y The y coordinate (in world space) to position the Sprite at.
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXI.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache entry, or an instance of a RenderTexture or PIXILegacy.Texture. If this argument is omitted, the sprite will receive {@link Phaser.Cache.DEFAULT the default texture} (as if you had passed '__default'), but its `key` will remain empty.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         */
-        constructor(game: Phaser.Game, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number);
+        constructor(game: Phaser.Game, x: number, y: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture, frame?: string | number);
 
 
         /**
@@ -26940,7 +26940,7 @@ declare module Phaser {
         * (0.5, 0.5) is the center.
         * (1, 1) is the bottom right.
         * 
-        * You can modify the default values in PIXI.Sprite.defaultAnchor.
+        * You can modify the default values in PIXILegacy.Sprite.defaultAnchor.
         */
         anchor: Phaser.Point;
 
@@ -27202,11 +27202,11 @@ declare module Phaser {
         /**
         * The key of the image or texture used by this Game Object during rendering.
         * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
         * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
 
         /**
         * The left coordinate of the Game Object.
@@ -27575,11 +27575,11 @@ declare module Phaser {
         * 
         * Note: You cannot use a RenderTexture as a texture for a TileSprite.
         * 
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @param stopAnimation If an animation is already playing on this Sprite you can choose to stop it or let it carry on playing. - Default: true
         */
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
 
         /**
         * Moves this Game Object up one place in its parent's display list.
@@ -27613,7 +27613,7 @@ declare module Phaser {
         * @param displayObject The display object to check against.
         * @return True if the bounds of this Game Object intersects at any point with the bounds of the given display object.
         */
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
 
         /**
         * Plays an Animation.
@@ -27773,7 +27773,7 @@ declare module Phaser {
         * @param name A name for this Group. Not used internally but useful for debugging. - Default: group
         * @param addToStage If set to true this Group will be added directly to the Game.Stage instead of Game.World.
         */
-        constructor(game: Phaser.Game, parent: PIXI.DisplayObjectContainer, name?: string, addedToStage?: boolean);
+        constructor(game: Phaser.Game, parent: PIXILegacy.DisplayObjectContainer, name?: string, addedToStage?: boolean);
 
 
         /**
@@ -27788,7 +27788,7 @@ declare module Phaser {
     * The Stage controls root level display objects upon which everything is displayed.
     * It also handles browser visibility handling and the pausing due to loss of focus.
     */
-    class Stage extends PIXI.DisplayObjectContainer {
+    class Stage extends PIXILegacy.DisplayObjectContainer {
 
 
         /**
@@ -31466,7 +31466,7 @@ declare module Phaser {
     * if your game is running under WebGL please note that each frame of the animation must be a power of two in size, or it will receive
     * additional padding to enforce it to be so.
     */
-    class TileSprite extends PIXI.TilingSprite {
+    class TileSprite extends PIXILegacy.TilingSprite {
 
 
         /**
@@ -31497,10 +31497,10 @@ declare module Phaser {
         * @param y The y coordinate (in world space) to position the TileSprite at.
         * @param width The width of the TileSprite. - Default: 256
         * @param height The height of the TileSprite. - Default: 256
-        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXI.Texture or BitmapData.
+        * @param key This is the image or texture used by the TileSprite during rendering. It can be a string which is a reference to the Phaser Image Cache entry, or an instance of a PIXILegacy.Texture or BitmapData.
         * @param frame If this TileSprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         */
-        constructor(game: Phaser.Game, x: number, y: number, width: number, height: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXI.Texture, frame?: string | number);
+        constructor(game: Phaser.Game, x: number, y: number, width: number, height: number, key?: string | Phaser.RenderTexture | Phaser.BitmapData | PIXILegacy.Texture, frame?: string | number);
 
 
         /**
@@ -31727,11 +31727,11 @@ declare module Phaser {
         /**
         * The key of the image or texture used by this Game Object during rendering.
         * If it is a string it's the string used to retrieve the texture from the Phaser Image Cache.
-        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * It can also be an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * If a Game Object is created without a key it is automatically assigned the key `__default` which is a 32x32 transparent PNG stored within the Cache.
         * If a Game Object is given a key which doesn't exist in the Image Cache it is re-assigned the key `__missing` which is a 32x32 PNG of a green box with a line through it.
         */
-        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture;
+        key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture;
 
         /**
         * The left coordinate of the Game Object.
@@ -31959,11 +31959,11 @@ declare module Phaser {
         * 
         * Note: You cannot use a RenderTexture as a texture for a TileSprite.
         * 
-        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+        * @param key This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXILegacy.Texture.
         * @param frame If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
         * @param stopAnimation If an animation is already playing on this Sprite you can choose to stop it or let it carry on playing. - Default: true
         */
-        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXI.Texture, frame?: string | number, stopAnimation?: boolean): void;
+        loadTexture(key: string | Phaser.RenderTexture | Phaser.BitmapData | Phaser.Video | PIXILegacy.Texture, frame?: string | number, stopAnimation?: boolean): void;
 
         /**
         * Plays an Animation.
@@ -32003,7 +32003,7 @@ declare module Phaser {
         * @param displayObject The display object to check against.
         * @return True if the bounds of this Game Object intersects at any point with the bounds of the given display object.
         */
-        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXI.DisplayObject): boolean;
+        overlap(displayObject: Phaser.Sprite | Phaser.Image | Phaser.TileSprite | Phaser.Button | PIXILegacy.DisplayObject): boolean;
 
         /**
         * Resets the TileSprite. This places the TileSprite at the given x/y world coordinates, resets the tilePosition and then

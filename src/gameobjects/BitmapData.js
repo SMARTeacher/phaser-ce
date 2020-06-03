@@ -117,16 +117,16 @@ Phaser.BitmapData = function (game, key, width, height, skipPool)
     }
 
     /**
-    * @property {PIXI.BaseTexture} baseTexture - The PIXI.BaseTexture.
+    * @property {PIXILegacy.BaseTexture} baseTexture - The PIXILegacy.BaseTexture.
     * @default
     */
-    this.baseTexture = new PIXI.BaseTexture(this.canvas, null, this.game.resolution);
+    this.baseTexture = new PIXILegacy.BaseTexture(this.canvas, null, this.game.resolution);
 
     /**
-    * @property {PIXI.Texture} texture - The PIXI.Texture.
+    * @property {PIXILegacy.Texture} texture - The PIXILegacy.Texture.
     * @default
     */
-    this.texture = new PIXI.Texture(this.baseTexture);
+    this.texture = new PIXILegacy.Texture(this.baseTexture);
 
     /**
     * @property {Phaser.FrameData} frameData - The FrameData container this BitmapData uses for rendering.
@@ -524,7 +524,7 @@ Phaser.BitmapData.prototype = {
     *
     * The image is then stored in the {@link Phaser.Cache image Cache} using the key given.
     *
-    * Finally a {@link PIXI.Texture} is created based on the image and returned.
+    * Finally a {@link PIXILegacy.Texture} is created based on the image and returned.
     *
     * You can apply the texture to a sprite or any other supporting object by using either the
     * key or the texture. First call `generateTexture`:
@@ -561,7 +561,7 @@ Phaser.BitmapData.prototype = {
     * @param {string} key - The key which will be used to store the image in the Cache.
     * @param {function} [callback] - A function to execute once the texture is generated. It will be passed the newly generated texture.
     * @param {any} [callbackContext] - The context in which to invoke the callback.
-    * @return {PIXI.Texture|null} The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
+    * @return {PIXILegacy.Texture|null} The newly generated texture, or `null` if a callback was passed and the texture isn't available yet.
     */
     generateTexture: function (key, callback, callbackContext)
     {
@@ -574,7 +574,7 @@ Phaser.BitmapData.prototype = {
             image.onload = function ()
             {
                 var obj = cache.addImage(key, '', image);
-                var texture = new PIXI.Texture(obj.base);
+                var texture = new PIXILegacy.Texture(obj.base);
 
                 callback.call(callbackContext || null, texture);
 
@@ -588,7 +588,7 @@ Phaser.BitmapData.prototype = {
         {
             var obj = cache.addImage(key, '', image);
 
-            return new PIXI.Texture(obj.base);
+            return new PIXILegacy.Texture(obj.base);
         }
 
         return null;
@@ -1310,7 +1310,7 @@ Phaser.BitmapData.prototype = {
 
         this._image = source;
 
-        if (source instanceof Phaser.Sprite || source instanceof Phaser.Image || source instanceof Phaser.Text || source instanceof PIXI.Sprite)
+        if (source instanceof Phaser.Sprite || source instanceof Phaser.Image || source instanceof Phaser.Text || source instanceof PIXILegacy.Sprite)
         {
             //  Copy over sprite values
             this._pos.set(source.texture.crop.x, source.texture.crop.y);
@@ -1344,7 +1344,7 @@ Phaser.BitmapData.prototype = {
                 if (source.cachedTint !== source.tint)
                 {
                     source.cachedTint = source.tint;
-                    source.tintedTexture = PIXI.CanvasTinter.getTintedTexture(source, source.tint);
+                    source.tintedTexture = PIXILegacy.CanvasTinter.getTintedTexture(source, source.tint);
                 }
 
                 this._image = source.tintedTexture;
@@ -1544,7 +1544,7 @@ Phaser.BitmapData.prototype = {
             if (source.cachedTint !== source.tint)
             {
                 source.cachedTint = source.tint;
-                source.tintedTexture = PIXI.CanvasTinter.getTintedTexture(source, source.tint);
+                source.tintedTexture = PIXILegacy.CanvasTinter.getTintedTexture(source, source.tint);
             }
 
             this._image = source.tintedTexture;
@@ -1570,7 +1570,7 @@ Phaser.BitmapData.prototype = {
             this.op = blendMode;
         }
 
-        ctx[this.smoothProperty] = (source.texture.baseTexture.scaleMode === PIXI.scaleModes.LINEAR);
+        ctx[this.smoothProperty] = (source.texture.baseTexture.scaleMode === PIXILegacy.scaleModes.LINEAR);
 
         ctx.setTransform(wt.a, wt.b, wt.c, wt.d, tx, ty);
 
@@ -1748,7 +1748,7 @@ Phaser.BitmapData.prototype = {
                 var bounds = parent.getBounds();
                 this.ctx.save();
                 this.ctx.translate(bounds.x, bounds.y);
-                PIXI.CanvasGraphics.renderGraphics(parent, this.ctx);
+                PIXILegacy.CanvasGraphics.renderGraphics(parent, this.ctx);
                 this.ctx.restore();
             }
             else

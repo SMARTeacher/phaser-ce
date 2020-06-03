@@ -5,11 +5,11 @@
 /**
  * A set of functions used by the webGL renderer to draw the primitive graphics data
  *
- * @class PIXI.WebGLGraphics
+ * @class PIXILegacy.WebGLGraphics
  * @private
  * @static
  */
-PIXI.WebGLGraphics = function ()
+PIXILegacy.WebGLGraphics = function ()
 {
 };
 
@@ -18,18 +18,18 @@ PIXI.WebGLGraphics = function ()
  *
  * @type {number}
  */
-PIXI.WebGLGraphics.stencilBufferLimit = 6;
+PIXILegacy.WebGLGraphics.stencilBufferLimit = 6;
 
 /**
  * Renders the graphics object
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.renderGraphics
+ * @method PIXILegacy.WebGLGraphics.renderGraphics
  * @param graphics {Graphics}
  * @param renderSession {Object}
  */
-PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// projection, offset)
+PIXILegacy.WebGLGraphics.renderGraphics = function (graphics, renderSession)// projection, offset)
 {
     var gl = renderSession.gl;
     var projection = renderSession.projection,
@@ -39,7 +39,7 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
 
     if(graphics.dirty)
     {
-        PIXI.WebGLGraphics.updateGraphics(graphics, gl);
+        PIXILegacy.WebGLGraphics.updateGraphics(graphics, gl);
     }
 
     var webGL = graphics._webGL[gl.id];
@@ -105,11 +105,11 @@ PIXI.WebGLGraphics.renderGraphics = function (graphics, renderSession)// project
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.updateGraphics
+ * @method PIXILegacy.WebGLGraphics.updateGraphics
  * @param graphicsData {Graphics} The graphics object to update
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
+PIXILegacy.WebGLGraphics.updateGraphics = function (graphics, gl)
 {
     // get the contexts graphics object
     var webGL = graphics._webGL[gl.id];
@@ -132,7 +132,7 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
         {
             var graphicsData = webGL.data[i];
             graphicsData.reset();
-            PIXI.WebGLGraphics.graphicsDataPool.push(graphicsData);
+            PIXILegacy.WebGLGraphics.graphicsDataPool.push(graphicsData);
         }
 
         // clear the array and reset the index..
@@ -165,54 +165,54 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
             // MAKE SURE WE HAVE THE CORRECT TYPE..
             if(data.fill)
             {
-                if(data.points.length >= PIXI.WebGLGraphics.stencilBufferLimit)
+                if(data.points.length >= PIXILegacy.WebGLGraphics.stencilBufferLimit)
                 {
-                    if(data.points.length < PIXI.WebGLGraphics.stencilBufferLimit * 2)
+                    if(data.points.length < PIXILegacy.WebGLGraphics.stencilBufferLimit * 2)
                     {
-                        webGLData = PIXI.WebGLGraphics.switchMode(webGL, 0);
+                        webGLData = PIXILegacy.WebGLGraphics.switchMode(webGL, 0);
 
-                        var canDrawUsingSimple = PIXI.WebGLGraphics.buildPoly(data, webGLData);
+                        var canDrawUsingSimple = PIXILegacy.WebGLGraphics.buildPoly(data, webGLData);
 
                         //     console.log(canDrawUsingSimple);
 
                         if(!canDrawUsingSimple)
                         {
                         //    console.log("<>>>")
-                            webGLData = PIXI.WebGLGraphics.switchMode(webGL, 1);
-                            PIXI.WebGLGraphics.buildComplexPoly(data, webGLData);
+                            webGLData = PIXILegacy.WebGLGraphics.switchMode(webGL, 1);
+                            PIXILegacy.WebGLGraphics.buildComplexPoly(data, webGLData);
                         }
 
                     }
                     else
                     {
-                        webGLData = PIXI.WebGLGraphics.switchMode(webGL, 1);
-                        PIXI.WebGLGraphics.buildComplexPoly(data, webGLData);
+                        webGLData = PIXILegacy.WebGLGraphics.switchMode(webGL, 1);
+                        PIXILegacy.WebGLGraphics.buildComplexPoly(data, webGLData);
                     }
                 }
             }
 
             if(data.lineWidth > 0)
             {
-                webGLData = PIXI.WebGLGraphics.switchMode(webGL, 0);
-                PIXI.WebGLGraphics.buildLine(data, webGLData);
+                webGLData = PIXILegacy.WebGLGraphics.switchMode(webGL, 0);
+                PIXILegacy.WebGLGraphics.buildLine(data, webGLData);
 
             }
         }
         else
         {
-            webGLData = PIXI.WebGLGraphics.switchMode(webGL, 0);
+            webGLData = PIXILegacy.WebGLGraphics.switchMode(webGL, 0);
 
             if (data.type === Phaser.RECTANGLE)
             {
-                PIXI.WebGLGraphics.buildRectangle(data, webGLData);
+                PIXILegacy.WebGLGraphics.buildRectangle(data, webGLData);
             }
             else if (data.type === Phaser.CIRCLE || data.type === Phaser.ELLIPSE)
             {
-                PIXI.WebGLGraphics.buildCircle(data, webGLData);
+                PIXILegacy.WebGLGraphics.buildCircle(data, webGLData);
             }
             else if (data.type === Phaser.ROUNDEDRECTANGLE)
             {
-                PIXI.WebGLGraphics.buildRoundedRectangle(data, webGLData);
+                PIXILegacy.WebGLGraphics.buildRoundedRectangle(data, webGLData);
             }
         }
 
@@ -230,17 +230,17 @@ PIXI.WebGLGraphics.updateGraphics = function (graphics, gl)
 /**
  * @static
  * @private
- * @method PIXI.WebGLGraphics.switchMode
+ * @method PIXILegacy.WebGLGraphics.switchMode
  * @param webGL {WebGLContext}
  * @param type {Number}
  */
-PIXI.WebGLGraphics.switchMode = function (webGL, type)
+PIXILegacy.WebGLGraphics.switchMode = function (webGL, type)
 {
     var webGLData;
 
     if(!webGL.data.length)
     {
-        webGLData = PIXI.WebGLGraphics.graphicsDataPool.pop() || new PIXI.WebGLGraphicsData(webGL.gl);
+        webGLData = PIXILegacy.WebGLGraphics.graphicsDataPool.pop() || new PIXILegacy.WebGLGraphicsData(webGL.gl);
         webGLData.mode = type;
         webGL.data.push(webGLData);
     }
@@ -250,7 +250,7 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
 
         if(webGLData.mode !== type || type === 1)
         {
-            webGLData = PIXI.WebGLGraphics.graphicsDataPool.pop() || new PIXI.WebGLGraphicsData(webGL.gl);
+            webGLData = PIXILegacy.WebGLGraphics.graphicsDataPool.pop() || new PIXILegacy.WebGLGraphicsData(webGL.gl);
             webGLData.mode = type;
             webGL.data.push(webGLData);
         }
@@ -266,11 +266,11 @@ PIXI.WebGLGraphics.switchMode = function (webGL, type)
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.buildRectangle
+ * @method PIXILegacy.WebGLGraphics.buildRectangle
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
-PIXI.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
+PIXILegacy.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
 {
     // --- //
     // need to convert points to a nice regular data
@@ -323,7 +323,7 @@ PIXI.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
             x, y ];
 
 
-        PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
+        PIXILegacy.WebGLGraphics.buildLine(graphicsData, webGLData);
 
         graphicsData.points = tempPoints;
     }
@@ -334,11 +334,11 @@ PIXI.WebGLGraphics.buildRectangle = function (graphicsData, webGLData)
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.buildRoundedRectangle
+ * @method PIXILegacy.WebGLGraphics.buildRoundedRectangle
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
-PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
+PIXILegacy.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
 {
     var rrectData = graphicsData.shape;
     var x = rrectData.x;
@@ -350,10 +350,10 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
 
     var recPoints = [];
     recPoints.push(x, y + radius);
-    recPoints = recPoints.concat(PIXI.WebGLGraphics.quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height));
-    recPoints = recPoints.concat(PIXI.WebGLGraphics.quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius));
-    recPoints = recPoints.concat(PIXI.WebGLGraphics.quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
-    recPoints = recPoints.concat(PIXI.WebGLGraphics.quadraticBezierCurve(x + radius, y, x, y, x, y + radius));
+    recPoints = recPoints.concat(PIXILegacy.WebGLGraphics.quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height));
+    recPoints = recPoints.concat(PIXILegacy.WebGLGraphics.quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius));
+    recPoints = recPoints.concat(PIXILegacy.WebGLGraphics.quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
+    recPoints = recPoints.concat(PIXILegacy.WebGLGraphics.quadraticBezierCurve(x + radius, y, x, y, x, y + radius));
 
     if (graphicsData.fill)
     {
@@ -395,7 +395,7 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
 
         graphicsData.points = recPoints;
 
-        PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
+        PIXILegacy.WebGLGraphics.buildLine(graphicsData, webGLData);
 
         graphicsData.points = tempPoints;
     }
@@ -407,7 +407,7 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.quadraticBezierCurve
+ * @method PIXILegacy.WebGLGraphics.quadraticBezierCurve
  * @param fromX {Number} Origin point x
  * @param fromY {Number} Origin point x
  * @param cpX {Number} Control point x
@@ -416,7 +416,7 @@ PIXI.WebGLGraphics.buildRoundedRectangle = function (graphicsData, webGLData)
  * @param toY {Number} Destination point y
  * @return {Array(Number)}
  */
-PIXI.WebGLGraphics.quadraticBezierCurve = function (fromX, fromY, cpX, cpY, toX, toY)
+PIXILegacy.WebGLGraphics.quadraticBezierCurve = function (fromX, fromY, cpX, cpY, toX, toY)
 {
 
     var xa,
@@ -460,11 +460,11 @@ PIXI.WebGLGraphics.quadraticBezierCurve = function (fromX, fromY, cpX, cpY, toX,
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.buildCircle
+ * @method PIXILegacy.WebGLGraphics.buildCircle
  * @param graphicsData {Graphics} The graphics object to draw
  * @param webGLData {Object}
  */
-PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
+PIXILegacy.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
 {
     // need to convert points to a nice regular data
     var circleData = graphicsData.shape;
@@ -532,7 +532,7 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
                 y + Math.cos(seg * i) * height);
         }
 
-        PIXI.WebGLGraphics.buildLine(graphicsData, webGLData);
+        PIXILegacy.WebGLGraphics.buildLine(graphicsData, webGLData);
 
         graphicsData.points = tempPoints;
     }
@@ -543,11 +543,11 @@ PIXI.WebGLGraphics.buildCircle = function (graphicsData, webGLData)
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.buildLine
+ * @method PIXILegacy.WebGLGraphics.buildLine
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
-PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
+PIXILegacy.WebGLGraphics.buildLine = function (graphicsData, webGLData)
 {
     // TODO OPTIMISE!
     var i = 0;
@@ -564,8 +564,8 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
     }
 
     // get first and last point.. figure out the middle!
-    var firstPoint = new PIXI.Point(points[0], points[1]);
-    var lastPoint = new PIXI.Point(points[points.length - 2], points[points.length - 1]);
+    var firstPoint = new PIXILegacy.Point(points[0], points[1]);
+    var lastPoint = new PIXILegacy.Point(points[points.length - 2], points[points.length - 1]);
 
     // if the first point is the last point - gonna have issues :)
     if(firstPoint.x === lastPoint.x && firstPoint.y === lastPoint.y)
@@ -576,7 +576,7 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
         points.pop();
         points.pop();
 
-        lastPoint = new PIXI.Point(points[points.length - 2], points[points.length - 1]);
+        lastPoint = new PIXILegacy.Point(points[points.length - 2], points[points.length - 1]);
 
         var midPointX = lastPoint.x + (firstPoint.x - lastPoint.x) * 0.5;
         var midPointY = lastPoint.y + (firstPoint.y - lastPoint.y) * 0.5;
@@ -756,11 +756,11 @@ PIXI.WebGLGraphics.buildLine = function (graphicsData, webGLData)
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.buildComplexPoly
+ * @method PIXILegacy.WebGLGraphics.buildComplexPoly
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
-PIXI.WebGLGraphics.buildComplexPoly = function (graphicsData, webGLData)
+PIXILegacy.WebGLGraphics.buildComplexPoly = function (graphicsData, webGLData)
 {
     // TODO - no need to copy this as it gets turned into a FLoat32Array anyways..
     var points = graphicsData.points.slice();
@@ -818,11 +818,11 @@ PIXI.WebGLGraphics.buildComplexPoly = function (graphicsData, webGLData)
  *
  * @static
  * @private
- * @method PIXI.WebGLGraphics.buildPoly
+ * @method PIXILegacy.WebGLGraphics.buildPoly
  * @param graphicsData {Graphics} The graphics object containing all the necessary properties
  * @param webGLData {Object}
  */
-PIXI.WebGLGraphics.buildPoly = function (graphicsData, webGLData)
+PIXILegacy.WebGLGraphics.buildPoly = function (graphicsData, webGLData)
 {
     var points = graphicsData.points;
 
@@ -867,14 +867,14 @@ PIXI.WebGLGraphics.buildPoly = function (graphicsData, webGLData)
     return true;
 };
 
-PIXI.WebGLGraphics.graphicsDataPool = [];
+PIXILegacy.WebGLGraphics.graphicsDataPool = [];
 
 /**
  * @class WebGLGraphicsData
  * @private
  * @static
  */
-PIXI.WebGLGraphicsData = function (gl)
+PIXILegacy.WebGLGraphicsData = function (gl)
 {
     this.gl = gl;
 
@@ -890,18 +890,18 @@ PIXI.WebGLGraphicsData = function (gl)
 };
 
 /**
- * @method PIXI.WebGLGraphics.reset
+ * @method PIXILegacy.WebGLGraphics.reset
  */
-PIXI.WebGLGraphicsData.prototype.reset = function ()
+PIXILegacy.WebGLGraphicsData.prototype.reset = function ()
 {
     this.points = [];
     this.indices = [];
 };
 
 /**
- * @method PIXI.WebGLGraphics.upload
+ * @method PIXILegacy.WebGLGraphics.upload
  */
-PIXI.WebGLGraphicsData.prototype.upload = function ()
+PIXILegacy.WebGLGraphicsData.prototype.upload = function ()
 {
     var gl = this.gl;
 

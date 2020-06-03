@@ -5,13 +5,13 @@
 /**
  * A texture stores the information that represents an image. All textures have a base texture.
  *
- * @class PIXI.BaseTexture
+ * @class PIXILegacy.BaseTexture
  * @constructor
  * @param source {String|Canvas} the source object (image or canvas)
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param scaleMode {Number} See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
  * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
  */
-PIXI.BaseTexture = function (source, scaleMode, resolution)
+PIXILegacy.BaseTexture = function (source, scaleMode, resolution)
 {
     /**
      * The Resolution of the texture.
@@ -44,9 +44,9 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
      *
      * @property scaleMode
      * @type {Number}
-     * @default PIXI.scaleModes.LINEAR
+     * @default PIXILegacy.scaleModes.LINEAR
      */
-    this.scaleMode = scaleMode || PIXI.scaleModes.DEFAULT;
+    this.scaleMode = scaleMode || PIXILegacy.scaleModes.DEFAULT;
 
     /**
      * [read-only] Set to true once the base texture has loaded
@@ -139,18 +139,18 @@ PIXI.BaseTexture = function (source, scaleMode, resolution)
 
 };
 
-PIXI.BaseTexture.prototype.constructor = PIXI.BaseTexture;
+PIXILegacy.BaseTexture.prototype.constructor = PIXILegacy.BaseTexture;
 
 /**
  * Forces this BaseTexture to be set as loaded, with the given width and height.
  * Then calls BaseTexture.dirty.
  * Important for when you don't want to modify the source object by forcing in `complete` or dimension properties it may not have.
  *
- * @method PIXI.BaseTexture#forceLoaded
+ * @method PIXILegacy.BaseTexture#forceLoaded
  * @param {number} width - The new width to force the BaseTexture to be.
  * @param {number} height - The new height to force the BaseTexture to be.
  */
-PIXI.BaseTexture.prototype.forceLoaded = function (width, height)
+PIXILegacy.BaseTexture.prototype.forceLoaded = function (width, height)
 {
     this.hasLoaded = true;
     this.width = width;
@@ -161,9 +161,9 @@ PIXI.BaseTexture.prototype.forceLoaded = function (width, height)
 /**
  * Destroys this base texture
  *
- * @method PIXI.BaseTexture#destroy
+ * @method PIXILegacy.BaseTexture#destroy
  */
-PIXI.BaseTexture.prototype.destroy = function ()
+PIXILegacy.BaseTexture.prototype.destroy = function ()
 {
     if (this.source)
     {
@@ -184,9 +184,9 @@ PIXI.BaseTexture.prototype.destroy = function ()
 /**
  * Sets all glTextures to be dirty.
  *
- * @method PIXI.BaseTexture#dirty
+ * @method PIXILegacy.BaseTexture#dirty
  */
-PIXI.BaseTexture.prototype.dirty = function ()
+PIXILegacy.BaseTexture.prototype.dirty = function ()
 {
     for (var i = 0; i < this._glTextures.length; i++)
     {
@@ -198,9 +198,9 @@ PIXI.BaseTexture.prototype.dirty = function ()
  * Removes the base texture from the GPU, useful for managing resources on the GPU.
  * Atexture is still 100% usable and will simply be reuploaded if there is a sprite on screen that is using it.
  *
- * @method PIXI.BaseTexture#unloadFromGPU
+ * @method PIXILegacy.BaseTexture#unloadFromGPU
  */
-PIXI.BaseTexture.prototype.unloadFromGPU = function ()
+PIXILegacy.BaseTexture.prototype.unloadFromGPU = function ()
 {
     this.dirty();
 
@@ -208,7 +208,7 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function ()
     for (var i = this._glTextures.length - 1; i >= 0; i--)
     {
         var glTexture = this._glTextures[i];
-        var gl = PIXI.glContexts[i];
+        var gl = PIXILegacy.glContexts[i];
 
         if(gl && glTexture)
         {
@@ -226,13 +226,13 @@ PIXI.BaseTexture.prototype.unloadFromGPU = function ()
  * Helper function that creates a base texture from the given canvas element.
  *
  * @static
- * @method PIXI.BaseTexture#fromCanvas
+ * @method PIXILegacy.BaseTexture#fromCanvas
  * @param canvas {Canvas} The canvas element source of the texture
- * @param scaleMode {Number} See {{#crossLink "PIXI/scaleModes:property"}}PIXI.scaleModes{{/crossLink}} for possible values
+ * @param scaleMode {Number} See {{#crossLink "PIXILegacy/scaleModes:property"}}PIXILegacy.scaleModes{{/crossLink}} for possible values
  * @param [resolution] {Number} the resolution of the texture (for HiDPI displays)
  * @return {BaseTexture}
  */
-PIXI.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
+PIXILegacy.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
 {
     if (canvas.width === 0)
     {
@@ -246,5 +246,5 @@ PIXI.BaseTexture.fromCanvas = function (canvas, scaleMode, resolution)
 
     resolution = resolution || 1;
 
-    return new PIXI.BaseTexture(canvas, scaleMode, resolution);
+    return new PIXILegacy.BaseTexture(canvas, scaleMode, resolution);
 };

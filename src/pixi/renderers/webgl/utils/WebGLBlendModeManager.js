@@ -3,11 +3,11 @@
  */
 
 /**
-* @class PIXI.WebGLBlendModeManager
+* @class PIXILegacy.WebGLBlendModeManager
 * @constructor
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLBlendModeManager = function ()
+PIXILegacy.WebGLBlendModeManager = function ()
 {
     /**
      * @property currentBlendMode
@@ -16,15 +16,15 @@ PIXI.WebGLBlendModeManager = function ()
     this.currentBlendMode = 99999;
 };
 
-PIXI.WebGLBlendModeManager.prototype.constructor = PIXI.WebGLBlendModeManager;
+PIXILegacy.WebGLBlendModeManager.prototype.constructor = PIXILegacy.WebGLBlendModeManager;
 
 /**
  * Sets the WebGL Context.
  *
- * @method PIXI.WebGLBlendModeManager#setContext
+ * @method PIXILegacy.WebGLBlendModeManager#setContext
  * @param gl {WebGLContext} the current WebGL drawing context
  */
-PIXI.WebGLBlendModeManager.prototype.setContext = function (gl)
+PIXILegacy.WebGLBlendModeManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 };
@@ -32,16 +32,16 @@ PIXI.WebGLBlendModeManager.prototype.setContext = function (gl)
 /**
 * Sets-up the given blendMode from WebGL's point of view.
 *
-* @method PIXI.WebGLBlendModeManager#setBlendMode
-* @param blendMode {Number} the blendMode, should be a Pixi const, such as PIXI.BlendModes.ADD
+* @method PIXILegacy.WebGLBlendModeManager#setBlendMode
+* @param blendMode {Number} the blendMode, should be a Pixi const, such as PIXILegacy.BlendModes.ADD
 */
-PIXI.WebGLBlendModeManager.prototype.setBlendMode = function (blendMode)
+PIXILegacy.WebGLBlendModeManager.prototype.setBlendMode = function (blendMode)
 {
     if(this.currentBlendMode === blendMode) { return false; }
 
     this.currentBlendMode = blendMode;
 
-    var blendModeWebGL = PIXI.blendModesWebGL[this.currentBlendMode];
+    var blendModeWebGL = PIXILegacy.blendModesWebGL[this.currentBlendMode];
 
     if (blendModeWebGL)
     {
@@ -54,9 +54,9 @@ PIXI.WebGLBlendModeManager.prototype.setBlendMode = function (blendMode)
 /**
 * Destroys this object.
 *
-* @method PIXI.WebGLBlendModeManager#destroy
+* @method PIXILegacy.WebGLBlendModeManager#destroy
 */
-PIXI.WebGLBlendModeManager.prototype.destroy = function ()
+PIXILegacy.WebGLBlendModeManager.prototype.destroy = function ()
 {
     this.gl = null;
 };

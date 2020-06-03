@@ -1209,8 +1209,8 @@ Phaser.Rectangle.aabb = function (points, out)
     return out;
 };
 
-//   Because PIXI uses its own Rectangle, we'll replace it with ours to avoid duplicating code or confusion.
-PIXI.Rectangle = Phaser.Rectangle;
+//   Because PIXILegacy uses its own Rectangle, we'll replace it with ours to avoid duplicating code or confusion.
+PIXILegacy.Rectangle = Phaser.Rectangle;
 
 /**
 * A Rectangle with width and height zero.

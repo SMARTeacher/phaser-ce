@@ -9,7 +9,7 @@
         "ActiveXObject": false,
         "CocoonJS": false,
         "Phaser": true,
-        "PIXI": true,
+        "PIXILegacy": true,
         "p2": true
     },
     "rules": {

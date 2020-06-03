@@ -3,11 +3,11 @@
  */
 
 /**
-* @class PIXI.WebGLStencilManager
+* @class PIXILegacy.WebGLStencilManager
 * @constructor
 * @private
 */
-PIXI.WebGLStencilManager = function ()
+PIXILegacy.WebGLStencilManager = function ()
 {
     this.stencilStack = [];
     this.reverse = true;
@@ -17,10 +17,10 @@ PIXI.WebGLStencilManager = function ()
 /**
 * Sets the drawing context to the one given in parameter.
 *
-* @method PIXI.WebGLStencilManager#setContext
+* @method PIXILegacy.WebGLStencilManager#setContext
 * @param gl {WebGLContext} the current WebGL drawing context
 */
-PIXI.WebGLStencilManager.prototype.setContext = function (gl)
+PIXILegacy.WebGLStencilManager.prototype.setContext = function (gl)
 {
     this.gl = gl;
 };
@@ -28,12 +28,12 @@ PIXI.WebGLStencilManager.prototype.setContext = function (gl)
 /**
 * Applies the Mask and adds it to the current filter stack.
 *
-* @method PIXI.WebGLStencilManager#pushMask
+* @method PIXILegacy.WebGLStencilManager#pushMask
 * @param graphics {Graphics}
 * @param webGLData {Array}
 * @param renderSession {Object}
 */
-PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, renderSession)
+PIXILegacy.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, renderSession)
 {
     var gl = this.gl;
     this.bindGraphics(graphics, webGLData, renderSession);
@@ -120,12 +120,12 @@ PIXI.WebGLStencilManager.prototype.pushStencil = function (graphics, webGLData, 
 /**
  * TODO this does not belong here!
  *
- * @method PIXI.WebGLStencilManager#bindGraphics
+ * @method PIXILegacy.WebGLStencilManager#bindGraphics
  * @param graphics {Graphics}
  * @param webGLData {Array}
  * @param renderSession {Object}
  */
-PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData, renderSession)
+PIXILegacy.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData, renderSession)
 {
     // if(this._currentGraphics === graphics)return;
     this._currentGraphics = graphics;
@@ -195,12 +195,12 @@ PIXI.WebGLStencilManager.prototype.bindGraphics = function (graphics, webGLData,
 };
 
 /**
- * @method PIXI.WebGLStencilManager#popStencil
+ * @method PIXILegacy.WebGLStencilManager#popStencil
  * @param graphics {Graphics}
  * @param webGLData {Array}
  * @param renderSession {Object}
  */
-PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, renderSession)
+PIXILegacy.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, renderSession)
 {
     var gl = this.gl;
     this.stencilStack.pop();
@@ -292,9 +292,9 @@ PIXI.WebGLStencilManager.prototype.popStencil = function (graphics, webGLData, r
 /**
 * Destroys the mask stack.
 *
-* @method PIXI.WebGLStencilManager#destroy
+* @method PIXILegacy.WebGLStencilManager#destroy
 */
-PIXI.WebGLStencilManager.prototype.destroy = function ()
+PIXILegacy.WebGLStencilManager.prototype.destroy = function ()
 {
     this.stencilStack = null;
     this.gl = null;
